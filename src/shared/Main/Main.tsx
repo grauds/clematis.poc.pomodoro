@@ -1,4 +1,5 @@
 import React from 'react';
+import { Counter } from './Counter';
 import styles from './main.css';
 
 export function Main() {
@@ -24,6 +25,7 @@ export function Main() {
               </li>
             </ul>
          </div>
+         <Counter taskTitle='Test task'/>
      </div>
   );
 }
