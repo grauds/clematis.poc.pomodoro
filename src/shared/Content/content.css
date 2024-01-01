@@ -1,0 +1,14 @@
+.content {
+  overflow: visible;
+  background-color: var(--white);
+  border-radius: 7px 7px 0 0;
+  padding: 10px;
+}
+
+@media all and (min-width: 1024px) {
+  .content {
+    background-color: var(--white);
+    border-radius: 7px 7px 0 0;
+  }
+}
+  

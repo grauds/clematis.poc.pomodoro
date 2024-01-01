@@ -1,0 +1,61 @@
+@import url('https://fonts.cdnfonts.com/css/sf-ui-display');
+
+:root {
+  --black: #333333;
+  --whitelightness: 100%;
+  --white: hsl(0, 0%, var(--whitelightness));
+  --greyF3: #f3f3f3;
+  --greyEC: #ececec;
+  --greyF4: hsl(0, 0%, calc(var(--whitelightness) - 4%));
+  --greyD9: #D9D9D9;
+  --greyC4: #c4c4c4;
+  --grey99: #999999;
+  --grey66: #666666;
+  --darkred: #B7280F;
+  --red: #DC3E22;
+  --orange: #EE735D;
+  --coral: #EA8979;
+  --green: #899441;
+  --lightgreen: #A8B64F;
+
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: var(--greyF4);
+    font-size: 16px;
+    line-height: 33px;
+    color: #333333;
+    font-family: 'SF UI Display', sans-serif;
+}
+
+* {
+    color: var(--black);
+    box-sizing: border-box;
+    --webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+ul {
+  list-style: none; /* Remove default bullets */
+}
+
+ul li::before {
+  content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+  color: var(--darkred);
+  display: inline-block;  
+  width: 1em;  
+  margin-left: -1em; 
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}

@@ -1,0 +1,13 @@
+.stats {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-left: auto;
+    align-items: center;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 17px;
+}
+
+.text {
+   color: var(--red);
+}
