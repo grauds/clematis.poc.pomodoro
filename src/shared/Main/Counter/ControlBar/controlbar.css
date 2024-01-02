@@ -36,16 +36,11 @@
   color: #ffffff;
 }
 
-.stopDisabled {
-  width: 220px;
-  height: 50px;
+.stop:hover {
+  background: var(--red);
+}
+
+.stop:disabled {
   border: 1px var(--red) solid;
-  border-radius: 0px 0px 3px 0px;
-  align-self: flex-end;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
-  text-align: center;
   color: var(--red);
 }

@@ -1,0 +1,22 @@
+.task {
+    display: flex;
+    flex-flow: row nowrap;
+    vertical-align: middle;
+    gap: 7px;
+    border-bottom: 1px var(--greyEC) solid;
+    padding: 7px;
+    align-items: center;
+}
+
+.number {
+    border-radius: 50%;
+    width: 27px;
+    height: 27px;
+    padding: 6px;
+    font-size: 26px;
+    line-height: 26px;
+
+    border: 1px solid var(--greyC4);    
+    text-align: center;
+    box-sizing: content-box;
+}

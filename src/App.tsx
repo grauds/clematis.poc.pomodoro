@@ -4,18 +4,19 @@ import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { rootReducer } from "./store/reducer";
-
 import thunk from "redux-thunk";
 
 import { hot } from "react-hot-loader/root";
 
-import "./main.global.css";
 import { Layout } from "./shared/components/Layout";
 import { Header } from "./shared/Header";
 import { NotFound } from "./shared/NotFound";
 import { Content } from "./shared/Content";
 import { Main } from "./shared/Main";
+
+import { rootReducer } from "./store/reducer";
+
+import "./main.global.css";
 
 const store = createStore(
   rootReducer,
