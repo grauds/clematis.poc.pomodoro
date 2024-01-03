@@ -8,3 +8,10 @@
 .minutes {
     color: var(--red);
 }
+
+@media all and (max-width: 1280px) {
+    .daytotals {
+        padding-top: 10px;
+        height: 179px;
+    }
+}   

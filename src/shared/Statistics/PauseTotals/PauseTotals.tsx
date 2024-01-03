@@ -2,15 +2,23 @@ import React from 'react';
 import styles from './pausetotals.css';
 import { ClockIcon } from '../../icons';
 
-export function PauseTotals() {
+interface IPauseTotals {
+  time?: number;
+}
+
+export function PauseTotals({time}: IPauseTotals) {
+
+  const active = (time ?? 0) > 0
+  const activeClass = active ? styles.active : ''
+
   return (
-    <div className={styles.pausetotals}>
+    <div className={`${styles.pausetotals} ${activeClass}`}>
       <div>
         <div className={styles.header}>Время на паузе</div>
-        <div className={styles.percent}>0м</div>
+        <div className={styles.percent}>{time ?? 0}мин</div>
       </div>
       <div className={styles.icon}>
-        <ClockIcon />
+        <ClockIcon active={active} />
       </div>
     </div>
   );

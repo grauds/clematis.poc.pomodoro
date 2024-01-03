@@ -2,15 +2,23 @@ import React from 'react';
 import styles from './focustotals.css';
 import { TargetIcon } from '../../icons';
 
-export function FocusTotals() {
+interface IFocusTotals {
+  percent?: number;
+}
+
+export function FocusTotals({percent}: IFocusTotals) {
+
+  const active = (percent ?? 0) > 0
+  const activeClass = active ? styles.active : ''
+
   return (
-    <div className={styles.focustotals}>
+    <div className={`${styles.focustotals} ${activeClass}`}>
       <div>
         <div className={styles.header}>Фокус</div>
-        <div className={styles.percent}>0%</div>
+        <div className={styles.percent}>{percent ?? 0}%</div>
       </div>
       <div className={styles.icon}>
-        <TargetIcon />
+        <TargetIcon active={active} />
       </div>
     </div>
   );

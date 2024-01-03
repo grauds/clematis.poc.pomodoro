@@ -10,5 +10,6 @@ export * from './DeleteIcon'
 
 export * from './ClockIcon'
 export * from './PomodoroIcon'
+export * from './PomodoroSmallIcon'
 export * from './StopIcon'
 export * from './TargetIcon'

@@ -14,14 +14,14 @@ export function Statistics() {
        <div className={styles.center}>
           <div className={styles.leftColumn}>
             <DayTotals />
-            <PomodoroTotals />
+            <PomodoroTotals pomodoro={9}/>
           </div>
           <WeekChart />
        </div>
        <div className={styles.footer}>
-         <FocusTotals /> 
-         <PauseTotals />
-         <StopsTotals />
+         <FocusTotals percent={35}/> 
+         <PauseTotals time={35} />
+         <StopsTotals stops={3}/>
        </div>
      </div>
   );

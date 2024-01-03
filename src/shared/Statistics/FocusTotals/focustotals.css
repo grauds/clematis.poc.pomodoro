@@ -8,6 +8,10 @@
     align-items: center;
 }
 
+.active {
+    background-color: var(--pink);
+}
+
 .header {
     font-size: 24px;
     line-height: 25px;
