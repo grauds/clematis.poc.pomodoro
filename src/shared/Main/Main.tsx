@@ -3,9 +3,11 @@ import { Counter } from './Counter';
 import { AddTaskForm } from './AddTaskForm';
 import { TasksList } from './TasksList';
 
-import styles from './main.css';
 import { addTask } from '../../store/reducer';
 import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
+
+import styles from './main.css';
 
 export function Main() {
 
@@ -34,7 +36,7 @@ export function Main() {
             </ul></div>
           <AddTaskForm onSubmit={(taskName) => {
             dispatch(addTask({
-              id: 'tst',
+              id: uuidv4(),
               name: taskName
             }))
           }}/>
