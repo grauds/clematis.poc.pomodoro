@@ -13,6 +13,7 @@ import { Header } from "./shared/Header";
 import { NotFound } from "./shared/NotFound";
 import { Content } from "./shared/Content";
 import { Main } from "./shared/Main";
+import { Statistics } from "./shared/Statistics";
 
 import { rootReducer } from "./store/reducer";
 
@@ -39,6 +40,7 @@ function AppComponent() {
             <Content>
               <Routes>
                 <Route path="/" element={<Main />} />
+                <Route path="/statistics" element={<Statistics />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Content>

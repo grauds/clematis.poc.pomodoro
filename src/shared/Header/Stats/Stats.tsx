@@ -1,12 +1,13 @@
-import React from 'react';
-import { StatsIcon } from '../../icons';
+import React from "react";
+import { StatsIcon } from "../../icons";
+import { Link } from "react-router-dom";
 
-import styles from './stats.css';
+import styles from "./stats.css";
 
 export function Stats() {
   return (
-    <div className={styles.stats}>
-      <StatsIcon /> <div className={styles.text}>Статистика</div>
-    </div>
+      <Link to={`/statistics`} className={styles.stats}>
+        <StatsIcon /> <div className={styles.text}>Статистика</div>
+      </Link>
   );
 }

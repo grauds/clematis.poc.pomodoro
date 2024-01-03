@@ -1,0 +1,24 @@
+.stoptotals {
+    display: flex;
+    flex-flow: row wrap;
+    width: 408px;
+    height: 179px;
+    background-color: var(--greyF4);
+    padding: 20px;
+    align-items: center;
+}
+
+.header {
+    font-size: 24px;
+    line-height: 25px;
+}
+
+.percent {
+    font-size: 64px;
+    line-height: 150px;
+}
+
+.icon {
+    margin-left: auto;
+    line-height: 80px;
+}
