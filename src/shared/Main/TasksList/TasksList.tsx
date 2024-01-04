@@ -14,15 +14,11 @@ export function TasksList() {
     return <Task task={task} key={task.id} no={i} />;
   };
 
-  return (
-    <div className={styles.tasksList}>
-       {tasks?.length === 0 && (
-          <div style={{ textAlign: "center" }}>No tasks</div>
-        )}
+  return tasks?.length > 0 ? (<div className={styles.tasksList}>
 
-       {tasks?.map((task, i) => {
+      {tasks?.map((task, i) => {
           return renderTask(task, i);
-        })} 
-    </div>
-  );
+        })
+      } 
+    </div>) : <span />;
 }

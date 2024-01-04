@@ -1,6 +1,6 @@
 .statistics {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column;
     gap: 10px;
     row-gap: 20px;
     padding: 80px;

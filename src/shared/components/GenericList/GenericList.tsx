@@ -3,7 +3,7 @@ import { noop } from '../../../utils/noop';
 
 import styles from './genericList.css'
 
-interface IItem {
+export interface IItem {
     id: string;
     text: string;
     icon?: React.ReactNode; 

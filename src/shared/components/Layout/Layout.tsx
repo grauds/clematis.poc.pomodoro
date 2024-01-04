@@ -5,7 +5,7 @@ interface ILayoutProps {
   children?: React.ReactNode;
 }
 
-export function Layout({ children }: ILayoutProps) {
+export function Layout({ children }: Readonly<ILayoutProps>) {
   return (
     <div className={styles.layout}>
       {children}

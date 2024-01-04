@@ -1,0 +1,46 @@
+.weekselector {
+    display: flex;
+    flex-flow: row wrap;
+    background-color: var(--greyF4);
+    width: 370px;
+    height: 55px;
+}
+
+.button {
+    width: 370px;
+    height: 55px;
+    padding: 19px;
+    line-height: 17px;
+    color: var(--grey33);
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.arrow {
+    margin-left: auto;
+}
+
+.arrowOpen {
+    margin-left: auto;
+    transform: rotate(180deg);
+}
+
+.weekselector button {
+    font-size: 16px;
+    width: 100%;
+    text-align: left;
+}
+
+.item {
+    background-color: var(--greyF4);
+    width: 370px;
+    height: 55px;
+    padding: 19px;
+    line-height: 17px;
+    cursor: pointer;
+    border-top: 1px var(--greyDE) solid;
+}
+
+.item:hover {
+    background-color: var(--greyCC);
+}

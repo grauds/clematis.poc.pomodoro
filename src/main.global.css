@@ -5,8 +5,11 @@
   --whitelightness: 100%;
   --white: hsl(0, 0%, var(--whitelightness));
   --greyF3: #f3f3f3;
+  --grey33: #333;
   --greyEC: #ececec;
+  --greyCC: #cccccc;
   --greyF4: hsl(0, 0%, calc(var(--whitelightness) - 4%));
+  --greyDE: #DEDEDE;
   --greyD9: #D9D9D9;
   --greyC4: #c4c4c4;
   --grey99: #999999;
