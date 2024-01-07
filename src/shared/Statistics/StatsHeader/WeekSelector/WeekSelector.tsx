@@ -14,26 +14,27 @@ interface IWeekSelectorProps {
   isOpen?: boolean;
 }
 
-export function WeekSelector({
-  isOpen
-}: Readonly<IWeekSelectorProps>) {
-  
+export function WeekSelector({ isOpen }: Readonly<IWeekSelectorProps>) {
   const [open, setOpen] = useState<boolean>(isOpen ?? false);
   const selectedWeek = useSelector<RootState, IWeek>((state) => state.week);
   const dispatch = useDispatch();
-  
+
   function onOpen() {
-    setOpen(true)
+    setOpen(true);
   }
 
   function onClose() {
-    setOpen(false)
+    setOpen(false);
   }
-  
+
   function handleItemClick(id: string): void {
-    dispatch(setCurrentWeek(Weeks.find((item: {id: string, text: string}) => {
-       return item.id === id
-    }) ?? Weeks[0]))
+    dispatch(
+      setCurrentWeek(
+        Weeks.find((item: { id: string; text: string }) => {
+          return item.id === id;
+        }) ?? Weeks[0]
+      )
+    );
   }
 
   return (
@@ -42,20 +43,27 @@ export function WeekSelector({
         isOpen={isOpen}
         onOpen={onOpen}
         onClose={onClose}
-        button={<button className={styles.button}>
-          <span>{selectedWeek?.text}</span><span className={open ? styles.arrowOpen : styles.arrow}><ArrowIcon /></span>
-        </button>}
+        button={
+          <button className={styles.button}>
+            <span>{selectedWeek?.text}</span>
+            <span className={open ? styles.arrowOpen : styles.arrow}>
+              <ArrowIcon />
+            </span>
+          </button>
+        }
       >
-        <GenericList
-          list={Weeks
-            .filter((week: IWeek) => {
-              return week.id !== selectedWeek?.id
-            })
-            .map(merge({ 
-            onClick: handleItemClick,
-            className: styles.item,
-          }))}
-        />
+        <div className={styles.decoration}>
+          <GenericList
+            list={Weeks.filter((week: IWeek) => {
+              return week.id !== selectedWeek?.id;
+            }).map(
+              merge({
+                onClick: handleItemClick,
+                className: styles.item,
+              })
+            )}
+          />
+        </div>
       </Dropdown>
     </div>
   );

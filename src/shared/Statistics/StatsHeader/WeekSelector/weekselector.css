@@ -44,3 +44,7 @@
 .item:hover {
     background-color: var(--greyCC);
 }
+
+.decoration {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}

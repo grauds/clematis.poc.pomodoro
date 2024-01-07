@@ -1,18 +1,21 @@
 import { ActionCreator, AnyAction, Reducer } from "redux";
-import { ITask, IWeek, Weeks } from "../types/model";
+import { Days, IDay, ITask, IWeek, Weeks } from "../types/model";
 
 export type RootState = {
   tasks: ITask[];
+  day: IDay;
   week: IWeek;
 };
 
 const initialState: RootState = {
   tasks: [],
+  day: Days[0],
   week: Weeks[0],
 };
 
 const ADD_TASK = "ADD_TASK";
 const REMOVE_TASK = "REMOVE_TASK";
+const SET_CURRENT_DAY = "SET_CURRENT_DAY";
 const SET_CURRENT_WEEK = "SET_CURRENT_WEEK";
 
 export const addTask: ActionCreator<AnyAction> = (task: ITask) => ({
@@ -23,6 +26,11 @@ export const addTask: ActionCreator<AnyAction> = (task: ITask) => ({
 export const removeTask: ActionCreator<AnyAction> = (task: ITask) => ({
   type: REMOVE_TASK,
   task,
+});
+
+export const setCurrentDay: ActionCreator<AnyAction> = (day: IDay) => ({
+  type: SET_CURRENT_DAY,
+  day,
 });
 
 export const setCurrentWeek: ActionCreator<AnyAction> = (week: IWeek) => ({
@@ -48,6 +56,11 @@ export const rootReducer: Reducer<RootState> = (
             ? state.tasks.splice(action.task, 1)
             : state.tasks,
       };
+    case SET_CURRENT_DAY:
+      return {
+        ...state,
+        day: action.day,
+      };  
     case SET_CURRENT_WEEK:
       return {
         ...state,

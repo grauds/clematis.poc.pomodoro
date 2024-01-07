@@ -1,0 +1,60 @@
+.day {
+    width: 77px;
+    height: 460px;
+    z-index: 4;
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    align-items: center;   
+}
+
+.name {
+    height: 51px;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 51px;
+    color: var(--grey99);
+}
+
+.nameSelected {
+    height: 51px;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 51px;
+    color: var(--red);
+}
+
+.filler {
+    width: 77px;
+    height: 45px;
+    background-color: var(--coral);
+}
+
+.fillerSelected {    
+    width: 77px;
+    height: 45px;
+    background-color: var(--red);
+}
+
+.empty {
+    width: 77px;
+    height: 5px;
+    background-color: var(--greyC4);
+}
+
+@media all and (max-width: 1054px) {
+    .day {
+        width: 45px;
+    }
+
+    .empty {
+        width: 45px;
+    }
+
+    .filler {
+        width: 45px;
+    }
+
+    .fillerSelected {    
+        width: 45px;
+    }
+}

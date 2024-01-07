@@ -5,6 +5,42 @@ export interface ITask {
   name: string;
 }
 
+export interface IDay {
+  short: string;
+  name: string;
+}
+
+export const Days: IDay[] = [
+  {
+    short: 'Пн',
+    name: 'Понедельник'
+  },
+  {
+    short: 'Вт',
+    name: 'Вторник'
+  },
+  {
+    short: 'Ср',
+    name: 'Среда'
+  },
+  {
+    short: 'Чт',
+    name: 'Четверг'
+  },
+  {
+    short: 'Пт',
+    name: 'Пятница'
+  },
+  {
+    short: 'Сб',
+    name: 'Суббота'
+  },
+  {
+    short: 'Вс',
+    name: 'Воскресенье'
+  }
+]
+
 export interface IWeek {
   id: string;
   text: string;

@@ -7,7 +7,7 @@ interface IPomodoroTotals {
   pomodoro?: number;
 }
 
-export function PomodoroTotals({pomodoro}: IPomodoroTotals) {
+export function PomodoroTotals({pomodoro}: Readonly<IPomodoroTotals>) {
 
   const icon = (pomodoro ?? 0) > 0 ? <div className={styles.icon}><span><PomodoroSmallIcon /> x {pomodoro}</span></div> : <PomodoroIcon />
   
