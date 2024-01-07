@@ -1,5 +1,5 @@
 .listItem {
-  padding: 12px 6px;
+  padding: 0 6px 0 6px;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;

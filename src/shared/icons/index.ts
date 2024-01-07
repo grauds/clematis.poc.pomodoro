@@ -6,6 +6,7 @@ export * from './StatsIcon'
 export * from './EditIcon'
 export * from './MinusIcon'
 export * from './PlusIcon'
+export * from './PlusBigIcon'
 export * from './DeleteIcon'
 
 export * from './ClockIcon'

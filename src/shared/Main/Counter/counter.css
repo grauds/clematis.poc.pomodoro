@@ -4,22 +4,17 @@
   background: #f4f4f4;
 }
 
-.header {
-  background: var(--greyC4);
-  color: white;
-  height: 55px;
-  padding-left: 40px;
-  vertical-align: middle;
-  line-height: 55px;
-}
-
 .body {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
   padding-top: 50px;
   line-height: 179px;
   font-size: 150px;
   font-weight: 200;
   vertical-align: middle;
-  text-align: center;
 }
 
 .task {
@@ -34,6 +29,12 @@
   line-height: 17px;
 }
 
+.placeholder {
+  min-height: 50px;
+  min-width: 50px;  
+  height: 50px;
+}
+
 @media (min-width: 1024px) {
     .counter {
       min-height: 503px;
@@ -42,9 +43,9 @@
 
 @media (min-width: 1024px) and (max-width: 1280px) {
   .counter {
-    width: 533px;
-    min-width: 533px;
-    max-width: 533px;
+    width: 553px;
+    min-width: 553px;
+    max-width: 553px;
     min-height: 503px;
   }
 }

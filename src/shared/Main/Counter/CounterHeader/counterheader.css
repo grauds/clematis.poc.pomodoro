@@ -1,0 +1,20 @@
+.counterheader {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    background: var(--greyC4);
+    color: white;
+    height: 55px;
+    padding-left: 40px;
+    padding-right: 40px;
+    vertical-align: middle;
+    line-height: 55px;    
+}
+
+.counterheader span {
+    color: white;
+}
+
+.total {
+    margin-left: auto;
+}

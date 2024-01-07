@@ -43,7 +43,7 @@ export function Main() {
           <TasksList /> 
                         
          </div>
-         <Counter taskTitle='Test task'/>
+         <Counter/>
      </div>
   );
 }

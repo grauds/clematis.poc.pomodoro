@@ -26,3 +26,9 @@
     margin-left: auto;
     line-height: 80px;
 }
+
+@media all and (max-width: 1024px) {
+    .stoptotals {
+        width: 100%;
+    }
+}
