@@ -35,7 +35,7 @@ export function Counter({ time }: Readonly<ICounterProps>) {
             </button>
           </div>
           <div className={styles.task}>
-            <span className={styles.taskHeader}>Задача 1 - </span>
+            <span className={styles.taskHeader}>Задача - </span>
             {currentTask?.name}
           </div>
           <ControlBar />

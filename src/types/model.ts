@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 export interface ITask {
   id: string;
   name: string;
+  no: number;
   pomodori: number;
 }
 

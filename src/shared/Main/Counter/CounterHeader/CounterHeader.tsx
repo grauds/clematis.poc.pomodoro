@@ -7,9 +7,14 @@ interface ICounterHeaderProps {
 }
 
 export function CounterHeader({ header, pomodoroNo }: Readonly<ICounterHeaderProps>) {
+
+  function writeHeader(maxLength: number) {
+    return (header?.length && header?.length > maxLength) ? header.substring(0, maxLength).concat('...') : header
+  }
+
   return (
     <div className={styles.counterheader}>
-       <span>{ header ?? 'No task selected' }</span>
+       <span>{ header ? writeHeader(30) : 'No task selected' }</span>
        { header ? <span className={styles.total}>Помидор: {pomodoroNo ?? 1}</span> : '' }
     </div>
   );

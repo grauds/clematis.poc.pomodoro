@@ -10,7 +10,6 @@ export function AddTaskForm({onSubmit}: Readonly<IAddTaskFormProps>) {
   const ref = useRef<HTMLInputElement>(null);
 
   const [taskName, setTaskName] = useState('');
-
   const [touched, setTouched] = useState(false);
   const [valueError, setValueError] = useState("");
 
