@@ -27,7 +27,7 @@ export function WeekSelector({ isOpen }: Readonly<IWeekSelectorProps>) {
     setOpen(false);
   }
 
-  function handleItemClick(id: string): void {
+  function handleItemClick(id: string, e: any): void {
     dispatch(
       setCurrentWeek(
         Weeks.find((item: { id: string; text: string }) => {

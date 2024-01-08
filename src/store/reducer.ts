@@ -62,7 +62,11 @@ export const setCurrentWeek: ActionCreator<AnyAction> = (week: IWeek) => ({
 const updatePomodori = (pomodori: number, action: AnyAction, state = initialState) => {
 
   const index = state.tasks.findIndex((task) => action.task.id === task.id);
-  action.task.pomodori = action.task.pomodori ? action.task.pomodori + pomodori : 1
+  action.task.pomodori = action.task.pomodori + pomodori
+
+  if (action.task.pomodori < 1) {
+    action.task.pomodori = 1
+  }
 
   if (index !== -1 && action.task.pomodori > 0) {
     return {
@@ -82,8 +86,25 @@ const moveBefore = (taskId: string, beforeTaskId: string, state = initialState) 
 
    const index = state.tasks.findIndex((task) => task.id === taskId);
    const destinationIndex = state.tasks.findIndex((task) => task.id === beforeTaskId);
-   state.tasks.splice(destinationIndex, 0,  state.tasks.splice(index, 1)[0])
-   return state; 
+
+   const cloneTasks = [...state.tasks]
+   cloneTasks.splice(destinationIndex, 0,  cloneTasks.splice(index, 1)[0])
+   return {
+    ...state,
+    tasks: cloneTasks
+   }
+}
+
+const remove = (action: AnyAction, state = initialState) => {
+
+  const index = state.tasks.findIndex((task) => task.id === action.task.id);
+
+  const cloneTasks = [...state.tasks]
+  cloneTasks.splice(index, 1)
+  return {
+    ...state,
+    tasks: cloneTasks
+  }
 }
 
 export const rootReducer: Reducer<RootState> = (
@@ -102,14 +123,7 @@ export const rootReducer: Reducer<RootState> = (
         tasks: state.tasks.concat(action.task),
       };
     case REMOVE_TASK:
-
-      return {
-        ...state,
-        tasks:
-          state.tasks.indexOf(action.task) !== -1
-            ? state.tasks.splice(action.task, 1)
-            : state.tasks,
-      };
+      return remove(action, state)
     case MOVE_TASK_BEFORE:
       return moveBefore(action.taskId, action.beforeTaskId, state)  
     case ADD_TASK_POMODORO:
@@ -123,7 +137,7 @@ export const rootReducer: Reducer<RootState> = (
         day: action.day,
       };  
     case SET_CURRENT_WEEK:
-      
+
       return {
         ...state,
         week: action.week,

@@ -17,3 +17,10 @@
 .listItem:hover {
   background-color: rgba(51, 51, 51, 0.1);
 }
+
+.listItem[disabled] {
+  pointer-events: none;
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
+  opacity: .5;
+}
