@@ -40,7 +40,12 @@
   background: var(--red);
 }
 
-.stop:disabled {
+.stop[disabled] {
   border: 1px var(--red) solid;
   color: var(--red);
+  background-color: var(--grayCC);
+  pointer-events: none;
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
+  opacity: .5;
 }

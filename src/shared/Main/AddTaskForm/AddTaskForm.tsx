@@ -19,7 +19,7 @@ export function AddTaskForm({onSubmit}: Readonly<IAddTaskFormProps>) {
   }, []);
 
   function validateValue() {
-    if (taskName?.length <= 3) return "Task name has to be longer than 3 letters";
+    if (taskName?.length <= 3) return "Введите не меньше трех символов для новой задачи";
     return "";
   }
 
@@ -47,9 +47,10 @@ export function AddTaskForm({onSubmit}: Readonly<IAddTaskFormProps>) {
         className={styles.input}
         value={taskName}
         onChange={handleChange}
+        placeholder='Название задачи'
         aria-invalid={valueError ? "true" : undefined}
       />
-      {touched && valueError && <div>{valueError}</div>}
+      {touched && valueError && <div className={styles.error}>{valueError}</div>}
       <button type="submit" className={styles.button}>
         Добавить
       </button>

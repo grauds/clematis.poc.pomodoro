@@ -40,3 +40,8 @@
   opacity: 0.5;
   cursor: default;
 }
+
+.error {
+  color: var(--red);
+  font-size: smaller;
+}
