@@ -11,6 +11,10 @@
     line-height: 55px;    
 }
 
+.running {
+    background: var(--red);    
+}
+
 .counterheader span {
     color: white;
 }

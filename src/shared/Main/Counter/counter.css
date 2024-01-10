@@ -17,6 +17,10 @@
   vertical-align: middle;
 }
 
+.running {
+  color: var(--red);
+}
+
 .task {
   vertical-align: middle;
   text-align: center;
@@ -58,4 +62,61 @@
     min-height: 503px;
     background: #f4f4f4;
   }
+}
+
+.controlBar {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  row-gap: 10px;
+  gap: 20px;
+  padding: 5px;
+}
+
+.start {
+  width: 145px;
+  height: 55px;
+  background: var(--lightgreen);
+  border-radius: 0px 0px 3px 0px;
+  align-self: flex-end;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.start:hover {
+   background: var(--green);  
+}
+
+.stop {
+  width: 145px;
+  height: 55px;
+  border-radius: 0px 0px 3px 0px;
+  align-self: flex-end;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  border: 1px var(--red) solid;
+  color: var(--red);
+}
+
+.stop:hover {
+  background: var(--red);
+  color: #ffffff;
+}
+
+.stop[disabled] {
+  border: 1px var(--red) solid;
+  color: var(--red);
+  background-color: var(--grayCC);
+  pointer-events: none;
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
+  opacity: .5;
 }
