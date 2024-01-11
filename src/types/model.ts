@@ -1,10 +1,15 @@
 import { v4 as uuidv4 } from "uuid";
 
+export enum ETaskStatus {
+  NOT_STARTED, RUNNING, PAUSED, DONE
+}
+
 export interface ITask {
   id: string;
   name: string;
   no: number;
   pomodori: number;
+  status: ETaskStatus;
 }
 
 export interface IDay {

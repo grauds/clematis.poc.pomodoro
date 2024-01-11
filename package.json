@@ -1,5 +1,5 @@
 {
-  "name": "reactjs",
+  "name": "pomodoro",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@gitlab.skillbox.ru/anton_troshin/ReactJS.git"
+    "url": "ssh://git@gitlab.skillbox.ru/anton_troshin/react_project.git"
   },
   "author": "",
   "license": "ISC",
@@ -42,7 +42,6 @@
     "react-window": "^1.8.10",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
-    "unique-names-generator": "^4.7.1",
     "uuid": "^9.0.1",
     "webpack-node-externals": "^3.0.0"
   },

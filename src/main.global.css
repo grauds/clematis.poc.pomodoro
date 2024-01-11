@@ -64,17 +64,3 @@ button {
   background: transparent;
   cursor: pointer;
 }
-
-.greenButton {
-  width: 220px;
-  height: 50px;
-  background: var(--lightgreen);
-  border-radius: 0px 0px 3px 0px;
-  align-self: flex-end;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
-  text-align: center;
-  color: #ffffff;
-}

@@ -1,5 +1,5 @@
 import { ActionCreator, AnyAction, Reducer } from "redux";
-import { Days, IDay, ITask, IWeek, Weeks } from "../types/model";
+import { Days, ETaskStatus, IDay, ITask, IWeek, Weeks } from "../types/model";
 
 export type RootState = {
   tasks: ITask[];
@@ -7,7 +7,7 @@ export type RootState = {
   week: IWeek;
 };
 
-const initialState: RootState = {
+export const initialState: RootState = {
   tasks: [],
   day: Days[0],
   week: Weeks[0] 
@@ -89,6 +89,7 @@ const moveBefore = (taskId: string, beforeTaskId: string, state = initialState) 
 
    const cloneTasks = [...state.tasks]
    cloneTasks.splice(destinationIndex, 0,  cloneTasks.splice(index, 1)[0])
+
    return {
     ...state,
     tasks: cloneTasks
@@ -117,6 +118,7 @@ export const rootReducer: Reducer<RootState> = (
       // initialize new task and put it to the end of the tasks array
       action.task.no = state.tasks.length + 1
       action.task.pomodori = 1
+      action.task.status = ETaskStatus.NOT_STARTED;
 
       return {
         ...state,

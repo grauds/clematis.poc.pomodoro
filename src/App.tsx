@@ -15,14 +15,29 @@ import { Content } from "./shared/Content";
 import { Main } from "./shared/Main";
 import { Statistics } from "./shared/Statistics";
 
-import { rootReducer } from "./store/reducer";
+import { initialState, rootReducer } from "./store/reducer";
 
 import "./main.global.css";
 
+let persistedState;
+
+if (typeof window !== "undefined") {
+  const item = localStorage.getItem("reduxState")
+  persistedState = item ? JSON.parse(item) : initialState;
+}
+
 const store = createStore(
   rootReducer,
+  persistedState,
   composeWithDevTools(applyMiddleware(thunk))
 );
+
+// persists only on client
+if (typeof window !== 'undefined') {
+  store.subscribe(() => {
+    localStorage.setItem("reduxState", JSON.stringify(store.getState()));
+  });
+}
 
 function AppComponent() {
   const [mounted, setMounted] = useState(false);
