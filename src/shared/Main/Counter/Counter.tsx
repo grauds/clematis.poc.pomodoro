@@ -1,70 +1,128 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { RootState, updateTask } from "../../../store/reducer";
-import { ETaskStatus, ITask } from "../../../types/model";
+import {
+  RootState,
+  freshPomodoro,
+  updateTask,
+  updateTaskPomodoro,
+} from "../../../store/reducer";
+import {
+  EPomodoroStatus,
+  ETaskStatus,
+  IPomodoro,
+  ITask,
+} from "../../../types/model";
 import { CounterHeader } from "./CounterHeader";
 import { PlusBigIcon } from "../../icons";
 import { formatTime } from "../../../utils/time";
 
 import styles from "./counter.css";
 
-interface ICounterProps {
-  time?: number;
-}
-
-export function Counter({ time }: Readonly<ICounterProps>) {
-  
+export function Counter() {
   // current task reference
   const currentTask = useSelector<RootState, ITask | undefined>((state) =>
     state.tasks.length > 0 ? state.tasks[0] : undefined
   );
-  // seconds for the current run
-  const [seconds, setSeconds] = useState((time && time > 0) ? time : 25 * 60);
-  // running task state
-  const [isTaskRunning, setIsTaskRunning] = useState<boolean>(false);
-  // running pause state
-  const [isBreakRunning, setIsBreakRunning] = useState<boolean>(false);
-  // is running state on pause
-  const [isPause, setIsPause] = useState<boolean>(false);
+  // get next pomodoro
+  let currentPomodoro: IPomodoro | undefined = currentTask?.pomodori.find(
+    (pomodoro: IPomodoro) => {
+      return pomodoro.status !== EPomodoroStatus.DONE;
+    }
+  );
+
+  const seconds = currentPomodoro ? currentPomodoro.seconds : 0;
+  const breakSeconds = currentPomodoro ? currentPomodoro.breakSeconds : 0;
+
+  const isTaskRunning = currentPomodoro?.status === EPomodoroStatus.RUNNING;
+  const isPause = currentPomodoro?.status === EPomodoroStatus.PAUSED;
+  const isBreakRunning =
+    currentPomodoro?.status === EPomodoroStatus.BREAK_RUNNING;
 
   const runningCss = isTaskRunning ? styles.running : "";
+  const breakRunningCss = isTaskRunning ? styles.breakRunning : "";
 
   const dispatch = useDispatch();
 
   function handleClick() {
-     setSeconds(seconds + 60)
+    if (currentPomodoro) {
+      currentPomodoro.seconds += 60;
+      dispatch(updateTaskPomodoro(currentPomodoro));
+    }
   }
 
   useEffect(() => {
     const timer = setInterval(() => {
-      if (isTaskRunning && seconds > 0) {
-        setSeconds((prevSeconds) => prevSeconds - 1);
+      if (currentPomodoro) {
+        if (
+          (isTaskRunning && seconds > 0) ||
+          (isBreakRunning && breakSeconds > 0)
+        ) {
+          if (isTaskRunning) {
+            currentPomodoro.seconds -= 1;
+            currentPomodoro.time += 1;
+          } else if (isBreakRunning) {
+            currentPomodoro.breakSeconds -= 1;
+            currentPomodoro.break += 1;
+          }
+          dispatch(updateTaskPomodoro(currentPomodoro));
+        }
+        if (isTaskRunning && seconds === 0) {
+          currentPomodoro.status = EPomodoroStatus.BREAK_RUNNING;
+          dispatch(updateTaskPomodoro(currentPomodoro));
+        }
+        if (isBreakRunning && breakSeconds === 0) {
+          currentPomodoro.status = EPomodoroStatus.DONE;
+          dispatch(updateTaskPomodoro(currentPomodoro));
+        }
+        if (isPause) {
+          currentPomodoro.pause += 1;
+          dispatch(updateTaskPomodoro(currentPomodoro));
+        }
       }
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [seconds, isTaskRunning, isPause]);
+  }, [currentTask]);
 
   function startTimer() {
-    setIsTaskRunning(true);
-    setIsPause(false);
+    if (currentTask && currentPomodoro) {
+      currentPomodoro.status = EPomodoroStatus.RUNNING;
+      currentTask.status = ETaskStatus.RUNNING;
+      dispatch(updateTaskPomodoro(currentPomodoro));
+      dispatch(updateTask(currentTask));
+    }
   }
 
   function pauseTimer() {
-    setIsTaskRunning(false);
-    setIsPause(true);
+    if (currentTask && currentPomodoro) {
+      currentPomodoro.status = EPomodoroStatus.PAUSED;
+      currentTask.status = ETaskStatus.PAUSED;
+      dispatch(updateTaskPomodoro(currentPomodoro));
+      dispatch(updateTask(currentTask));
+    }
   }
 
   function stopTimer() {
-    setIsPause(false)
-    setIsTaskRunning(false);
+    if (currentTask && currentPomodoro) {
+      currentPomodoro = {
+        id: currentPomodoro.id,
+        ...freshPomodoro,
+      };
+      dispatch(updateTaskPomodoro(currentPomodoro));
+      dispatch(updateTask(currentTask));
+    }
   }
 
   function finishTask() {
-    if (currentTask) {
-      currentTask.status = ETaskStatus.DONE
-      dispatch(updateTask(currentTask))
+    if (currentTask && currentPomodoro) {
+      currentPomodoro.status = EPomodoroStatus.DONE;
+      currentTask.status =
+        currentTask.pomodori.length !== currentPomodoro.id
+          ? ETaskStatus.PAUSED
+          : ETaskStatus.DONE;
+      dispatch(updateTaskPomodoro(currentPomodoro));
+      dispatch(updateTask(currentTask));
     }
   }
 
@@ -72,11 +130,14 @@ export function Counter({ time }: Readonly<ICounterProps>) {
     <div className={styles.counter}>
       <CounterHeader
         header={currentTask?.name}
+        pomodoroNo={
+          currentTask?.status === ETaskStatus.DONE ? 0 : currentPomodoro?.id
+        }
         running={isTaskRunning || isPause}
       />
       {currentTask ? (
         <>
-          <div className={`${styles.body} ${runningCss}`}>
+          <div className={`${styles.body} ${runningCss} ${breakRunningCss}`}>
             <span className={styles.placeholder}></span>
             <span className={runningCss}>{formatTime(seconds)}</span>
             <button onClick={handleClick}>
@@ -98,7 +159,7 @@ export function Counter({ time }: Readonly<ICounterProps>) {
                 }
               }}
             >
-              {isTaskRunning ? "Пауза" : (isPause ? "Продолжить" : "Старт")}
+              {isTaskRunning ? "Пауза" : isPause ? "Продолжить" : "Старт"}
             </button>
             <button
               className={styles.stop}
@@ -111,7 +172,7 @@ export function Counter({ time }: Readonly<ICounterProps>) {
               }}
               disabled={!isTaskRunning && !isPause}
             >
-              { isPause ? 'Сделано' : 'Стоп' }
+              {isPause ? "Сделано" : "Стоп"}
             </button>
           </div>
         </>

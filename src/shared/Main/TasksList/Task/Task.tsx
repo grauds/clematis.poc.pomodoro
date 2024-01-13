@@ -71,7 +71,7 @@ export function Task({
         e.stopPropagation();
         dispatch(removeTaskPomodoro(task));
       },
-      disabled: task.pomodori <= 1,
+      disabled: task.pomodori.length <= 1,
     },
     {
       id: "3",
@@ -111,10 +111,7 @@ export function Task({
     <div
       id={task.id}
       className={`${styles.task} ${draggingClass} ${draggedOverClass}`}
-      draggable={
-        task.status === ETaskStatus.NOT_STARTED ||
-        task.status === ETaskStatus.DONE
-      }
+      draggable
       onDragStart={(e) => internalDragStart(e)}
       onDragEnter={(e) => dragEnter(e)}
       onDragLeave={(e) => dragLeave(e)}
@@ -122,7 +119,7 @@ export function Task({
     >
       <span className={`${styles.number} ${draggingClass}`}>{task.no}</span>
       <span className={nameStyle}>
-        {task.name} {Array(task.pomodori + 1).join("🍅")}
+        {task.name} {Array(task.pomodori.length + 1).join("🍅")}
       </span>
       <MenuButton menuItems={menuItems} />
       <InputDialog

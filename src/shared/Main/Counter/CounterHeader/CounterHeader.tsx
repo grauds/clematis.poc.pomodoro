@@ -3,7 +3,7 @@ import styles from './counterheader.css';
 
 interface ICounterHeaderProps {  
   header?: string;
-  pomodoroNo?: number; // currently running pomodoro from a sequence of 3 for instance.
+  pomodoroNo?: number; // currently running pomodoro
   running?: boolean;
 }
 

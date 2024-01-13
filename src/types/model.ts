@@ -4,18 +4,26 @@ export enum ETaskStatus {
   NOT_STARTED, RUNNING, PAUSED, DONE
 }
 
-export interface ITask {
-  id: string;
-  name: string;
-  no: number;
-  status: ETaskStatus;
-  pomodori: number; 
-  run: ITaskRun[]; //  
+export enum EPomodoroStatus {
+  NOT_STARTED, RUNNING, PAUSED, BREAK_RUNNING, DONE
 }
 
-export interface ITaskRun {
-  time: number; // running time in seconds
-  pause: number; // time on pause in seconds
+export interface ITask {
+  id: string; // id of the task
+  name: string; // name of the task
+  no: number; // number of the task in the original sorted list
+  status: ETaskStatus; // status of the task
+  pomodori: IPomodoro[]; // array of all pomodori configured for the task
+}
+
+export interface IPomodoro {
+  id: number; // id of the pomodoro
+  seconds: number; // configurable countdown seconds for the current run
+  breakSeconds: number; // configurable countdown seconds for the break after the task
+  time: number; // total running time in seconds
+  pause: number; // total time on pause in seconds
+  break: number; // total time on break in seconds
+  status: EPomodoroStatus; // status of the pomodoro
 }
 
 export interface IDay {

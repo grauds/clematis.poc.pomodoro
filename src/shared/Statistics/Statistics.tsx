@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/reducer';
-import { IDay, IWeek } from '../../types/model';
+import { EPomodoroStatus, IDay, ITask, IWeek } from '../../types/model';
 
 import { DayTotals } from './DayTotals';
 import { PomodoroTotals } from './PomodoroTotals';
@@ -15,9 +15,19 @@ import styles from './statistics.css';
 
 export function Statistics() {
 
-  // TODO: yeild selected week stats
+  const tasks = useSelector<RootState, ITask[]>((state) => state.tasks);
+
   const selectedWeek = useSelector<RootState, IWeek>((state) => state.week);
   const selectedDay = useSelector<RootState, IDay>((state) => state.day);
+
+  let totalPomodoroDone = 0;
+  tasks.forEach((task) => {
+    task.pomodori.forEach((pomodoro) => {
+      if (pomodoro.status === EPomodoroStatus.DONE) {
+        totalPomodoroDone++
+      }
+    })
+  })
 
   return (
      <div className={styles.statistics}>
@@ -25,7 +35,7 @@ export function Statistics() {
        <div className={styles.center}>
           <div className={styles.leftColumn}>
             <DayTotals day={selectedDay} time={'51 минуты'} />
-            <PomodoroTotals pomodoro={9}/>
+            <PomodoroTotals pomodoro={totalPomodoroDone}/>
           </div>
           <WeekChart />
        </div>

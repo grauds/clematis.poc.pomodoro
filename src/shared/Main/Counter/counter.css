@@ -21,6 +21,10 @@
   color: var(--red);
 }
 
+.breakRunning {
+  color: var(--green);
+}
+
 .task {
   vertical-align: middle;
   text-align: center;

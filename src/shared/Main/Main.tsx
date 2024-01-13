@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
 import styles from './main.css';
+import { ETaskStatus } from '../../types/model';
 
 export function Main() {
 
@@ -37,7 +38,9 @@ export function Main() {
           <AddTaskForm onSubmit={(taskName) => {
             dispatch(addTask({
               id: uuidv4(),
-              name: taskName
+              name: taskName,
+              status: ETaskStatus.NOT_STARTED,
+              pomodori: []
             }))
           }}/>
           <TasksList /> 
