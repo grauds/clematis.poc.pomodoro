@@ -51,6 +51,8 @@ export function Task({
 
   const dispatch = useDispatch();
 
+  const nameStyle = (task.status === ETaskStatus.DONE ? styles.doneTask : (isCurrentTask ? styles.activeTask : "")) 
+
   const menuItems: IItem[] = [
     {
       id: "1",
@@ -119,7 +121,7 @@ export function Task({
       onDragEnd={(e) => internalDragEnd(e)}
     >
       <span className={`${styles.number} ${draggingClass}`}>{task.no}</span>
-      <span className={isCurrentTask ? styles.activeTask : ""}>
+      <span className={nameStyle}>
         {task.name} {Array(task.pomodori + 1).join("🍅")}
       </span>
       <MenuButton menuItems={menuItems} />

@@ -11,7 +11,7 @@ import { hot } from "react-hot-loader/root";
 import { Layout } from "./shared/components/Layout";
 import { Header } from "./shared/Header";
 import { NotFound } from "./shared/NotFound";
-import { Content } from "./shared/Content";
+import { Content } from "./shared/components/Content";
 import { Main } from "./shared/Main";
 import { Statistics } from "./shared/Statistics";
 

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { RootState } from "../../../store/reducer";
-import { ITask } from "../../../types/model";
+import { RootState, updateTask } from "../../../store/reducer";
+import { ETaskStatus, ITask } from "../../../types/model";
 import { CounterHeader } from "./CounterHeader";
 import { PlusBigIcon } from "../../icons";
 import { formatTime } from "../../../utils/time";
@@ -62,7 +62,10 @@ export function Counter({ time }: Readonly<ICounterProps>) {
   }
 
   function finishTask() {
-    alert('Task is done!')
+    if (currentTask) {
+      currentTask.status = ETaskStatus.DONE
+      dispatch(updateTask(currentTask))
+    }
   }
 
   return (

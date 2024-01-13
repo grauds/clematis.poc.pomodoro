@@ -13,6 +13,11 @@
     color: var(--red);
 }
 
+.doneTask {
+    text-decoration: line-through;
+    color: var(--greyC4);
+}
+
 .number {
     border-radius: 50%;
     width: 27px;

@@ -8,8 +8,14 @@ export interface ITask {
   id: string;
   name: string;
   no: number;
-  pomodori: number;
   status: ETaskStatus;
+  pomodori: number; 
+  run: ITaskRun[]; //  
+}
+
+export interface ITaskRun {
+  time: number; // running time in seconds
+  pause: number; // time on pause in seconds
 }
 
 export interface IDay {
