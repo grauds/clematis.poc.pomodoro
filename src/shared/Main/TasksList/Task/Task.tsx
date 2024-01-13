@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, addTaskPomodoro, removeTask, removeTaskPomodoro } from "../../../../store/reducer";
+import {
+  RootState,
+  addTaskPomodoro,
+  removeTask,
+  removeTaskPomodoro,
+  updateTask,
+} from "../../../../store/reducer";
 
 import { ETaskStatus, ITask } from "../../../../types/model";
 import { noop } from "../../../../utils/noop";
 import { IItem } from "../../../components/GenericList";
 
-import { DeleteIcon, EditIcon, MinusIcon, PlusIcon } from '../../../icons';
+import { DeleteIcon, EditIcon, MinusIcon, PlusIcon } from "../../../icons";
 import { MenuButton } from "./MenuButton";
+import { InputDialog } from "../../../components/InputDialog";
+import { ConfirmDialog } from "../../../components/ConfirmDialog";
 
 import styles from "./task.css";
 
@@ -28,7 +36,6 @@ export function Task({
   dragStart = noop,
   dragEnd = noop,
 }: Readonly<ITaskProps>) {
-  
   // current task reference
   const currentTask = useSelector<RootState, ITask | undefined>((state) =>
     state.tasks.length > 0 ? state.tasks[0] : undefined
@@ -39,6 +46,9 @@ export function Task({
   const draggingClass = isDragged ? styles.dragging : "";
   const draggedOverClass = draggedOver ? styles.draggedOver : "";
 
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
+
   const dispatch = useDispatch();
 
   const menuItems: IItem[] = [
@@ -46,7 +56,7 @@ export function Task({
       id: "1",
       text: "Увеличить",
       icon: <PlusIcon />,
-      onClick: (id: string, e: any) => {
+      onClick: (_id: string, e: any) => {
         e.stopPropagation();
         dispatch(addTaskPomodoro(task));
       },
@@ -55,7 +65,7 @@ export function Task({
       id: "2",
       text: "Уменьшить",
       icon: <MinusIcon />,
-      onClick: (id: string, e: any) => {
+      onClick: (_id: string, e: any) => {
         e.stopPropagation();
         dispatch(removeTaskPomodoro(task));
       },
@@ -65,14 +75,16 @@ export function Task({
       id: "3",
       text: "Редактировать",
       icon: <EditIcon />,
-      onClick: (id: string, e: any) => {},
+      onClick: (_id: string, _e: any) => {
+        setIsDialogOpen(true);
+      },
     },
     {
       id: "4",
       text: "Удалить",
       icon: <DeleteIcon />,
-      onClick: (id: string, e: any) => {
-        dispatch(removeTask(task));
+      onClick: (_id: string, _e: any) => {
+        setIsConfirmationOpen(true)
       },
     },
   ];
@@ -90,10 +102,8 @@ export function Task({
   }
 
   useEffect(() => {
-
-    setIsCurrentTask(currentTask?.id === task.id)
-
-  }, [currentTask])
+    setIsCurrentTask(currentTask?.id === task.id);
+  }, [currentTask]);
 
   return (
     <div
@@ -113,6 +123,35 @@ export function Task({
         {task.name} {Array(task.pomodori + 1).join("🍅")}
       </span>
       <MenuButton menuItems={menuItems} />
+      <InputDialog
+        title={"Имя задачи"}
+        isOpen={isDialogOpen}
+        text={task.name}
+        onChange={() => {}}
+        onSubmit={(text: string) => {
+          task.name = text;
+          dispatch(updateTask(task));
+          setIsDialogOpen(false);
+        }}
+        onClose={() => {
+          setIsDialogOpen(false);
+        }}
+        onValidate={(taskName: string) => {
+          if (taskName?.length <= 3)
+            return "Введите не меньше трех символов для новой задачи";
+          return "";
+        }}
+      />
+      <ConfirmDialog
+        title={"Удалить задачу?"}
+        isOpen={isConfirmationOpen}
+        buttonTitle={"Удалить"}
+        onSubmit={() => {
+          setIsDialogOpen(false);
+          dispatch(removeTask(task));
+        }}
+        onClose={() => setIsConfirmationOpen(false)}
+      />
     </div>
   );
 }

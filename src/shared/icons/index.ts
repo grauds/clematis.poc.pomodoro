@@ -16,3 +16,4 @@ export * from './StopIcon'
 export * from './TargetIcon'
 
 export * from './ArrowIcon'
+export * from './CloseIcon'
