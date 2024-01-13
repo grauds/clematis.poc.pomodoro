@@ -15,6 +15,10 @@
     background: var(--red);    
 }
 
+.breakRunning {
+    background: var(--green);    
+}
+
 .counterheader span {
     color: white;
 }

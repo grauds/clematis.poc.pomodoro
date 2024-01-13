@@ -5,7 +5,7 @@ export enum ETaskStatus {
 }
 
 export enum EPomodoroStatus {
-  NOT_STARTED, RUNNING, PAUSED, BREAK_RUNNING, DONE
+  NOT_STARTED, RUNNING, PAUSED, BREAK_RUNNING, BREAK_PAUSED, DONE
 }
 
 export interface ITask {

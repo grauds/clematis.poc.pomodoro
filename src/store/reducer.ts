@@ -14,8 +14,8 @@ export const initialState: RootState = {
 };
 
 export const freshPomodoro = {  
-  seconds: 25 * 60,
-  breakSeconds: 5 * 60,
+  seconds: 20,
+  breakSeconds: 10,
   time: 0,
   pause: 0,
   break: 0,

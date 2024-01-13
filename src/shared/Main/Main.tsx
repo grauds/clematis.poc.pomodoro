@@ -1,5 +1,4 @@
 import React from 'react';
-import { Counter } from './Counter';
 import { AddTaskForm } from './AddTaskForm';
 import { TasksList } from './TasksList';
 
@@ -9,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import styles from './main.css';
 import { ETaskStatus } from '../../types/model';
+import { CounterContainer } from './CounterContainer';
 
 export function Main() {
 
@@ -46,7 +46,7 @@ export function Main() {
           <TasksList /> 
                         
          </div>
-         <Counter/>
+         <CounterContainer />
      </div>
   );
 }

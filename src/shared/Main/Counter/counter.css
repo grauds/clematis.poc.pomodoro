@@ -43,31 +43,6 @@
   height: 50px;
 }
 
-@media (min-width: 1024px) {
-    .counter {
-      min-height: 503px;
-    }
-  }
-
-@media (min-width: 1024px) and (max-width: 1280px) {
-  .counter {
-    width: 553px;
-    min-width: 553px;
-    max-width: 553px;
-    min-height: 503px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .counter {
-    width: 733px;
-    min-width: 733px;
-    max-width: 733px;
-    min-height: 503px;
-    background: #f4f4f4;
-  }
-}
-
 .controlBar {
   display: flex;
   flex-flow: row nowrap;
@@ -123,4 +98,29 @@
   -webkit-filter: grayscale(1);
   filter: grayscale(1);
   opacity: .5;
+}
+
+@media (min-width: 1024px) {
+    .counter {
+      min-height: 503px;
+    }
+  }
+
+@media (min-width: 1024px) and (max-width: 1280px) {
+  .counter {
+    width: 553px;
+    min-width: 553px;
+    max-width: 553px;
+    min-height: 503px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .counter {
+    width: 733px;
+    min-width: 733px;
+    max-width: 733px;
+    min-height: 503px;
+    background: #f4f4f4;
+  }
 }
