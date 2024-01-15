@@ -62,8 +62,7 @@ export function CounterContainer() {
           dispatch(updateTaskPomodoro(currentPomodoro));
         }
         if (isBreakRunning && breakSeconds === 0) {
-          currentPomodoro.status = EPomodoroStatus.DONE;
-          dispatch(updateTaskPomodoro(currentPomodoro));
+          finishPomodoroOrTask() 
         }
         if (isPause) {
           currentPomodoro.pause += 1;
