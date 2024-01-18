@@ -1,8 +1,8 @@
 import { getMonday } from "../../utils/time";
-import { IDayStats, getCurrentDayStats, getDayStats, newWeekStats } from "../model";
+import { IDayStats, createCurrentDayStats, getDayStats, newWeekStats } from "../model";
 
 describe("Dates", () => {
-    
+
   test("should fill out a week with dates", () => {
     const dateMonday = getMonday(new Date(Date.parse("2024/01/18")));
     const weekStats: IDayStats[] = newWeekStats(dateMonday);
@@ -17,7 +17,7 @@ describe("Dates", () => {
 
   test("should create stats for a date", () => {
     const stats: IDayStats[] = [];
-    const currentStats: IDayStats = getCurrentDayStats(stats);
+    const currentStats: IDayStats = createCurrentDayStats(stats);
     expect(stats.length).toBe(1);
     expect(currentStats).toEqual(stats[0]);
   });

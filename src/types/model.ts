@@ -1,5 +1,4 @@
-import { v4 as uuidv4 } from "uuid";
-import { sameDay } from "../utils/time";
+import { getDay, sameDay } from "../utils/time";
 
 export enum ETaskStatus {
   NOT_STARTED, RUNNING, PAUSED, DONE
@@ -40,6 +39,18 @@ export const longBreakFreshPomodoro = {
   ...freshPomodoro,
   breakSeconds: 20 * 60,
 };
+
+export function getTotalPomodoriDone(tasks: ITask[]): number {
+  let totalPomodoroDone = 0;
+  tasks.forEach((task) => {
+    task.pomodori.forEach((pomodoro) => {
+      if (pomodoro.status === EPomodoroStatus.DONE) {
+        totalPomodoroDone++;
+      }
+    });
+  });
+  return totalPomodoroDone;
+}
 
 export interface IDay {
   short: string;
@@ -82,22 +93,26 @@ export interface IWeek {
   text: string;
 }
 
+export enum EWeek {
+  THIS_WEEK = '0', PREVIOUS_WEEK = '1', TWO_WEEKS_AGO = '2'
+}
+
 export const Weeks: IWeek[] = [
   {
-    id: uuidv4(),
+    id: EWeek.THIS_WEEK,
     text: "Эта неделя",
   },
   {
-    id: uuidv4(),
+    id: EWeek.PREVIOUS_WEEK,
     text: "Прошедшая неделя",
   },
   {
-    id: uuidv4(),
+    id: EWeek.TWO_WEEKS_AGO,
     text: "2 недели назад",
   },
 ];
 
-export interface IDayStats {
+export interface IDayStats extends IDay {
   date: Date; // date of the stats
   time: number; // total running time in seconds
   pause: number; // total time on pause in seconds
@@ -105,65 +120,47 @@ export interface IDayStats {
   stops: number; // total number of stops (timer re-sets) before the task is done
 }
 
-export function newDayStats(): IDayStats {
-  return {
-    date: new Date(),
-    time: 0,
-    pause: 0, 
-    break: 0,
-    stops: 0
-  }
+export function emptyStats(date: Date): IDayStats {
+    return {
+      ...Days[getDay(date)],
+      ...{
+        date: date,
+        time: 0,
+        pause: 0,
+        break: 0,
+        stops: 0,
+      },
+    };
 }
 
-export function getDayStats(
-  stats: IDayStats[],
-  date: Date
-): IDayStats | undefined {
+export function getDayStats(stats: IDayStats[], date: Date): IDayStats {
   const days: IDayStats[] = stats.filter((day) => {
     return sameDay(day.date, date);
   });
   if (days.length > 0) {
     return days[0];
   } else {
-    return undefined;
+    return emptyStats(date)
   }
 }
 
-export function getCurrentDayStats(stats: IDayStats[]): IDayStats {
-  const dayStats: IDayStats | undefined = getDayStats(stats, new Date())
+export function newCurrentDayStats(): IDayStats {
+  return emptyStats(new Date());
+}
+
+export function createCurrentDayStats(stats: IDayStats[]): IDayStats {
+  const dayStats: IDayStats | undefined = getDayStats(stats, new Date());
   if (dayStats) {
-    return dayStats
-  }
-  else {
-    stats.push(newDayStats())
-    return stats[stats.length - 1]
+    return dayStats;
+  } else {
+    stats.push(newCurrentDayStats());
+    return stats[stats.length - 1];
   }
 }
 
 export function newWeekStats(dateMonday: Date): IDayStats[] {
   const date = new Date(dateMonday);
-  return Days.map((day: IDay, i: number) => {    
-    return {
-      ...day,
-      ...{
-        time: 0,
-        pause: 0,
-        break: 0,
-        stops: 0,
-        date: new Date(date.setDate(dateMonday.getDate() + i))
-      },
-    };
+  return Days.map((day: IDay, i: number) => {  
+    return emptyStats(new Date(date.setDate(dateMonday.getDate() + i)))
   });
 } 
-
-export function getTotalPomodoriDone(tasks: ITask[]): number {
-  let totalPomodoroDone = 0;
-  tasks.forEach((task) => {
-    task.pomodori.forEach((pomodoro) => {
-      if (pomodoro.status === EPomodoroStatus.DONE) {
-        totalPomodoroDone++;
-      }
-    });
-  });
-  return totalPomodoroDone
-}

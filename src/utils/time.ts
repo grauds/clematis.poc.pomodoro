@@ -4,12 +4,28 @@ export const formatTime = (secondsTime: number) => {
     return `${minutes}:${seconds}`;
 };
 
+/**
+ * Returns zero based index of the date's day in the week
+ * @param date to get day of
+ * @returns zero based index of the date's day in the week
+ */
+export function getDay(date: Date) {
+  const day = date.getDay();
+  return date.getDay() - (day == 0 ? -6 : 1); // adjust when day is sunday
+}
+/**
+ * Returns distance to Monday from the current date
+ * @param date to get Monday date of
+ * @returns distance to Monday from the current date
+ */
+export function getDiff(date: Date) {
+  const day = date.getDay();
+  return date.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
+}
 
 //https://stackoverflow.com/questions/4156434/javascript-get-the-first-day-of-the-week-from-current-date
 export function getMonday(d: Date): Date {
-  d = new Date(d);
-  const day = d.getDay(),
-    diff = d.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
+  const diff = getDiff(new Date(d)); 
   return new Date(d.setDate(diff));
 }
 

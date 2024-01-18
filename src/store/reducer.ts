@@ -1,17 +1,27 @@
 import { ActionCreator, AnyAction, Reducer } from "redux";
-import { Days, IDay, IDayStats, IPomodoro, ITask, IWeek, Weeks, freshPomodoro, getDayStats } from "../types/model";
+import {
+  IDay,
+  IDayStats,
+  IPomodoro,
+  ITask,
+  IWeek,
+  Weeks,
+  freshPomodoro,
+  getDayStats,
+  newCurrentDayStats,
+} from "../types/model";
 import { sameDay } from "../utils/time";
 
 export type RootState = {
   tasks: ITask[]; // tasks list
-  day: IDay; // selected day of week 
+  day: IDayStats; // selected day of week
   week: IWeek; // selected week
   stats: IDayStats[]; // stats list
 };
 
 export const initialState: RootState = {
   tasks: [],
-  day: Days[new Date().getDay()], // selected day of week default value is current day
+  day: newCurrentDayStats(), // selected day of week default value is current day
   week: Weeks[0], // selected week default value is current week (the top most)
   stats: [], // a list of actual days user worked with the timer, no longer than two weeks back in time
 };
@@ -59,7 +69,9 @@ export const addTaskPomodoro: ActionCreator<AnyAction> = (task: ITask) => ({
   task,
 });
 
-export const updateTaskPomodoro: ActionCreator<AnyAction> = (pomodoro: IPomodoro) => ({
+export const updateTaskPomodoro: ActionCreator<AnyAction> = (
+  pomodoro: IPomodoro
+) => ({
   type: UPDATE_TASK_POMODORO,
   pomodoro,
 });
@@ -86,8 +98,11 @@ export const updateDayStats: ActionCreator<AnyAction> = (
   dayStats,
 });
 
-const moveBefore = (taskId: string, beforeTaskId: string, state = initialState ) => {
-
+const moveBefore = (
+  taskId: string,
+  beforeTaskId: string,
+  state = initialState
+) => {
   const index = state.tasks.findIndex((task) => task.id === taskId);
   const destinationIndex = state.tasks.findIndex(
     (task) => task.id === beforeTaskId
@@ -107,22 +122,22 @@ const update = (task: ITask, state = initialState) => {
     ...state,
     tasks: state.tasks.map((item) => {
       if (item.id !== task.id) {
-        return item
+        return item;
       }
       return {
         ...item,
-        ...task
-      }
-    })
-  }  
+        ...task,
+      };
+    }),
+  };
 };
 
 const remove = (action: AnyAction, state = initialState) => {
   return {
     ...state,
     tasks: state.tasks.filter((task) => {
-      return action.task.id !== task.id
-    })
+      return action.task.id !== task.id;
+    }),
   };
 };
 
@@ -144,33 +159,35 @@ const updatePomodoro = (action: AnyAction, state = initialState) => {
   });
 
   return update(task, state);
-}
+};
 
-const updatePomodori = (pomodori: number, action: AnyAction, state = initialState) => {
-
+const updatePomodori = (
+  pomodori: number,
+  action: AnyAction,
+  state = initialState
+) => {
   const _pomodori: IPomodoro[] = [...action.task.pomodori];
   if (pomodori > 0) {
     for (let i = 0; i < pomodori; i++) {
       _pomodori.push({
         id: _pomodori.length + 1,
-        ...freshPomodoro
-      });  
+        ...freshPomodoro,
+      });
     }
-  } else if (pomodori < 0 && (Math.abs(pomodori) < _pomodori.length)) {
-    _pomodori.splice(_pomodori.length - Math.abs(pomodori), Math.abs(pomodori))
+  } else if (pomodori < 0 && Math.abs(pomodori) < _pomodori.length) {
+    _pomodori.splice(_pomodori.length - Math.abs(pomodori), Math.abs(pomodori));
   }
 
-  action.task.pomodori = _pomodori
+  action.task.pomodori = _pomodori;
 
   if (action.task.pomodori.length > 0) {
-    return update(action.task, state)
+    return update(action.task, state);
   } else {
     return state;
   }
 };
 
 const updateStats = (action: AnyAction, state = initialState) => {
-
   const dayStats: IDayStats | undefined = getDayStats(
     state.stats,
     action.dayStats.date
@@ -188,12 +205,12 @@ const updateStats = (action: AnyAction, state = initialState) => {
           ...action.dayStats,
         };
       }),
-    };  
+    };
   } else {
-     return {
-       ...state,
-       stats: state.stats.concat(action.dayStats),
-     };
+    return {
+      ...state,
+      stats: state.stats.concat(action.dayStats),
+    };
   }
 };
 
@@ -204,10 +221,10 @@ export const rootReducer: Reducer<RootState> = (
   switch (action.type) {
     case ADD_TASK:
       // initialize new task and put it to the end of the tasks array
-      action.task.no = state.tasks.length + 1; 
+      action.task.no = state.tasks.length + 1;
       action.task.pomodori.push({
         id: 1,
-        ...freshPomodoro
+        ...freshPomodoro,
       });
 
       return {
@@ -234,7 +251,7 @@ export const rootReducer: Reducer<RootState> = (
       return updatePomodori(-1, action, state);
 
     case UPDATE_DAY_STATS:
-      return updateStats(action, state);  
+      return updateStats(action, state);
 
     case SET_CURRENT_DAY:
       return {
