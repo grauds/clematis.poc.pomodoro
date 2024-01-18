@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/reducer';
-import { EPomodoroStatus, IDay, ITask, IWeek } from '../../types/model';
+import { IDay, getTotalPomodoriDone } from '../../types/model';
 
 import { DayTotals } from './DayTotals';
 import { PomodoroTotals } from './PomodoroTotals';
@@ -15,19 +15,11 @@ import styles from './statistics.css';
 
 export function Statistics() {
 
-  const tasks = useSelector<RootState, ITask[]>((state) => state.tasks);
-
-  const selectedWeek = useSelector<RootState, IWeek>((state) => state.week);
   const selectedDay = useSelector<RootState, IDay>((state) => state.day);
+  const totalPomodoroDone = useSelector<RootState, number>((state) => {
+    return getTotalPomodoriDone(state.tasks)
+  });
 
-  let totalPomodoroDone = 0;
-  tasks.forEach((task) => {
-    task.pomodori.forEach((pomodoro) => {
-      if (pomodoro.status === EPomodoroStatus.DONE) {
-        totalPomodoroDone++
-      }
-    })
-  })
 
   return (
      <div className={styles.statistics}>

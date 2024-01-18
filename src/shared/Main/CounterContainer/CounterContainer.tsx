@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 import {
   RootState,
-  freshPomodoro,
   updateTask,
   updateTaskPomodoro,
 } from "../../../store/reducer";
@@ -12,6 +11,7 @@ import {
   ETaskStatus,
   IPomodoro,
   ITask,
+  freshPomodoro,
 } from "../../../types/model";
 
 import { Counter, ICounterProps } from "../Counter/Counter";

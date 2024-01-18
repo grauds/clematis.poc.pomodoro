@@ -51,7 +51,8 @@ export function Task({
 
   const dispatch = useDispatch();
 
-  const nameStyle = (task.status === ETaskStatus.DONE ? styles.doneTask : (isCurrentTask ? styles.activeTask : "")) 
+  const taskCss = isCurrentTask ? styles.activeTask : "";
+  const nameStyle = (task.status === ETaskStatus.DONE ? styles.doneTask : taskCss) 
 
   const menuItems: IItem[] = [
     {

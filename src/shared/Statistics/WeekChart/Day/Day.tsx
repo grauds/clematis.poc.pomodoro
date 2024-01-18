@@ -1,35 +1,31 @@
 import React from 'react';
 import { IDay } from '../../../../types/model';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState, setCurrentDay } from '../../../../store/reducer';
+import { noop } from '../../../../utils/noop';
 
-import styles from './day.css';
+import styles from "./day.css";
 
 interface IDayProps {
   day: IDay;
+  selected: boolean;
+  handleClick: () => void
   hpx?: number;
 }
 
-export function Day({day, hpx}: Readonly<IDayProps>) {
+export function Day({ day, hpx, selected = false, handleClick = noop}: Readonly<IDayProps>) {
 
+  const fillerCss = selected ? styles.fillerSelected : styles.filler;
+  const nameCss = selected ? styles.nameSelected : styles.name;
 
-  const selectedDay = useSelector<RootState, IDay>((state) => state.day);
-  const selected = selectedDay === day
-  const dispatch = useDispatch();
-
-  function handleClick() {
-    dispatch(setCurrentDay(day));
-  }
-// TODO: correct select class addition
   return (
     <div className={styles.day}>
-      <button className={selected ? styles.nameSelected : styles.name}  onClick={handleClick}>
+      <button className={nameCss} onClick={handleClick}>
         {day.short}
       </button>
-      <button onClick={handleClick}
-           className={hpx ? (selected ? styles.fillerSelected : styles.filler) : styles.empty} style={{height: (hpx && hpx > 0) ? hpx : 5}}
-      >
-      </button>
+      <button
+        onClick={handleClick}
+        className={hpx ? fillerCss : styles.empty}
+        style={{ height: hpx && hpx > 0 ? hpx : 5 }}
+      ></button>
     </div>
   );
 }

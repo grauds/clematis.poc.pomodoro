@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
+import { sameDay } from "../utils/time";
 
 export enum ETaskStatus {
   NOT_STARTED, RUNNING, PAUSED, DONE
@@ -25,6 +26,20 @@ export interface IPomodoro {
   break: number; // total time on break in seconds
   status: EPomodoroStatus; // status of the pomodoro
 }
+
+export const freshPomodoro = {
+  seconds: 20,
+  breakSeconds: 10,
+  time: 0,
+  pause: 0,
+  break: 0,
+  status: EPomodoroStatus.NOT_STARTED,
+};
+
+export const longBreakFreshPomodoro = {
+  ...freshPomodoro,
+  breakSeconds: 20 * 60,
+};
 
 export interface IDay {
   short: string;
@@ -83,26 +98,72 @@ export const Weeks: IWeek[] = [
 ];
 
 export interface IDayStats {
+  date: Date; // date of the stats
   time: number; // total running time in seconds
   pause: number; // total time on pause in seconds
   break: number; // total time on break in seconds
   stops: number; // total number of stops (timer re-sets) before the task is done
 }
 
-export function dayStats(): IDayStats {
+export function newDayStats(): IDayStats {
   return {
+    date: new Date(),
     time: 0,
-    pause: 0,
+    pause: 0, 
     break: 0,
     stops: 0
   }
 }
 
-export function newWeekStats() {
-   return Days.map((day: IDay) => {
+export function getDayStats(
+  stats: IDayStats[],
+  date: Date
+): IDayStats | undefined {
+  const days: IDayStats[] = stats.filter((day) => {
+    return sameDay(day.date, date);
+  });
+  if (days.length > 0) {
+    return days[0];
+  } else {
+    return undefined;
+  }
+}
+
+export function getCurrentDayStats(stats: IDayStats[]): IDayStats {
+  const dayStats: IDayStats | undefined = getDayStats(stats, new Date())
+  if (dayStats) {
+    return dayStats
+  }
+  else {
+    stats.push(newDayStats())
+    return stats[stats.length - 1]
+  }
+}
+
+export function newWeekStats(dateMonday: Date): IDayStats[] {
+  const date = new Date(dateMonday);
+  return Days.map((day: IDay, i: number) => {    
     return {
       ...day,
-      ...dayStats()
-    }
-  })
+      ...{
+        time: 0,
+        pause: 0,
+        break: 0,
+        stops: 0,
+        date: new Date(date.setDate(dateMonday.getDate() + i))
+      },
+    };
+  });
 } 
+
+export function getTotalPomodoriDone(tasks: ITask[]): number {
+  let totalPomodoroDone = 0;
+  tasks.forEach((task) => {
+    task.pomodori.forEach((pomodoro) => {
+      if (pomodoro.status === EPomodoroStatus.DONE) {
+        totalPomodoroDone++;
+      }
+    });
+  });
+  return totalPomodoroDone
+}

@@ -32,7 +32,6 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(thunk))
 );
 
-// persists only on client
 if (typeof window !== 'undefined') {
   store.subscribe(() => {
     localStorage.setItem("reduxState", JSON.stringify(store.getState()));
