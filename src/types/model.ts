@@ -82,3 +82,27 @@ export const Weeks: IWeek[] = [
   },
 ];
 
+export interface IDayStats {
+  time: number; // total running time in seconds
+  pause: number; // total time on pause in seconds
+  break: number; // total time on break in seconds
+  stops: number; // total number of stops (timer re-sets) before the task is done
+}
+
+export function dayStats(): IDayStats {
+  return {
+    time: 0,
+    pause: 0,
+    break: 0,
+    stops: 0
+  }
+}
+
+export function newWeekStats() {
+   return Days.map((day: IDay) => {
+    return {
+      ...day,
+      ...dayStats()
+    }
+  })
+} 
