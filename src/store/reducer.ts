@@ -6,8 +6,8 @@ import {
   ITask,
   IWeek,
   Weeks,
+  findDayStats,
   freshPomodoro,
-  getDayStats,
   newCurrentDayStats,
 } from "../types/model";
 import { sameDay } from "../utils/time";
@@ -188,7 +188,7 @@ const updatePomodori = (
 };
 
 const updateStats = (action: AnyAction, state = initialState) => {
-  const dayStats: IDayStats | undefined = getDayStats(
+  const dayStats: IDayStats | undefined = findDayStats(
     state.stats,
     action.dayStats.date
   );

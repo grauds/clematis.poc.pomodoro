@@ -3,15 +3,18 @@ import { useSelector, useDispatch } from "react-redux";
 
 import {
   RootState,
+  updateDayStats,
   updateTask,
   updateTaskPomodoro,
 } from "../../../store/reducer";
 import {
   EPomodoroStatus,
   ETaskStatus,
+  IDayStats,
   IPomodoro,
   ITask,
   freshPomodoro,
+  getDayStats,
 } from "../../../types/model";
 
 import { Counter, ICounterProps } from "../Counter/Counter";
@@ -32,6 +35,11 @@ export function CounterContainer() {
     }
   );
 
+  // current day stats reference 
+  const dayStats = useSelector<RootState, IDayStats>((state) => {
+    return getDayStats(state.stats, new Date())
+  })
+
   const seconds = currentPomodoro ? currentPomodoro.seconds : 0;
   const breakSeconds = currentPomodoro ? currentPomodoro.breakSeconds : 0;
 
@@ -51,11 +59,14 @@ export function CounterContainer() {
           if (isTaskRunning) {
             currentPomodoro.seconds -= 1;
             currentPomodoro.time += 1;
+            dayStats.time += 1;
           } else if (isBreakRunning) {
             currentPomodoro.breakSeconds -= 1;
             currentPomodoro.break += 1;
+            dayStats.break += 1;
           }
           dispatch(updateTaskPomodoro(currentPomodoro));
+          dispatch(updateDayStats(dayStats));
         }
         if (isTaskRunning && seconds === 0) {
           currentPomodoro.status = EPomodoroStatus.BREAK_RUNNING;
@@ -66,7 +77,9 @@ export function CounterContainer() {
         }
         if (isPause) {
           currentPomodoro.pause += 1;
+          dayStats.pause += 1;
           dispatch(updateTaskPomodoro(currentPomodoro));
+          dispatch(updateDayStats(dayStats));
         }
       }
     }, 1000);
@@ -107,20 +120,13 @@ export function CounterContainer() {
         id: currentPomodoro.id,
         ...freshPomodoro,
       };
+      dayStats.stops += 1;
       dispatch(updateTaskPomodoro(currentPomodoro));
       dispatch(updateTask(currentTask));
+      dispatch(updateDayStats(dayStats));
     }
   }
-
-  function finishPomodoro() {
-    if (currentTask && currentPomodoro) {
-      currentPomodoro.status = EPomodoroStatus.DONE;
-      currentTask.status = ETaskStatus.PAUSED
-      dispatch(updateTaskPomodoro(currentPomodoro));
-      dispatch(updateTask(currentTask));
-    }
-  }
-
+  
   function startBreakTimer() {
     if (currentTask && currentPomodoro) {
       currentPomodoro.status = EPomodoroStatus.BREAK_RUNNING;
@@ -133,6 +139,7 @@ export function CounterContainer() {
   function finishPomodoroOrTask() {
     if (currentTask && currentPomodoro) {
       currentPomodoro.status = EPomodoroStatus.DONE;
+      currentPomodoro.date = new Date();
       currentTask.status =
         currentTask.pomodori.length !== currentPomodoro.id
           ? ETaskStatus.PAUSED

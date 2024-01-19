@@ -9,6 +9,85 @@ export const formatTime = (secondsTime: number) => {
     return `${minutes}:${seconds}`;
 };
 
+export const formatMinsShort = (secondsTime: number) => {
+  const min = Math.floor(secondsTime / 60);
+
+  const minutes = min.toString();
+  return `${minutes} мин`;
+}
+
+export const formatMinsLong = (secondsTime: number) => {
+  const min = Math.floor(secondsTime / 60);
+
+  const minutes = min.toString();
+
+  let minLabel;  
+
+  switch (min%10) {
+    case 1:
+      minLabel = 'минуту'
+      break;
+    case 2:
+    case 3:
+    case 4:
+      minLabel = 'минуты'
+      break;
+    default:
+      minLabel = 'минут'       
+  }
+
+  return `${minutes} ${minLabel}`;
+}
+
+export const formatTimeShort = (secondsTime: number) => {
+  const min = Math.floor(secondsTime / 60);
+  const sec = (secondsTime % 60);
+
+  const minutes = min > 0 ? (min.toString() + ' мин') : '';
+  const seconds = sec.toString() + ' сек';
+
+  return `${minutes} ${seconds}`;
+}
+
+export const formatTimeLong = (secondsTime: number) => {
+  const min = Math.floor(secondsTime / 60);
+  const sec = (secondsTime % 60);
+
+  const minutes = min.toString();
+  const seconds = sec.toString();
+
+  let minLabel;  
+  let secLabel; 
+
+  switch (min%10) {
+    case 1:
+      minLabel = 'минуту'
+      break;
+    case 2:
+    case 3:
+    case 4:
+      minLabel = 'минуты'
+      break;
+    default:
+      minLabel = 'минут'       
+  }
+
+  switch (sec%10) {
+    case 1:
+      secLabel = 'секунду'
+      break;
+    case 2:
+    case 3:
+    case 4:
+      secLabel = 'секунды'
+      break;
+    default:
+      secLabel = 'секунд'       
+  }
+
+  return `${minutes} ${minLabel} ${seconds} ${secLabel}`;
+}
+
 /**
  * Returns zero based index of the date's day in the week
  * @param date to get day of

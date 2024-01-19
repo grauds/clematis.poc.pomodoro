@@ -32,5 +32,12 @@ describe("Dates", () => {
     );
     expect(stats.length).toBe(7);
     expect(currentStats).toEqual(stats[2]);
+
+    currentStats.break += 1;
+    const currentStatsModified: IDayStats | undefined = getDayStats(
+      stats,
+      new Date(Date.parse("2024/01/17"))
+    );
+    expect(currentStatsModified.break).toBe(1);
   });
 });
