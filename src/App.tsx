@@ -21,9 +21,17 @@ import "./main.global.css";
 
 let persistedState;
 
+function datesReviver(key: string, value: string) {
+  // lame workaround for dates restoration
+  if (typeof value === 'string' && key === 'date') {
+      return new Date(Date.parse(value))
+  }
+  return value;
+}
+
 if (typeof window !== "undefined") {
   const item = localStorage.getItem("reduxState")
-  persistedState = item ? JSON.parse(item) : initialState;
+  persistedState = item ? JSON.parse(item, datesReviver) : initialState;
 }
 
 const store = createStore(

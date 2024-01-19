@@ -1,3 +1,8 @@
+/**
+ * Outputs seconds to minutes and seconds, padding the single digits with zeros
+ * @param secondsTime time in seconds
+ * @returns a formatted string, for example 09:45
+ */
 export const formatTime = (secondsTime: number) => {
     const minutes = Math.floor(secondsTime / 60).toString().padStart(2, '0');
     const seconds = (secondsTime % 60).toString().padStart(2, '0');

@@ -120,16 +120,24 @@ export interface IDayStats extends IDay {
   stops: number; // total number of stops (timer re-sets) before the task is done
 }
 
+export class DayStats implements IDayStats {
+  date: Date;  
+  time: number = 0;  
+  pause: number = 0;  
+  break: number = 0;  
+  stops: number = 0;  
+  short: string = '';  
+  name: string = '';
+
+  constructor(date?: Date) {
+    this.date = date ?? new Date();
+  }
+}
+
 export function emptyStats(date: Date): IDayStats {
     return {
-      ...Days[getDay(date)],
-      ...{
-        date: date,
-        time: 0,
-        pause: 0,
-        break: 0,
-        stops: 0,
-      },
+      ...new DayStats(date),
+      ...Days[getDay(date)]
     };
 }
 
