@@ -18,7 +18,7 @@ export function Dialog({
   isOpen,
   children,
   onClose = noop,
-}: Readonly<IDiallogProps>) {
+}: Readonly<IDiallogProps>): React.JSX.Element | null {
 
   const node = document.querySelector("#modal_root");
   if (!node) return null;

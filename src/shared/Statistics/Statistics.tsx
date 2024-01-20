@@ -18,7 +18,7 @@ import { formatTimeLong } from "../../utils/time";
 
 import styles from "./statistics.css";
 
-export function Statistics() {
+export function Statistics(): React.JSX.Element {
 
   const selectedDay: IDayStats = useSelector<RootState, IDayStats>(
     (state) => state.day

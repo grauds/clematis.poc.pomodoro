@@ -3,11 +3,14 @@ import {
   IDay,
   IDayStats,
   IPomodoro,
+  ISettings,
   ITask,
   IWeek,
   Weeks,
+  defaultSettings,
   findDayStats,
   freshPomodoro,
+  longBreakFreshPomodoro,
   newCurrentDayStats,
 } from "../types/model";
 import { sameDay } from "../utils/time";
@@ -17,6 +20,7 @@ export type RootState = {
   day: IDayStats; // selected day of week
   week: IWeek; // selected week
   stats: IDayStats[]; // stats list
+  settings: ISettings; // customized settings
 };
 
 export const initialState: RootState = {
@@ -24,6 +28,7 @@ export const initialState: RootState = {
   day: newCurrentDayStats(), // selected day of week default value is current day
   week: Weeks[0], // selected week default value is current week (the top most)
   stats: [], // a list of actual days user worked with the timer, no longer than two weeks back in time
+  settings: defaultSettings // system settings
 };
 
 const ADD_TASK = "ADD_TASK";
@@ -39,6 +44,8 @@ const REMOVE_TASK_POMODORO = "REMOVE_TASK_POMODORO";
 
 const SET_CURRENT_DAY = "SET_CURRENT_DAY";
 const SET_CURRENT_WEEK = "SET_CURRENT_WEEK";
+
+const UPDATE_SETTINGS = "UPDATE_SETTINGS"
 
 export const addTask: ActionCreator<AnyAction> = (task: ITask) => ({
   type: ADD_TASK,
@@ -96,6 +103,11 @@ export const updateDayStats: ActionCreator<AnyAction> = (
 ) => ({
   type: UPDATE_DAY_STATS,
   dayStats,
+});
+
+export const updateSettings: ActionCreator<AnyAction> = (settings: ISettings) => ({
+  type: UPDATE_SETTINGS,
+  settings,
 });
 
 const moveBefore = (
@@ -170,8 +182,9 @@ const updatePomodori = (
   if (pomodori > 0) {
     for (let i = 0; i < pomodori; i++) {
       _pomodori.push({
-        id: _pomodori.length + 1,
-        ...freshPomodoro,
+        ...(((_pomodori.length + 1) % state.settings.longBreakAfterPomodoro) === 0) 
+                ? longBreakFreshPomodoro(_pomodori.length + 1, state.settings) : 
+                freshPomodoro(_pomodori.length + 1, state.settings)
       });
     }
   } else if (pomodori < 0 && Math.abs(pomodori) < _pomodori.length) {
@@ -222,11 +235,7 @@ export const rootReducer: Reducer<RootState> = (
     case ADD_TASK:
       // initialize new task and put it to the end of the tasks array
       action.task.no = state.tasks.length + 1;
-      action.task.pomodori.push({
-        id: 1,
-        ...freshPomodoro,
-      });
-
+      action.task.pomodori.push(freshPomodoro(1, state.settings));
       return {
         ...state,
         tasks: state.tasks.concat(action.task),
@@ -252,6 +261,12 @@ export const rootReducer: Reducer<RootState> = (
 
     case UPDATE_DAY_STATS:
       return updateStats(action, state);
+
+    case UPDATE_SETTINGS:
+      return {
+        ...state,
+        settings: action.settings
+      }  
 
     case SET_CURRENT_DAY:
       return {

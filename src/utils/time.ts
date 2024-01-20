@@ -3,20 +3,20 @@
  * @param secondsTime time in seconds
  * @returns a formatted string, for example 09:45
  */
-export const formatTime = (secondsTime: number) => {
+export const formatTime = (secondsTime: number): string => {
     const minutes = Math.floor(secondsTime / 60).toString().padStart(2, '0');
     const seconds = (secondsTime % 60).toString().padStart(2, '0');
     return `${minutes}:${seconds}`;
 };
 
-export const formatMinsShort = (secondsTime: number) => {
+export const formatMinsShort = (secondsTime: number): string => {
   const min = Math.floor(secondsTime / 60);
 
   const minutes = min.toString();
   return `${minutes} мин`;
 }
 
-export const formatMinsLong = (secondsTime: number) => {
+export const formatMinsLong = (secondsTime: number): string => {
   const min = Math.floor(secondsTime / 60);
 
   const minutes = min.toString();
@@ -39,7 +39,7 @@ export const formatMinsLong = (secondsTime: number) => {
   return `${minutes} ${minLabel}`;
 }
 
-export const formatTimeShort = (secondsTime: number) => {
+export const formatTimeShort = (secondsTime: number): string => {
   const min = Math.floor(secondsTime / 60);
   const sec = (secondsTime % 60);
 
@@ -49,7 +49,7 @@ export const formatTimeShort = (secondsTime: number) => {
   return `${minutes} ${seconds}`;
 }
 
-export const formatTimeLong = (secondsTime: number) => {
+export const formatTimeLong = (secondsTime: number): string => {
   const min = Math.floor(secondsTime / 60);
   const sec = (secondsTime % 60);
 
@@ -93,7 +93,7 @@ export const formatTimeLong = (secondsTime: number) => {
  * @param date to get day of
  * @returns zero based index of the date's day in the week
  */
-export function getDay(date: Date) {
+export function getDay(date: Date): number {
   const day = date.getDay();
   return date.getDay() - (day == 0 ? -6 : 1); // adjust when day is sunday
 }
@@ -102,7 +102,7 @@ export function getDay(date: Date) {
  * @param date to get Monday date of
  * @returns distance to Monday from the current date
  */
-export function getDiff(date: Date) {
+export function getDiff(date: Date): number {
   const day = date.getDay();
   return date.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
 }
@@ -123,7 +123,7 @@ export function getMondayTwoWeeksAgo(d: Date): Date {
   return new Date(thisMonday.setDate(thisMonday.getDate() - 14));
 }
 
-export function sameDay(d1: Date, d2: Date) {
+export function sameDay(d1: Date, d2: Date): boolean {
   return (
     d1.getFullYear() === d2.getFullYear() &&
     d1.getMonth() === d2.getMonth() &&

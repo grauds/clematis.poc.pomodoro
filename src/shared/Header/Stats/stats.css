@@ -1,7 +1,27 @@
+.container {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-left: auto;
+    align-items: center;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 17px;
+}
+
 .stats {
     display: flex;
     flex-flow: row nowrap;
     margin-left: auto;
+    align-items: center;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 17px;
+}
+
+.settings {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-left: 10px;
     align-items: center;
     font-weight: normal;
     font-size: 16px;

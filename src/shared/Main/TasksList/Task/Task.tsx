@@ -35,7 +35,7 @@ export function Task({
   dragLeave = noop,
   dragStart = noop,
   dragEnd = noop,
-}: Readonly<ITaskProps>) {
+}: Readonly<ITaskProps>): React.JSX.Element {
   // current task reference
   const currentTask = useSelector<RootState, ITask | undefined>((state) =>
     state.tasks.length > 0 ? state.tasks[0] : undefined

@@ -12,6 +12,7 @@ import {
   ETaskStatus,
   IDayStats,
   IPomodoro,
+  ISettings,
   ITask,
   freshPomodoro,
   getDayStats,
@@ -21,7 +22,7 @@ import { Counter, ICounterProps } from "../Counter/Counter";
 import { noop } from "../../../utils/noop";
 
 
-export function CounterContainer() {
+export function CounterContainer(): React.JSX.Element {
 
   // current task reference
   const currentTask = useSelector<RootState, ITask | undefined>((state) =>
@@ -36,9 +37,11 @@ export function CounterContainer() {
   );
 
   // current day stats reference 
-  const dayStats = useSelector<RootState, IDayStats>((state) => {
-    return getDayStats(state.stats, new Date())
-  })
+  const stats: IDayStats[] = useSelector<RootState, IDayStats[]>((state) => state.stats)
+  const dayStats: IDayStats = getDayStats(stats, new Date())
+
+  // current settings reference
+  const settings: ISettings = useSelector<RootState, ISettings>((state) => state.settings)
 
   const seconds = currentPomodoro ? currentPomodoro.seconds : 0;
   const breakSeconds = currentPomodoro ? currentPomodoro.breakSeconds : 0;
@@ -117,8 +120,7 @@ export function CounterContainer() {
   function stopTimer() {
     if (currentTask && currentPomodoro) {
       currentPomodoro = {
-        id: currentPomodoro.id,
-        ...freshPomodoro,
+        ...freshPomodoro(currentPomodoro.id, settings),
       };
       dayStats.stops += 1;
       dispatch(updateTaskPomodoro(currentPomodoro));

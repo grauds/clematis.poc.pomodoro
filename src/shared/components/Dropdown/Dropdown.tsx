@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
-import { noop } from '../../../utils/noop';
+import React, { useEffect, useRef } from "react";
+import { noop } from "../../../utils/noop";
 
-import styles from './dropdown.css';
+import styles from "./dropdown.css";
 
 interface IDropdownProps {
   button: React.ReactNode;
@@ -11,47 +11,54 @@ interface IDropdownProps {
   onClose?: () => void;
 }
 
-export function Dropdown({ button, children, isOpen, onOpen = noop, onClose = noop }: Readonly<IDropdownProps>) {
-
+export function Dropdown({
+  button,
+  children,
+  isOpen,
+  onOpen = noop,
+  onClose = noop,
+}: Readonly<IDropdownProps>): React.JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(isOpen);
-  React.useEffect( () => setIsDropdownOpen(isOpen ?? false), [isOpen] );
-  React.useEffect( () => isDropdownOpen ? onOpen() : onClose(), [isDropdownOpen] );
+  useEffect(() => setIsDropdownOpen(isOpen ?? false), [isOpen]);
+  useEffect(
+    () => (isDropdownOpen ? onOpen() : onClose()),
+    [isDropdownOpen]
+  );
 
-  React.useEffect(() => {
+  useEffect(() => {
     function handleClick(event: MouseEvent) {
-        if( event.target instanceof Node && !ref.current?.contains(event.target) ) {
-           onClose?.()
-           setIsDropdownOpen(false)
-        }
+      if (
+        event.target instanceof Node &&
+        !ref.current?.contains(event.target)
+      ) {
+        onClose?.();
+        setIsDropdownOpen(false);
+      }
     }
-    document.addEventListener('click', handleClick); 
+    document.addEventListener("click", handleClick);
 
     return () => {
-        document.removeEventListener('click', handleClick);
-    }
-  }, [])
+      document.removeEventListener("click", handleClick);
+    };
+  }, []);
 
   const handleOpen = () => {
     if (isOpen === undefined) {
-      setIsDropdownOpen(!isDropdownOpen)
+      setIsDropdownOpen(!isDropdownOpen);
     }
-  }
+  };
 
   return (
-      <div className={styles.container} ref={ref}>
-        <div onClick={ handleOpen }>
-          { button }
+    <div className={styles.container} ref={ref}>
+      <div onClick={handleOpen}>{button}</div>
+      {isDropdownOpen && (
+        <div className={styles.listContainer}>
+          <div className={styles.list} onClick={() => setIsDropdownOpen(false)}>
+            {children}
+          </div>
         </div>
-        {
-           isDropdownOpen && (
-            <div className={styles.listContainer}>
-               <div className={styles.list} onClick={ () => setIsDropdownOpen(false) }> 
-                  {children}
-               </div>
-            </div>   
-           )
-        }
-      </div>
+      )}
+    </div>
   );
 }

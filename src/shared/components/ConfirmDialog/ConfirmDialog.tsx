@@ -20,12 +20,11 @@ export function ConfirmDialog({
   isOpen,
   onSubmit = noop,
   onClose = noop,
-}: IConfirmDialogProps) {
+}: Readonly<IConfirmDialogProps>): React.JSX.Element {
   return (
     <Dialog title={title} isOpen={isOpen} onClose={onClose}>
       <form onSubmit={onSubmit}>
         {question}
-
         <div className={styles.buttons}>
           <button type="submit" className={styles.button}>
             {buttonTitle ?? "Сохранить"}

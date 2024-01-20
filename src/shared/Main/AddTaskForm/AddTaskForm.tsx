@@ -5,7 +5,7 @@ interface IAddTaskFormProps {
   onSubmit: (name: string) => void;
 }
 
-export function AddTaskForm({onSubmit}: Readonly<IAddTaskFormProps>) {
+export function AddTaskForm({onSubmit}: Readonly<IAddTaskFormProps>): React.JSX.Element {
 
   const ref = useRef<HTMLInputElement>(null);
 

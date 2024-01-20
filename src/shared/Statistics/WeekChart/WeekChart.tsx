@@ -14,7 +14,7 @@ import { RootState, setCurrentDay } from "../../../store/reducer";
 
 import styles from "./weekchart.css";
 
-export function WeekChart() {
+export function WeekChart(): React.JSX.Element {
   const dispatch = useDispatch();
   const selectedDay = useSelector<RootState, IDayStats>((state) => state.day);
   const selectedWeek = useSelector<RootState, IWeek>((state) => state.week);

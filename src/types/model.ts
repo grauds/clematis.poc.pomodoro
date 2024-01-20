@@ -27,19 +27,38 @@ export interface IPomodoro {
   date?: Date; // date of done
 }
 
-export const freshPomodoro = {
-  seconds: 20,
-  breakSeconds: 10,
-  time: 0,
-  pause: 0,
-  break: 0,
-  status: EPomodoroStatus.NOT_STARTED,
-};
+export interface ISettings {
+  pomodoro: number; // time of one pomodoro, seconds
+  break: number; // time of a break, seconds
+  longBreak: number // time of a long break, seconds
+  longBreakAfterPomodoro: number; // the number of pomodoro followed by a long break
+}
 
-export const longBreakFreshPomodoro = {
-  ...freshPomodoro,
-  breakSeconds: 20 * 60,
-};
+export const defaultSettings: ISettings = {
+  pomodoro: 20 * 60,
+  break: 10 * 60,
+  longBreak: 30 * 60,
+  longBreakAfterPomodoro: 4
+}
+
+export function freshPomodoro(id: number, settings: ISettings): IPomodoro {
+  return {
+    id: id,
+    seconds: settings.pomodoro,
+    breakSeconds: settings.break,
+    time: 0,
+    pause: 0,
+    break: 0,
+    status: EPomodoroStatus.NOT_STARTED
+  }
+}
+
+export function longBreakFreshPomodoro(id: number, settings: ISettings): IPomodoro {
+  return {
+    ...freshPomodoro(id, settings),
+    breakSeconds: settings.longBreak,
+  }
+}
 
 export function getDayPomodoriDone(tasks: ITask[], dayStats: IDayStats): number {
   let pomodoriDone = 0;

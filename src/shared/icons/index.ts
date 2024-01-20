@@ -2,6 +2,7 @@ export * from './EllipseIcon'
 export * from './HomeIcon'
 export * from './MenuIcon'
 export * from './StatsIcon'
+export * from './SettingsIcon'
 
 export * from './EditIcon'
 export * from './MinusIcon'
