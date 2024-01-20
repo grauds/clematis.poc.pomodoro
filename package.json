@@ -11,9 +11,9 @@
     "deploy": "gh-pages -d build:dev",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
-    "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "build:prod": "cross-env NODE_OPTIONS=--openssl-legacy-provider NODE_ENV=production webpack --config webpack.config.js",
     "dev": "cross-env NODE_ENV=development DOMAIN=localhost PORT=3000 node ./bin/dev.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --collect-coverage",
     "start": "env ./dist/server/server.js "
   },
   "repository": {
