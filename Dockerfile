@@ -47,4 +47,4 @@ COPY --from=0 $SOURCE_PATH $APP_ROOT
 EXPOSE 3000 
 
 # start static server
-ENTRYPOINT ["serve", "-s",  "$APP_ROOT"]
+ENTRYPOINT ["serve", "-s",  "echo $APP_ROOT"]
