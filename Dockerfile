@@ -4,7 +4,7 @@
 
 FROM node:18-alpine AS build-image
 
-WORKDIR /opt/software/src
+WORKDIR /opt/software
 
 COPY .eslintrc.json jest.config.js jest.setup.ts package.json tsconfig.json webpack.config.js ./
 
@@ -22,8 +22,7 @@ RUN npm test
 # ------------------------------------------------------------------------------
 
 FROM scratch AS test-out
-COPY --from=build-image  $WORK_DIR/coverage .
-COPY --from=build-image  $WORK_DIR/node_modules .
+COPY --from=build-image  /opt/software/coverage .
 
 # ------------------------------------------------------------------------------
 # RUNTIME STAGE (deployment)
@@ -33,23 +32,20 @@ FROM node:16
 
 ARG WORK_DIR=/opt/software
 ARG APP_NAME=clematis-poc-pomodoro
-ARG APP_SRC_DIR=$WORK_DIR/src
-
-# Path to copy application from
-ARG DIST_PATH=$APP_SRC_DIR/dist
-ARG NODE_PATH=$APP_SRC_DIR/node_modules
 
 # Path to application in docker
-ENV APP_ROOT=$WORK_DIR/$APP_NAME
+ENV APP_ROOT=${WORK_DIR}/${APP_NAME}
+WORKDIR ${APP_ROOT}
 RUN mkdir -p "$APP_ROOT"
+
+# Path to copy application from
+ARG DIST_PATH=$WORK_DIR/dist
+ARG NODE_PATH=$WORK_DIR/node_modules
+
 COPY --from=0 $DIST_PATH $APP_ROOT
 COPY --from=0 $NODE_PATH $APP_ROOT/node_modules
 
 RUN npm install express -g
 
 EXPOSE 3000 
-
-#RUN node ${APP_ROOT}/server/server.js
-
-# start static server
 ENTRYPOINT ["sh", "-c", "node ${APP_ROOT}/server/server.js"]
