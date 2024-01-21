@@ -1,7 +1,7 @@
 version: '3.9'
 services:
 
-  money-tracker-ui:
+  clematis-poc-pomodoro:
     container_name: clematis-poc-pomodoro
     image: clematis.poc.pomodoro:latest
     ports:
