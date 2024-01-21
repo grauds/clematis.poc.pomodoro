@@ -12,5 +12,11 @@ module.exports = {
   coverageReporters: [
     "text",
     "cobertura"
-  ]
+  ],
+  coveragePathIgnorePatterns: [
+    'index.js',
+    'index.jsx',
+    'index.ts',
+    '/node_modules/'
+  ],
 };
