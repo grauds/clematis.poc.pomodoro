@@ -42,10 +42,10 @@ RUN mkdir -p "$APP_ROOT"
 ARG DIST_PATH=$WORK_DIR/dist
 ARG NODE_PATH=$WORK_DIR/node_modules
 
-COPY --from=0 $DIST_PATH $APP_ROOT
+COPY --from=0 $DIST_PATH $APP_ROOT/dist
 COPY --from=0 $NODE_PATH $APP_ROOT/node_modules
 
 RUN npm install express -g
 
 EXPOSE 3000 
-ENTRYPOINT ["sh", "-c", "node ${APP_ROOT}/server/server.js"]
+ENTRYPOINT ["sh", "-c", "node ${APP_ROOT}/dist/server/server.js"]
