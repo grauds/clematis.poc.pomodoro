@@ -42,6 +42,8 @@ ENV APP_ROOT=/var/www/$APP_NAME
 RUN mkdir -p "$APP_ROOT"
 COPY --from=0 $SOURCE_PATH $APP_ROOT
 
+RUN npm install express -g
+
 EXPOSE 3000 
 
 # start static server
