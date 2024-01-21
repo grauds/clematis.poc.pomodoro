@@ -37,14 +37,12 @@ ARG APP_SRC_DIR=$WORK_DIR/$APP_NAME
 # Path to copy application from
 ARG SOURCE_PATH=$WORK_DIR/dist
 
-RUN npm install -g serve
-
 # Path to application in docker. Used by nginx to serve static
-ARG APP_ROOT=/var/www/$APP_NAME
+ENV APP_ROOT=/var/www/$APP_NAME
 RUN mkdir -p "$APP_ROOT"
 COPY --from=0 $SOURCE_PATH $APP_ROOT
 
 EXPOSE 3000 
 
 # start static server
-ENTRYPOINT ["serve", "-s",  "/var/www/clematis-poc-pomodoro"]
+ENTRYPOINT ["sh", "-c", "env ${APP_ROOT}/server/server.js"]
