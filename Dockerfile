@@ -45,4 +45,4 @@ COPY --from=0 $SOURCE_PATH $APP_ROOT
 EXPOSE 3000 
 
 # start static server
-ENTRYPOINT ["sh", "-c", "env ${APP_ROOT}/server/server.js"]
+ENTRYPOINT ["sh", "-c", "node ${APP_ROOT}/server/server.js"]

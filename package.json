@@ -14,7 +14,7 @@
     "build:prod": "cross-env NODE_OPTIONS=--openssl-legacy-provider NODE_ENV=production webpack --config webpack.config.js",
     "dev": "cross-env NODE_ENV=development DOMAIN=localhost PORT=3000 node ./bin/dev.js",
     "test": "jest --collect-coverage",
-    "start": "env ./dist/server/server.js"
+    "start": "node ./dist/server/server.js"
   },
   "repository": {
     "type": "git",
