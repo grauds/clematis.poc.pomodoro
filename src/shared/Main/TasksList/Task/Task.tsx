@@ -8,7 +8,7 @@ import {
   updateTask,
 } from "../../../../store/reducer";
 
-import { ETaskStatus, ITask } from "../../../../types/model";
+import { EPomodoroStatus, ETaskStatus, ITask } from "../../../../types/model";
 import { noop } from "../../../../utils/noop";
 import { IItem } from "../../../components/GenericList";
 
@@ -120,7 +120,9 @@ export function Task({
     >
       <span className={`${styles.number} ${draggingClass}`}>{task.no}</span>
       <span className={nameStyle}>
-        {task.name} {Array(task.pomodori.length + 1).join("🍅")}
+        {task.name} {task.pomodori.map((pomodoro, i) => {
+          return pomodoro.status === EPomodoroStatus.DONE ? "✅ " : "🍅 ";
+        })}
       </span>
       <MenuButton menuItems={menuItems} />
       <InputDialog
