@@ -18,22 +18,31 @@ interface IGenericListProps {
     list: IItem[];
 }
 
-export function GenericList({ list }: Readonly<IGenericListProps>) {
-   return (
+export function GenericList({ list }: Readonly<IGenericListProps>): React.JSX.Element {
+  return (
     <>
-       {
-          list.map(({ As = 'div', text, icon, onClick = noop, className, id, href, disabled}) => (
-            <As 
-               className={ className ?? styles.listItem } 
-               onClick={(e) => onClick(id, e)}
-               key={id}
-               href={href}
-               disabled={disabled}
-            >
-                  {icon} <span>{text}</span>
-            </As>   
-          ))
-       }
+      {list.map(
+        ({
+          As = "div",
+          text,
+          icon,
+          onClick = noop,
+          className,
+          id,
+          href,
+          disabled,
+        }) => (
+          <As
+            className={className ?? styles.listItem}
+            onClick={(e) => onClick(id, e)}
+            key={id}
+            href={href}
+            disabled={disabled}
+          >
+            {icon} <span>{text}</span>
+          </As>
+        )
+      )}
     </>
-   )
+  );
 }

@@ -5,7 +5,7 @@
     justify-content: center;
     width: 296px;
     height: 179px;
-    background-color: var(--greyF4);
+    background-color: var(--backgroundSecondary);
     text-align: center;
 }
 
@@ -25,7 +25,7 @@
 
 .footer {
     margin-top: auto;
-    background-color: var(--red);
+    background-color: var(--accent);
     color: #ffffff;
     width: 100%;
 }

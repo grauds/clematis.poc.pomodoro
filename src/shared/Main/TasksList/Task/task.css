@@ -10,7 +10,7 @@
 }
 
 .activeTask {
-    color: var(--red);
+    color: var(--accent);
 }
 
 .doneTask {
@@ -42,5 +42,5 @@
 }
 
 .draggedOver {
-    border-top: 1px var(--red) solid;
+    border-top: 1px var(--accent) solid;
 }

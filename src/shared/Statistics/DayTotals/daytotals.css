@@ -1,12 +1,12 @@
 .daytotals {
     width: 296px;
     height: 260px;
-    background-color: var(--greyF4);
+    background-color: var(--backgroundSecondary);
     padding: 20px;
 }
 
 .minutes {
-    color: var(--red);
+    color: var(--accent);
 }
 
 @media all and (max-width: 1280px) {

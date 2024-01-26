@@ -135,7 +135,6 @@ export function CounterContainer(): React.JSX.Element {
     if (currentTask && currentPomodoro) {
       currentPomodoro.status = EPomodoroStatus.BREAK_RUNNING;
       currentTask.status = ETaskStatus.RUNNING;
-      if (settings.soundOn) notification();
       dispatch(updateTaskPomodoro(currentPomodoro));
       dispatch(updateTask(currentTask));
     }

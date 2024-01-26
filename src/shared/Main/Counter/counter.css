@@ -1,7 +1,7 @@
 .counter {
   min-height: 503px;
   max-height: 503px;
-  background: #f4f4f4;
+  background: var(--background);
 }
 
 .body {
@@ -18,7 +18,8 @@
 }
 
 .secondsPlaceholder {
-  align-items: left;
+  text-align: center;
+  width: 100%;
 }
 
 .buttonPlaceholder {
@@ -28,7 +29,7 @@
 }
 
 .running {
-  color: var(--red);
+  color: var(--accent);
 }
 
 .breakRunning {
@@ -91,18 +92,18 @@
   font-size: 14px;
   line-height: 16px;
   text-align: center;
-  border: 1px var(--red) solid;
-  color: var(--red);
+  border: 1px var(--accent) solid;
+  color: var(--accent);
 }
 
 .stop:hover {
-  background: var(--red);
+  background: var(--accent);
   color: #ffffff;
 }
 
 .stop[disabled] {
-  border: 1px var(--red) solid;
-  color: var(--red);
+  border: 1px var(--accent) solid;
+  color: var(--accent);
   background-color: var(--grayCC);
   pointer-events: none;
   -webkit-filter: grayscale(1);
@@ -131,6 +132,5 @@
     min-width: 733px;
     max-width: 733px;
     min-height: 503px;
-    background: #f4f4f4;
   }
 }

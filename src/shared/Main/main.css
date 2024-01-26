@@ -3,7 +3,7 @@
   flex-flow: row nowrap;
   gap: 50px;
   align-items: top;
-  padding: 80px;
+  padding: 50px;
 }
 
 @media all and (max-width: 1024px) {
@@ -11,6 +11,6 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: top;
-    padding: 80px;
+    padding: 50px;
   }
 }

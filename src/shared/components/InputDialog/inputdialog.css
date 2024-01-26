@@ -64,6 +64,6 @@
 }
 
 .error {
-  color: var(--red);
+  color: var(--accent);
   font-size: smaller;
 }

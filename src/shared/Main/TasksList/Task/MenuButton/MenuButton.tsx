@@ -19,7 +19,7 @@ export function MenuButton({
   menuItems,
   onOpen = noop,
   onClose = noop,
-}: Readonly<IMenuButtonProps>) {
+}: Readonly<IMenuButtonProps>): React.JSX.Element {
   return (
     <div className={styles.menu}>
       <Dropdown

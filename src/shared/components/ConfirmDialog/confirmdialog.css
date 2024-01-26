@@ -6,7 +6,7 @@
 .button {
   width: 162px;
   height: 55px;
-  background: var(--red);
+  background: var(--accent);
   border-radius: 0px 0px 3px 0px;
   font-style: normal;
   font-weight: 500;

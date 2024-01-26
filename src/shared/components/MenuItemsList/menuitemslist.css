@@ -5,17 +5,19 @@
   position: relative;
   text-align: center;
   border-radius: 3px;
-  background-color: var(--white);
+  background: var(--background);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--greyC4);
   z-index: 11;
 }
+
 .popupWrapper {
   border-radius: 4px;
   position: relative;
-  background-color: var(--white);
+  background: var(--background);
   z-index: 10;
 }
+
 .popup:after {
   content: "";
   height: 100%;
@@ -25,28 +27,33 @@
   top: 0;
   left: 0;
 }
+
 .popup:before {
   content: "";
   width: 20px;
   height: 20px;
   transform: rotate(45deg);
-  background: #fff;
+  background: var(--background);
   position: absolute;
   z-index: 9;
   border: 1px solid var(--greyC4);
 }
+
 .popup.arrowTop:before {
   left: calc(50% - 10px);
   top: -8px;
 }
+
 .popup.arrowRight:before {
   top: calc(50% - 10px);
   right: -8px;
 }
+
 .popup.arrowBottom:before {
   left: calc(50% - 10px);
   bottom: -8px;
 }
+
 .popup.arrowLeft:before {
   top: calc(50% - 10px);
   left: -8px;

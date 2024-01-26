@@ -12,7 +12,7 @@
 }
 
 .running {
-    background: var(--red);    
+    background: var(--accent);
 }
 
 .breakRunning {

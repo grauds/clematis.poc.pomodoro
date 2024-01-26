@@ -20,7 +20,7 @@
     font-size: 24px;
     font-weight: 400;
     line-height: 51px;
-    color: var(--red);
+    color: var(--accent);
 }
 
 .filler {
@@ -32,13 +32,13 @@
 .fillerSelected {    
     width: 77px;
     height: 45px;
-    background-color: var(--red);
+    background-color: var(--accent);
 }
 
 .empty {
     width: 77px;
     height: 5px;
-    background-color: var(--greyC4);
+    background-color: var(--backgroundSecondary);
 }
 
 @media all and (max-width: 1054px) {

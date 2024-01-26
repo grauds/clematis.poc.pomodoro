@@ -120,7 +120,7 @@ export function Task({
     >
       <span className={`${styles.number} ${draggingClass}`}>{task.no}</span>
       <span className={nameStyle}>
-        {task.name} {task.pomodori.map((pomodoro, i) => {
+        {task.name} {task.pomodori.map((pomodoro) => {
           return pomodoro.status === EPomodoroStatus.DONE ? "✅ " : "🍅 ";
         })}
       </span>
