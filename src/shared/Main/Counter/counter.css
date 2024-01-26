@@ -8,13 +8,23 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   gap: 15px;
   padding-top: 50px;
   line-height: 179px;
   font-size: 150px;
   font-weight: 200;
   vertical-align: middle;
+}
+
+.secondsPlaceholder {
+  align-items: left;
+}
+
+.buttonPlaceholder {
+  margin-right: 30px;
+  margin-left: auto;
+  line-height: 4px;
 }
 
 .running {

@@ -34,12 +34,16 @@ export function Counter(props: Readonly<ICounterProps>): React.JSX.Element {
         <>
           <div className={`${styles.body} ${styles[props.bodyCss]}`}>
             <span className={styles.placeholder}></span>
-            <span className={styles[props.secondsCss]}>
-              {formatTime(props.seconds)}
+            <span className={styles.secondsPlaceholder}>
+              <span className={styles[props.secondsCss]}>
+                {formatTime(props.seconds)}
+              </span>
             </span>
-            <button onClick={props.handleTimeAdd}>
-              <PlusBigIcon />
-            </button>
+            <span className={styles.buttonPlaceholder}>
+              <button onClick={props.handleTimeAdd}>
+                <PlusBigIcon />
+              </button>
+            </span>
           </div>
           <div className={styles.task}>
             <span className={styles.taskHeader}>Задача - </span>
