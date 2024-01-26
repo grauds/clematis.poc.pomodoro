@@ -42,6 +42,7 @@
     "react-window": "^1.8.10",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
+    "use-sound": "^4.0.1",
     "uuid": "^9.0.1",
     "webpack-node-externals": "^3.0.0"
   },

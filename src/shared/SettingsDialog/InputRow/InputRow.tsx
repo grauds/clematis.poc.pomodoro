@@ -13,9 +13,9 @@ interface IInputRow {
   id: string;
   label: string;
   name: string;
-  value: number;
+  value: number | boolean;
   type?: EInputRowType;
-  onChange?: (value: number) => void;
+  onChange?: (value: number | boolean) => void;
 }
 
 export function InputRow({
@@ -28,21 +28,55 @@ export function InputRow({
 }: Readonly<IInputRow>): React.JSX.Element {
   let body;
 
-  const prop = type === EInputRowType.MINUTES ? Math.floor(value / 60) : value 
-  const [valueCopy, setValueCopy] = useState<number>(prop);
+  const [valueCopy, setValueCopy] = useState<number | boolean>(propsToState(value));
 
   // if property changes the state is not updated automatically!
   useEffect(() => {
-    setValueCopy(prop) 
+    setValueCopy(propsToState(value)); 
   }, [value])
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     // refresh state with raw value
-    const value = Number.parseInt(event.target.value);    
-    setValueCopy(value);    
-    // give away a scaled value
-    const result = type === EInputRowType.MINUTES ? value * 60 : value
-    onChange(result);
+    setValueCopy(eventToState(event));    
+    // give away a scaled value for numbers
+    onChange(eventToCallback(event));
+  }
+
+  function propsToState(value: number | boolean): number | boolean {
+    switch (type) {
+      case EInputRowType.CHECKBOX:
+        return value;
+      case EInputRowType.MINUTES:
+        return Math.floor((value as number) / 60);
+      default:
+        return value;
+    }
+  }
+
+  function eventToState(
+    event: ChangeEvent<HTMLInputElement>
+  ): number | boolean {
+    switch (type) {
+      case EInputRowType.CHECKBOX:
+        return event.target.checked;
+      case EInputRowType.MINUTES:
+        return Number.parseInt(event.target.value);
+      default:
+        return Number.parseInt(event.target.value);
+    }
+  }
+
+  function eventToCallback(
+    event: ChangeEvent<HTMLInputElement>
+  ): number | boolean {
+    switch (type) {
+      case EInputRowType.CHECKBOX:
+        return event.target.checked;
+      case EInputRowType.MINUTES:
+        return Number.parseInt(event.target.value) * 60;
+      default:
+        return Number.parseInt(event.target.value);
+    }
   }
 
   switch (type) {
@@ -54,7 +88,7 @@ export function InputRow({
             min="1"
             id={id}
             name={name}
-            value={valueCopy}
+            value={valueCopy as number}
             onChange={handleChange}
             className={styles.input}
           />
@@ -69,7 +103,7 @@ export function InputRow({
           min="1"
           id={id}
           name={name}
-          value={valueCopy}
+          value={valueCopy as number}
           onChange={handleChange}
           className={styles.input}
         />
@@ -81,7 +115,7 @@ export function InputRow({
           type="checkbox"
           id={id}
           name={name}
-          value={valueCopy}
+          checked={valueCopy as boolean}
           onChange={handleChange}
           className={styles.input}
         />

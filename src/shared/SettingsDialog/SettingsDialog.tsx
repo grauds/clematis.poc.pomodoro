@@ -58,11 +58,11 @@ export function SettingsDialog({
             id={"time"}
             label={"Один помидор"}
             name={"time"}
-            onChange={(value: number) => {
+            onChange={(value: boolean | number) => {
               setSettingsCopy({
                 ...settingsCopy,
-                pomodoro: value
-              })
+                pomodoro: value as number,
+              });
             }}
             value={settingsCopy?.pomodoro}
           />
@@ -70,11 +70,11 @@ export function SettingsDialog({
             id={"break"}
             label={"Короткий перерыв"}
             name={"break"}
-            onChange={(value: number) => {
+            onChange={(value: boolean | number) => {
               setSettingsCopy({
                 ...settingsCopy,
-                break: value
-              })
+                break: value as number,
+              });
             }}
             value={settingsCopy?.break}
           />
@@ -82,11 +82,11 @@ export function SettingsDialog({
             id={"long_break"}
             label={"Длинный перерыв"}
             name={"long_break"}
-            onChange={(value: number) => {
+            onChange={(value: boolean | number) => {
               setSettingsCopy({
                 ...settingsCopy,
-                longBreak: value
-              })
+                longBreak: value as number,
+              });
             }}
             value={settingsCopy?.longBreak}
           />
@@ -97,28 +97,36 @@ export function SettingsDialog({
             id={"long_break_after"}
             label={"Длинный перерыв после помидоров"}
             name={"long_break_after"}
-            onChange={(value: number) => {
+            onChange={(value: boolean | number) => {
               setSettingsCopy({
                 ...settingsCopy,
-                longBreakAfterPomodoro: value
-              })
+                longBreakAfterPomodoro: value as number,
+              });
             }}
             value={settingsCopy?.longBreakAfterPomodoro}
             type={EInputRowType.NUMBERS}
           />
           <InputRow
             id={"notifications"}
+            type={EInputRowType.CHECKBOX}
             label={"Уведомления об окончании таймера"}
             name={"notifications"}
-            onChange={() => {}}
-            value={0}
-            type={EInputRowType.CHECKBOX}
+            onChange={(value: boolean | number) => {
+              setSettingsCopy({
+                ...settingsCopy,
+                soundOn: value ? value as boolean : false,
+              });
+            }}
+            value={settingsCopy.soundOn}
           />
         </fieldset>
         <button type="submit" className={styles.button}>
           {"Сохранить"}
         </button>
-        <button className={styles.defaults} onClick={(event: FormEvent) => handleDefaults(event)}>
+        <button
+          className={styles.defaults}
+          onClick={(event: FormEvent) => handleDefaults(event)}
+        >
           {"По умолчанию"}
         </button>
         <button className={styles.cancel} onClick={() => onClose()}>

@@ -28,6 +28,7 @@ export interface IPomodoro {
 }
 
 export interface ISettings {
+  soundOn: boolean;
   pomodoro: number; // time of one pomodoro, seconds
   break: number; // time of a break, seconds
   longBreak: number // time of a long break, seconds
@@ -38,7 +39,8 @@ export const defaultSettings: ISettings = {
   pomodoro: 20 * 60,
   break: 10 * 60,
   longBreak: 30 * 60,
-  longBreakAfterPomodoro: 4
+  longBreakAfterPomodoro: 4,
+  soundOn: false
 }
 
 export function freshPomodoro(id: number, settings: ISettings): IPomodoro {

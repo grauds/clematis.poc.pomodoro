@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import useSound from "use-sound";
+import sound from "./../../sound/alarm-kitchen.mp3";
 
 import {
   RootState,
@@ -20,8 +22,6 @@ import {
 
 import { Counter, ICounterProps } from "../Counter/Counter";
 import { noop } from "../../../utils/noop";
-
-import wavFile from './../../sound/alarm-kitchen.mp3';
 
 export function CounterContainer(): React.JSX.Element {
 
@@ -52,8 +52,7 @@ export function CounterContainer(): React.JSX.Element {
   const isBreakRunning = currentPomodoro?.status === EPomodoroStatus.BREAK_RUNNING;
 
   const dispatch = useDispatch();
-  const audio = new Audio(wavFile);
-  audio.loop = false;
+  const [notification] = useSound(sound);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -149,7 +148,7 @@ export function CounterContainer(): React.JSX.Element {
         currentTask.pomodori.length !== currentPomodoro.id
           ? ETaskStatus.PAUSED
           : ETaskStatus.DONE;
-      audio.play;    
+      if (settings.soundOn) notification();
       dispatch(updateTaskPomodoro(currentPomodoro));
       dispatch(updateTask(currentTask));
     }

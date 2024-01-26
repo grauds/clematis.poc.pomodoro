@@ -22,8 +22,7 @@ export interface ICounterProps {
   handleTimeAdd: () => void
 }
 
-export function Counter(props: Readonly<ICounterProps>) {
-
+export function Counter(props: Readonly<ICounterProps>): React.JSX.Element {
   return (
     <div className={styles.counter}>
       <CounterHeader
@@ -47,10 +46,7 @@ export function Counter(props: Readonly<ICounterProps>) {
             {props.name}
           </div>
           <div className={styles.controlBar}>
-            <button
-              className={styles.start}
-              onClick={props.leftButtonAction}
-            >
+            <button className={styles.start} onClick={props.leftButtonAction}>
               {props.leftButtonTitle}
             </button>
             <button
