@@ -3,10 +3,11 @@
     height: 260px;
     background-color: var(--backgroundSecondary);
     padding: 20px;
+    color: var(--foreground);
 }
 
 .minutes {
-    color: var(--accent);
+    color: var(--red);
 }
 
 @media all and (max-width: 1280px) {

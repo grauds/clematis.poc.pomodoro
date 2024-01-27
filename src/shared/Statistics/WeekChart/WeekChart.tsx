@@ -23,7 +23,7 @@ export function WeekChart(): React.JSX.Element {
   const { weekDays, maxTime } = getWeekMaxTime(weekstats, selectedWeek);
   const tick = Math.floor(maxTime / 5);
   const scale = tick > 0 ? tick / 81 : 1;
-  const hlines = [];
+  const hlines: React.JSX.Element[] = [];
   for (let i = 1; i <= 4; i++) {
     hlines.push(<HLine key={i} time={formatTimeShort(i * tick)} />);
   }

@@ -4,6 +4,7 @@
     width: 408px;
     height: 179px;
     background-color: var(--backgroundSecondary);
+    color: var(--foreground);
     padding: 20px;
     align-items: center;
 }

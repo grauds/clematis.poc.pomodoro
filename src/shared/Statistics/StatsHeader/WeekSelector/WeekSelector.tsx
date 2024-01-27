@@ -14,7 +14,9 @@ interface IWeekSelectorProps {
   isOpen?: boolean;
 }
 
-export function WeekSelector({ isOpen }: Readonly<IWeekSelectorProps>) {
+export function WeekSelector({
+  isOpen,
+}: Readonly<IWeekSelectorProps>): React.JSX.Element {
   const [open, setOpen] = useState<boolean>(isOpen ?? false);
   const selectedWeek = useSelector<RootState, IWeek>((state) => state.week);
   const dispatch = useDispatch();

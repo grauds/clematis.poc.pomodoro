@@ -38,7 +38,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: var(--grey33);
-    --backgroundSecondary: var(--greyC4);
+    --backgroundSecondary: var(--grey66);
     --foreground: var(--white);
     --accent: var(--brightBlue);
   }
@@ -74,6 +74,7 @@ ul li::before {
 
 a {
   text-decoration: none;
+  color: var(--foreground);
 }
 
 button {
@@ -81,4 +82,5 @@ button {
   border: 0;
   background: transparent;
   cursor: pointer;
+  color: var(--foreground);
 }

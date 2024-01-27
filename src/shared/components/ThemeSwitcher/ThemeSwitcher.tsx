@@ -3,6 +3,6 @@ import styles from './themeswitcher.css';
 
 export function ThemeSwitcher() {
   return (
-
+    <div></div>
   );
 }

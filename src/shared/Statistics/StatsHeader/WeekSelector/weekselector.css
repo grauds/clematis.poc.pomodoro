@@ -11,9 +11,9 @@
     height: 55px;
     padding: 19px;
     line-height: 17px;
-    color: var(--grey33);
     display: flex;
     flex-flow: row wrap;
+    color: var(--foreground);
 }
 
 .arrow {

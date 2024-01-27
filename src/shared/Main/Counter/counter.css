@@ -1,7 +1,7 @@
 .counter {
   min-height: 503px;
   max-height: 503px;
-  background: var(--background);
+  background: var(--backgroundSecondary);
 }
 
 .body {
