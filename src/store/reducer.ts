@@ -1,5 +1,7 @@
 import { ActionCreator, AnyAction, Reducer } from "redux";
 import {
+  ETaskStatus,
+  ETheme,
   IDay,
   IDayStats,
   IPomodoro,
@@ -16,6 +18,8 @@ import {
 import { sameDay } from "../utils/time";
 
 export type RootState = {
+  info: boolean;
+  theme: ETheme;
   tasks: ITask[]; // tasks list
   day: IDayStats; // selected day of week
   week: IWeek; // selected week
@@ -24,11 +28,13 @@ export type RootState = {
 };
 
 export const initialState: RootState = {
+  theme: ETheme.LIGHT,
   tasks: [],
   day: newCurrentDayStats(), // selected day of week default value is current day
   week: Weeks[0], // selected week default value is current week (the top most)
   stats: [], // a list of actual days user worked with the timer, no longer than two weeks back in time
-  settings: defaultSettings // system settings
+  settings: defaultSettings, // system settings
+  info: true
 };
 
 const ADD_TASK = "ADD_TASK";
@@ -46,6 +52,7 @@ const SET_CURRENT_DAY = "SET_CURRENT_DAY";
 const SET_CURRENT_WEEK = "SET_CURRENT_WEEK";
 
 const UPDATE_SETTINGS = "UPDATE_SETTINGS"
+const TOGGLE_INFO = "TOGGLE_INFO";
 
 export const addTask: ActionCreator<AnyAction> = (task: ITask) => ({
   type: ADD_TASK,
@@ -187,6 +194,7 @@ const updatePomodori = (
                 freshPomodoro(_pomodori.length + 1, state.settings)
       });
     }
+    action.task.status = ETaskStatus.NOT_STARTED;
   } else if (pomodori < 0 && Math.abs(pomodori) < _pomodori.length) {
     _pomodori.splice(_pomodori.length - Math.abs(pomodori), Math.abs(pomodori));
   }
@@ -226,6 +234,11 @@ const updateStats = (action: AnyAction, state = initialState) => {
     };
   }
 };
+
+export const toggleInfo: ActionCreator<AnyAction> = (info: boolean) => ({
+  type: TOGGLE_INFO,
+  info,
+});
 
 export const rootReducer: Reducer<RootState> = (
   state = initialState,
@@ -279,6 +292,12 @@ export const rootReducer: Reducer<RootState> = (
         ...state,
         week: action.week,
       };
+     
+    case TOGGLE_INFO:
+      return {
+        ...state,
+        info: action.info
+      };   
 
     default:
       return state;

@@ -30,6 +30,7 @@ export function TasksList() {
     e.preventDefault()
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const drop = (e: React.DragEvent<HTMLDivElement>) => {
 
     dispatch(moveTaskBefore(draggedTaskId, draggedOverTaskId))

@@ -8,6 +8,10 @@ export enum EPomodoroStatus {
   NOT_STARTED, RUNNING, PAUSED, BREAK_RUNNING, BREAK_PAUSED, DONE
 }
 
+export enum ETheme {
+  SYSTEM, LIGHT, DARK
+}
+
 export interface ITask {
   id: string; // id of the task
   name: string; // name of the task
@@ -40,7 +44,7 @@ export const defaultSettings: ISettings = {
   break: 10 * 60,
   longBreak: 30 * 60,
   longBreakAfterPomodoro: 4,
-  soundOn: false
+  soundOn: true
 }
 
 export function freshPomodoro(id: number, settings: ISettings): IPomodoro {

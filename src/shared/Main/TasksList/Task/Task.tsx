@@ -57,7 +57,7 @@ export function Task({
   const menuItems: IItem[] = [
     {
       id: "1",
-      text: "Увеличить",
+      text: "Увеличить 🍅",
       icon: <PlusIcon />,
       onClick: (_id: string, e: any) => {
         e.stopPropagation();
@@ -66,7 +66,7 @@ export function Task({
     },
     {
       id: "2",
-      text: "Уменьшить",
+      text: "Уменьшить 🍅",
       icon: <MinusIcon />,
       onClick: (_id: string, e: any) => {
         e.stopPropagation();
@@ -76,7 +76,7 @@ export function Task({
     },
     {
       id: "3",
-      text: "Редактировать",
+      text: "Переименовать",
       icon: <EditIcon />,
       onClick: (_id: string, _e: any) => {
         setIsDialogOpen(true);
@@ -87,7 +87,7 @@ export function Task({
       text: "Удалить",
       icon: <DeleteIcon />,
       onClick: (_id: string, _e: any) => {
-        setIsConfirmationOpen(true)
+        setIsConfirmationOpen(true);
       },
     },
   ];

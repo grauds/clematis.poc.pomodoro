@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import useSound from "use-sound";
-import sound from "./../../sound/alarm-kitchen.mp3";
+import alarmSound from "./../../sound/alarm-kitchen.mp3";
+import tickingSound from "./../../sound/check.mp3";
+import notificationSound from "./../../sound/notification.mp3";
 
 import {
   RootState,
@@ -52,7 +54,9 @@ export function CounterContainer(): React.JSX.Element {
   const isBreakRunning = currentPomodoro?.status === EPomodoroStatus.BREAK_RUNNING;
 
   const dispatch = useDispatch();
-  const [notification] = useSound(sound);
+  const [alarm] = useSound(alarmSound);
+  const [ticking] = useSound(tickingSound);
+  const [notification] = useSound(notificationSound);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -62,6 +66,7 @@ export function CounterContainer(): React.JSX.Element {
           (isBreakRunning && breakSeconds > 0)
         ) {
           if (isTaskRunning) {
+            if (settings.soundOn) ticking();
             currentPomodoro.seconds -= 1;
             currentPomodoro.time += 1;
             dayStats.time += 1;
@@ -75,6 +80,7 @@ export function CounterContainer(): React.JSX.Element {
         }
         if (isTaskRunning && seconds === 0) {
           currentPomodoro.status = EPomodoroStatus.BREAK_RUNNING;
+          if (settings.soundOn) alarm();
           dispatch(updateTaskPomodoro(currentPomodoro));
         }
         if (isBreakRunning && breakSeconds === 0) {
@@ -155,11 +161,12 @@ export function CounterContainer(): React.JSX.Element {
   }
 
 
-  const empty: ICounterProps =  {
+  const empty: ICounterProps = {
     active: false,
-    name: '',
+    name: "Задача не выбрана",
+    status: "Ожидание",
     pomodoroNo: 0,
-    titleCss: '',
+    titleCss: "",
     seconds: 0,
     secondsCss: "",
     bodyCss: "",
@@ -168,17 +175,18 @@ export function CounterContainer(): React.JSX.Element {
     rightButtonTitle: "",
     rightBuittonAction: noop,
     rightButtonDisabled: false,
-    handleTimeAdd: noop
-  }
+    handleTimeAdd: noop,
+  };
 
-  const notStarted: ICounterProps =  {
+  const notStarted: ICounterProps = {
     active: true,
-    name: currentTask ? currentTask.name : 'Без имени',
+    name: (currentTask ? currentTask.name : "без имени"),
+    status: "Не начато",
     pomodoroNo: currentPomodoro ? currentPomodoro.id : 0,
     seconds: currentPomodoro ? currentPomodoro.seconds : 0,
-    titleCss: '',
-    secondsCss: '',
-    bodyCss: '',
+    titleCss: "",
+    secondsCss: "",
+    bodyCss: "",
     leftButtonTitle: "Старт",
     leftButtonAction: startTimer,
     rightButtonTitle: "Стоп",
@@ -186,38 +194,41 @@ export function CounterContainer(): React.JSX.Element {
     rightButtonDisabled: true,
     handleTimeAdd: () => {
       if (currentPomodoro && currentPomodoro.seconds > 0) {
-          currentPomodoro.seconds += 60;
-          dispatch(updateTaskPomodoro(currentPomodoro));
+        currentPomodoro.seconds += 60;
+        dispatch(updateTaskPomodoro(currentPomodoro));
       }
-    }
-  }
+    },
+  };
 
-  const pauseWork: ICounterProps =  {
+  const pauseWork: ICounterProps = {
     ...notStarted,
-    titleCss: 'running',
-    secondsCss: 'running',
-    bodyCss: 'running',
+    status: "Выполняется",
+    titleCss: "running",
+    secondsCss: "running",
+    bodyCss: "running",
     leftButtonTitle: "Пауза",
     leftButtonAction: pauseTimer,
     rightButtonTitle: "Стоп",
     rightBuittonAction: stopTimer,
-    rightButtonDisabled: false
-  }
+    rightButtonDisabled: false,
+  };
 
   const afterPause: ICounterProps = {
     ...pauseWork,
+    status: "На паузе",
     leftButtonTitle: "Продолжить",
     leftButtonAction: startTimer,
     rightButtonTitle: "Сделано",
-    rightBuittonAction: finishPomodoroOrTask
-  }
+    rightBuittonAction: finishPomodoroOrTask,
+  };
 
-  const pauseBreak: ICounterProps =  {
+  const pauseBreak: ICounterProps = {
     ...notStarted,
+    status: "Отдых",
     seconds: currentPomodoro ? currentPomodoro.breakSeconds : 0,
-    titleCss: 'breakRunning',
-    secondsCss: 'breakRunning',
-    bodyCss: 'breakRunning',
+    titleCss: "breakRunning",
+    secondsCss: "breakRunning",
+    bodyCss: "breakRunning",
     leftButtonTitle: "Пауза",
     leftButtonAction: pauseBreakTimer,
     rightButtonTitle: "Пропустить",
@@ -225,17 +236,18 @@ export function CounterContainer(): React.JSX.Element {
     rightButtonDisabled: false,
     handleTimeAdd: () => {
       if (currentPomodoro) {
-          currentPomodoro.breakSeconds += 60;
-          dispatch(updateTaskPomodoro(currentPomodoro));
+        currentPomodoro.breakSeconds += 60;
+        dispatch(updateTaskPomodoro(currentPomodoro));
       }
-    }
-  }
+    },
+  };
 
   const afterBreakPause: ICounterProps = {
     ...pauseBreak,
+    status: "Отдых на паузе",
     leftButtonTitle: "Продолжить",
     leftButtonAction: startBreakTimer,
-  }
+  };
 
   let counterProps: ICounterProps = empty
 

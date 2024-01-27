@@ -10,6 +10,7 @@
 
 .active {
     background-color: var(--violet);
+    color: var(--grey33);
 }
 
 .header {

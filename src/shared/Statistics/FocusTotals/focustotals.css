@@ -11,6 +11,7 @@
 
 .active {
     background-color: var(--pink);
+    color: var(--grey33);
 }
 
 .header {

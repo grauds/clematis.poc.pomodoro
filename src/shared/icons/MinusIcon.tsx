@@ -1,6 +1,6 @@
 import React from "react";
 
-export function MinusIcon() {
+export function MinusIcon(): React.JSX.Element {
   return (
     <svg
       width="18"

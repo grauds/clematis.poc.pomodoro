@@ -6,6 +6,10 @@
   padding: 50px;
 }
 
+.infoToggle {
+  text-align: right;
+}
+
 @media all and (max-width: 1024px) {
   .main {
     display: flex;

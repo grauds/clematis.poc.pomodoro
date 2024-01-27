@@ -1,6 +1,6 @@
 import React from "react";
 
-export function SettingsIcon() {
+export function SettingsIcon(): React.JSX.Element {
   return (
     <svg
       width="20"

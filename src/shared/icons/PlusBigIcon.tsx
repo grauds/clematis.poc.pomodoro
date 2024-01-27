@@ -1,6 +1,6 @@
 import React from "react";
 
-export function PlusBigIcon() {
+export function PlusBigIcon(): React.JSX.Element {
   return (
     <svg
       width="50"

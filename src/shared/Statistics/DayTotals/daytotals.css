@@ -1,9 +1,9 @@
 .daytotals {
     width: 296px;
     height: 260px;
-    background-color: var(--backgroundSecondary);
     padding: 20px;
     color: var(--foreground);
+    background-color: var(--backgroundSecondary);
 }
 
 .minutes {

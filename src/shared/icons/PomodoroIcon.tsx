@@ -1,6 +1,6 @@
 import React from "react";
 
-export function PomodoroIcon() {
+export function PomodoroIcon(): React.JSX.Element {
   return (
     <svg
       width="115"

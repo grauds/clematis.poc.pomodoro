@@ -7,7 +7,7 @@ interface ICounterHeaderProps {
   runningCss: string;
 }
 
-export function CounterHeader({ header, pomodoroNo, runningCss }: Readonly<ICounterHeaderProps>) {
+export function CounterHeader({ header, pomodoroNo, runningCss }: Readonly<ICounterHeaderProps>): React.JSX.Element {
 
   function writeHeader(maxLength: number) {
     return (header?.length && header?.length > maxLength) ? header.substring(0, maxLength).concat('...') : header
@@ -15,7 +15,7 @@ export function CounterHeader({ header, pomodoroNo, runningCss }: Readonly<ICoun
 
   return (
     <div className={`${styles.counterheader} ${styles[runningCss]} `}>
-      <span>{header ? writeHeader(30) : "No task selected"}</span>
+      <h2>{header ? writeHeader(30) : "No task selected"}</h2>
       {header ? (
         <span className={styles.total}>Помидор: {pomodoroNo ?? 1}</span>
       ) : (

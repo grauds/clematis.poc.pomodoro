@@ -15,8 +15,7 @@
 }
 
 .listItem:hover {
-  color: var(--grey33);
-  background-color: var(--greyCC);
+  background-color: var(--backgroundSecondary);
 }
 
 .listItem[disabled] {

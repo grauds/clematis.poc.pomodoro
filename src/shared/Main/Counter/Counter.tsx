@@ -9,6 +9,7 @@ import styles from "./counter.css";
 export interface ICounterProps {
   active: boolean;
   name: string;  
+  status: string;
   pomodoroNo: number;
   seconds: number;
   titleCss: string;
@@ -46,8 +47,8 @@ export function Counter(props: Readonly<ICounterProps>): React.JSX.Element {
             </span>
           </div>
           <div className={styles.task}>
-            <span className={styles.taskHeader}>Задача - </span>
-            {props.name}
+            <span className={styles.taskHeader}>Статус - </span>
+            {props.status}
           </div>
           <div className={styles.controlBar}>
             <button className={styles.start} onClick={props.leftButtonAction}>

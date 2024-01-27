@@ -1,6 +1,9 @@
 @import url('https://fonts.cdnfonts.com/css/sf-ui-display');
 
 :root {
+  --OFF: ; 
+  --ON: initial;
+
   --black: #333333;
   --whitelightness: 100%;
   --white: hsl(0, 0%, var(--whitelightness));
@@ -26,21 +29,40 @@
   --brightBlue: rgb(125, 210, 247);
 }
 
+.themeDefault,
+.themeLight {
+  --light: var(--ON);
+  --dark: var(--OFF);
+  --system: var(--OFF);
+}
+
+.themeDark {
+  --light: var(--OFF);
+  --dark: var(--ON);
+  --system: var(--OFF);
+}
+
+.themeSystem {
+  --light: var(--OFF);
+  --dark: var(--OFF);
+  --system: var(--ON);
+}
+
 @media (prefers-color-scheme: light) {
   :root {
-    --background: var(--white);
-    --backgroundSecondary: var(--greyF4);
-    --foreground: var(--grey33);
-    --accent: var(--red);
+    --background: var(--light, var(--white)) var(--dark, var(--grey33)) var(--system, var(--white));
+    --backgroundSecondary: var(--light, var(--greyF4)) var(--dark, var(--grey66)) var(--system, var(--greyF4));
+    --foreground: var(--light, var(--grey33)) var(--dark, var(--white)) var(--system, var(--grey33));
+    --accent: var(--light, var(--red)) var(--dark, var(--brightBlue)) var(--system, var(--red));
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: var(--grey33);
-    --backgroundSecondary: var(--grey66);
-    --foreground: var(--white);
-    --accent: var(--brightBlue);
+    --background: var(--light, var(--white)) var(--dark, var(--grey33)) var(--system, var(--grey33));
+    --backgroundSecondary: var(--light, var(--greyF4)) var(--dark, var(--grey66)) var(--system, var(--grey66));
+    --foreground: var(--light, var(--grey33)) var(--dark, var(--white)) var(--system, var(--white));
+    --accent: var(--light, var(--red)) var(--dark, var(--brightBlue)) var(--system, var(--brightBlue));
   }
 }
 

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
-import { composeWithDevTools } from "redux-devtools-extension";
+import thunk from "redux-thunk";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import thunk from "redux-thunk";
-
+import { composeWithDevTools } from "redux-devtools-extension";
 import { hot } from "react-hot-loader/root";
 
 import { Layout } from "./shared/components/Layout";
@@ -57,16 +56,16 @@ function AppComponent() {
     <Provider store={store}>
       {mounted && (
         <BrowserRouter>
-          <Layout>
-            <Header />
-            <Content>
-              <Routes>
-                <Route path="/" element={<Main />} />
-                <Route path="/statistics" element={<Statistics />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Content>
-          </Layout>
+            <Layout>
+              <Header />
+              <Content>
+                <Routes>
+                  <Route path="/" element={<Main />} />
+                  <Route path="/statistics" element={<Statistics />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Content>
+            </Layout>
         </BrowserRouter>
       )}
     </Provider>
