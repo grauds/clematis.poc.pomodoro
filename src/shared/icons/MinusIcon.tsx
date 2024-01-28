@@ -1,4 +1,5 @@
 import React from "react";
+import ArrowIcon from "./ArrowIcon";
 
 export function MinusIcon(): React.JSX.Element {
   return (
@@ -27,3 +28,5 @@ export function MinusIcon(): React.JSX.Element {
     </svg>
   );
 }
+
+export default MinusIcon

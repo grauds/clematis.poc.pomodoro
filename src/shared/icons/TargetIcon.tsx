@@ -4,7 +4,7 @@ interface ITargetIcon {
   active?: boolean;
 }
 
-export function TargetIcon({ active }: ITargetIcon) {
+export function TargetIcon({ active }: ITargetIcon): React.JSX.Element {
   return active ? (
     <svg
       width="115"
@@ -67,3 +67,5 @@ export function TargetIcon({ active }: ITargetIcon) {
     </svg>
   );
 }
+
+export default TargetIcon

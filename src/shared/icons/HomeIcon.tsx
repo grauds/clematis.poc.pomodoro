@@ -1,6 +1,7 @@
 import React from "react";
+import ArrowIcon from "./ArrowIcon";
 
-export function HomeIcon() {
+export function HomeIcon(): React.JSX.Element {
   return (
     <svg
       width="40"
@@ -31,3 +32,5 @@ export function HomeIcon() {
     </svg>
   );
 }
+
+export default HomeIcon

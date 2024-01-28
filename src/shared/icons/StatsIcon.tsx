@@ -23,3 +23,5 @@ export function StatsIcon(): React.JSX.Element {
     </svg>
   );
 }
+
+export default StatsIcon

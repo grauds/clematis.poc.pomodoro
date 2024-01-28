@@ -1,6 +1,7 @@
 import React from "react";
+import ArrowIcon from "./ArrowIcon";
 
-export function CloseIcon() {
+export function CloseIcon(): React.JSX.Element {
   return (
     <svg
       width="15"
@@ -16,3 +17,5 @@ export function CloseIcon() {
     </svg>
   );
 }
+
+export default CloseIcon

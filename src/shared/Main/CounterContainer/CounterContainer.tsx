@@ -66,7 +66,7 @@ export function CounterContainer(): React.JSX.Element {
           (isBreakRunning && breakSeconds > 0)
         ) {
           if (isTaskRunning) {
-            if (settings.soundOn) ticking();
+       //     if (settings.soundOn) ticking();
             currentPomodoro.seconds -= 1;
             currentPomodoro.time += 1;
             dayStats.time += 1;

@@ -1,5 +1,5 @@
 import React from "react";
-import { HomeIcon } from "../../icons/HomeIcon";
+import {HomeIcon} from "../../icons";
 import { Link } from "react-router-dom";
 
 import styles from "./title.css";

@@ -16,3 +16,5 @@ export function SettingsIcon(): React.JSX.Element {
     </svg>
   );
 }
+
+export default SettingsIcon

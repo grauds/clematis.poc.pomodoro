@@ -82,3 +82,5 @@ export function PomodoroIcon(): React.JSX.Element {
     </svg>
   );
 }
+
+export default PomodoroIcon

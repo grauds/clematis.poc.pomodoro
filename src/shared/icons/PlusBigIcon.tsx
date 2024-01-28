@@ -1,4 +1,5 @@
 import React from "react";
+import ArrowIcon from "./ArrowIcon";
 
 export function PlusBigIcon(): React.JSX.Element {
   return (
@@ -17,3 +18,5 @@ export function PlusBigIcon(): React.JSX.Element {
     </svg>
   );
 }
+
+export default PlusBigIcon

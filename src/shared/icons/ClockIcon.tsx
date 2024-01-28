@@ -1,10 +1,11 @@
 import React from "react";
+import ArrowIcon from "./ArrowIcon";
 
 interface IClockIcon {
   active?: boolean;
 }
 
-export function ClockIcon({ active }: IClockIcon) {
+export function ClockIcon({ active }: IClockIcon): React.JSX.Element {
   return active ? (
     <svg
       width="115"
@@ -53,3 +54,5 @@ export function ClockIcon({ active }: IClockIcon) {
     </svg>
   );
 }
+
+export default ClockIcon

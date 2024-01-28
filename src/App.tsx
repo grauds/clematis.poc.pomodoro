@@ -22,7 +22,7 @@ let persistedState;
 
 function datesReviver(key: string, value: string) {
   // lame workaround for dates restoration
-  if (typeof value === 'string' && key === 'date') {
+  if (key === 'date') {
       return new Date(Date.parse(value))
   }
   return value;

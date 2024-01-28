@@ -1,6 +1,7 @@
 import React from "react";
+import ArrowIcon from "./ArrowIcon";
 
-export function EditIcon() {
+export function EditIcon(): React.JSX.Element {
   return (
     <svg
       width="18"
@@ -23,3 +24,5 @@ export function EditIcon() {
     </svg>
   );
 }
+
+export default EditIcon

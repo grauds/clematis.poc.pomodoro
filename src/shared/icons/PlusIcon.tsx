@@ -23,3 +23,5 @@ export function PlusIcon(): React.JSX.Element {
     </svg>
   );
 }
+
+export default PlusIcon

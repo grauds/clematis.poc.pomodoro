@@ -1,6 +1,7 @@
 import React from "react";
+import ArrowIcon from "./ArrowIcon";
 
-export function DeleteIcon() {
+export function DeleteIcon(): React.JSX.Element {
   return (
     <svg
       width="18"
@@ -23,3 +24,5 @@ export function DeleteIcon() {
     </svg>
   );
 }
+
+export default DeleteIcon
