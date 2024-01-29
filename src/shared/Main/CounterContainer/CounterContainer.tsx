@@ -22,7 +22,7 @@ import {
   getDayStats,
 } from "../../../types/model";
 
-import { Counter, ICounterProps } from "../Counter/Counter";
+import { Counter, ICounterProps } from "../Counter";
 import { noop } from "../../../utils/noop";
 
 export function CounterContainer(): React.JSX.Element {

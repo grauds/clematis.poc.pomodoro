@@ -51,6 +51,7 @@ const REMOVE_TASK_POMODORO = "REMOVE_TASK_POMODORO";
 const SET_CURRENT_DAY = "SET_CURRENT_DAY";
 const SET_CURRENT_WEEK = "SET_CURRENT_WEEK";
 
+const UPDATE_THEME = "UPDATE_THEME"
 const UPDATE_SETTINGS = "UPDATE_SETTINGS"
 const TOGGLE_INFO = "TOGGLE_INFO";
 
@@ -240,6 +241,11 @@ export const toggleInfo: ActionCreator<AnyAction> = (info: boolean) => ({
   info,
 });
 
+export const updateTheme: ActionCreator<AnyAction> = (theme: ETheme) => ({
+  type: UPDATE_THEME,
+  theme,
+});
+
 export const rootReducer: Reducer<RootState> = (
   state = initialState,
   action
@@ -298,6 +304,12 @@ export const rootReducer: Reducer<RootState> = (
         ...state,
         info: action.info
       };   
+
+    case UPDATE_THEME:
+      return {
+        ...state,
+        theme: action.theme
+      }
 
     default:
       return state;

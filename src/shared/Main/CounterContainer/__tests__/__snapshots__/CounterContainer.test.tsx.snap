@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Counter container should render 1`] = `
+<Provider
+  store={
+    {
+      "@@observable": [Function],
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <MemoryRouter>
+    <Router
+      location={
+        {
+          "hash": "",
+          "key": "default",
+          "pathname": "/",
+          "search": "",
+          "state": null,
+        }
+      }
+      navigationType="POP"
+      navigator={
+        {
+          "action": "POP",
+          "createHref": [Function],
+          "createURL": [Function],
+          "encodeLocation": [Function],
+          "go": [Function],
+          "index": 0,
+          "listen": [Function],
+          "location": {
+            "hash": "",
+            "key": "default",
+            "pathname": "/",
+            "search": "",
+            "state": null,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <CounterContainer>
+        <Counter
+          active={false}
+          bodyCss=""
+          handleTimeAdd={[Function]}
+          leftButtonAction={[Function]}
+          leftButtonTitle=""
+          name="Задача не выбрана"
+          pomodoroNo={0}
+          rightBuittonAction={[Function]}
+          rightButtonDisabled={false}
+          rightButtonTitle=""
+          seconds={0}
+          secondsCss=""
+          status="Ожидание"
+          titleCss=""
+        >
+          <div
+            className="counter"
+          >
+            <CounterHeader
+              header="Задача не выбрана"
+              pomodoroNo={0}
+              runningCss=""
+            >
+              <div
+                className="counterheader  "
+              >
+                <h2>
+                  Задача не выбрана
+                </h2>
+                <span
+                  className="total"
+                >
+                  Помидор: 
+                  0
+                </span>
+              </div>
+            </CounterHeader>
+            <span
+              className="body"
+            />
+          </div>
+        </Counter>
+      </CounterContainer>
+    </Router>
+  </MemoryRouter>
+</Provider>
+`;

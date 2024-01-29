@@ -1,0 +1,196 @@
+input[type="radio"] {
+    display: none;
+}
+
+label {
+    color: var(--foreground);
+    z-index: 10;
+    cursor: pointer;
+}
+
+h4 {
+    margin: 0;
+    font-weight: 500;
+}
+
+.blackFont {
+    color: black !important;
+}
+
+.mainContainer {
+    display: inline-block;
+    vertical-align: middle;
+    width: 250px;
+    border-radius: 100px;
+    background-color: var(--backgroundSecondary);
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
+    position: relative;
+    height: 50px;
+}
+
+.switch {
+    height: 50px;
+    width: 80px;
+    background-color: white;
+    border-radius: 100px;
+    transition: ease-in;
+    position: absolute;
+}
+
+/*---------------- LEFT ------------------- */
+.switch.leftToCenter {
+    animation-name: leftToCenter;
+    animation-duration: 0.5s;
+}
+
+.switch.leftToRight {
+    animation-name: leftToRight;
+    animation-duration: 0.5s;
+}
+
+.switch.leftPosition {
+    left: 3px;
+}
+
+.leftLabel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 80px;
+    border-radius: 100px;
+    position: absolute;
+}
+
+#left:checked + label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 80px;
+    border-radius: 100px;
+}
+
+@keyframes leftToCenter {
+    from {
+        left: 3px;
+    }
+    to {
+        left: 85px;
+    }
+}
+
+@keyframes leftToRight {
+    from {
+        left: 3px;
+    }
+    to {
+        left: 167px;
+    }
+}
+
+/* -------------------- center ------------------ */
+.switch.centerToLeft {
+    animation-name: centerToLeft;
+    animation-duration: 0.5s;
+}
+
+.switch.centerToRight {
+    animation-name: centerToRight;
+    animation-duration: 0.5s;
+}
+
+.switch.centerPosition {
+    left: 85px;
+}
+
+.centerLabel {
+    left: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 80px;
+    border-radius: 100px;
+    position: absolute;
+}
+
+#center:checked + label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 80px;
+    border-radius: 100px;
+}
+
+@keyframes centerToLeft {
+    from {
+        left: 85px;
+    }
+    to {
+        left: 3px;
+    }
+}
+
+@keyframes centerToRight {
+    from {
+        left: 85px;
+    }
+    to {
+        right: 1px;
+    }
+}
+
+/* ------------------- RIGHT ------------------- */
+.switch.rightToLeft {
+    animation-name: rightToLeft;
+    animation-duration: 0.5s;
+}
+
+.switch.rightToCenter {
+    animation-name: rightToCenter;
+    animation-duration: 0.5s;
+}
+
+.switch.rightPosition {
+    left: 167px;
+}
+
+.rightLabel {
+    right: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 80px;
+    border-radius: 100px;
+    position: absolute;
+}
+
+#right:checked + label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 80px;
+    border-radius: 100px;
+}
+
+@keyframes rightToLeft {
+    from {
+        left: 167px;
+    }
+    to {
+        left: 3px;
+    }
+}
+
+@keyframes rightToCenter {
+    from {
+        left: 167px;
+    }
+    to {
+        right: 85px;
+    }
+}

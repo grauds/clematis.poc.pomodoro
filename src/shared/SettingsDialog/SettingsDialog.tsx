@@ -11,6 +11,7 @@ import { updateSettings } from "../../store/reducer";
 import { noop } from "../../utils/noop";
 
 import styles from "./settingsdialog.css";
+import {ThemeSwitcher} from "../components/ThemeSwitcher";
 
 interface ISettingsDialog {
   settings: ISettings;
@@ -52,6 +53,12 @@ export function SettingsDialog({
   return (
     <Dialog title={"Настройки"} isOpen={isOpen} onClose={onClose}>
       <form onSubmit={handleSubmit} className={styles.form}>
+        <fieldset>
+          <legend>Тема</legend>
+          <div className={styles.theme}>
+            <ThemeSwitcher leftTitle={'Светлая'} centerTitle={'Авто'} rightTitle={'Темная'} />
+          </div>
+        </fieldset>
         <fieldset>
           <legend>Продолжительность</legend>
           <InputRow

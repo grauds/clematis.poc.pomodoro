@@ -24,15 +24,19 @@ legend {
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 1px;
-  color: var(--grayEE);
+  color: var(--foreground);
   border: none;
+}
+
+.theme {
+  text-align: center;
 }
 
 .input {
   border: 1px solid #d9d9d9;
   padding: 16px;
   box-sizing: border-box;
-  border-radius: 3px 3px 0px 0px;
+  border-radius: 3px 3px 0 0;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -51,41 +55,41 @@ legend {
   width: 220px;
   height: 50px;
   background: var(--lightgreen);
-  border-radius: 0px 0px 3px 0px;
+  border-radius: 0 0 3px 0;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
   text-align: center;
   color: #ffffff;
-  padding: 15px, 50px, 15px, 50px;
+  padding: 15px 50px 15px 50px;
   margin-top: 20px;
 }
 
 .defaults {
     width: 220px;
     height: 50px;
-    background: var(--greyCC);
-    border-radius: 0px 0px 3px 0px;
+    background: var(--background);
+    border-radius: 0 0 3px 0;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
     line-height: 16px;
     text-align: center;
-    color: #ffffff;
-    padding: 15px, 50px, 15px, 50px;
+    color: var(--foreground);
+    padding: 15px 50px 15px 50px;
     margin-top: 20px;
   }
 
 .cancel {
-  border-radius: 0px 0px 3px 0px;
+  border-radius: 0 0 3px 0;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   text-decoration: underline;
   line-height: 16px;
   text-align: center;
-  padding: 15px, 50px, 15px, 50px;
+  padding: 15px 50px 15px 50px;
   margin-top: 20px;
 }
 
