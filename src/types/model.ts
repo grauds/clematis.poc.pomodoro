@@ -238,8 +238,9 @@ export function createCurrentDayStats(stats: IDayStats[]): IDayStats {
 }
 
 export function newWeekStats(dateMonday: Date): IDayStats[] {
-  const date = new Date(dateMonday);
   return Days.map((day: IDay, i: number) => {  
-    return emptyStats(new Date(date.setDate(dateMonday.getDate() + i)))
+    const date = new Date(dateMonday.toDateString());
+    date.setDate(dateMonday.getDate() + i);
+    return emptyStats(date)
   });
 } 

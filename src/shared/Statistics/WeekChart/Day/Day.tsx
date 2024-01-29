@@ -11,7 +11,7 @@ interface IDayProps {
   hpx?: number;
 }
 
-export function Day({ day, hpx, selected = false, handleClick = noop}: Readonly<IDayProps>) {
+export function Day({ day, hpx, selected = false, handleClick = noop}: Readonly<IDayProps>): React.JSX.Element {
 
   const fillerCss = selected ? styles.fillerSelected : styles.filler;
   const nameCss = selected ? styles.nameSelected : styles.name;
@@ -19,7 +19,7 @@ export function Day({ day, hpx, selected = false, handleClick = noop}: Readonly<
   return (
     <div className={styles.day}>
       <button className={nameCss} onClick={handleClick}>
-        {day.short}
+        {day.short} 
       </button>
       <button
         onClick={handleClick}

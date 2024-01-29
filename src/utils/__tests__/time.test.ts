@@ -1,3 +1,4 @@
+import { EWeek, IDayStats, IWeek, getWeekDays } from "../../types/model";
 import {
   getMonday,
   getPreviousMonday,
@@ -59,5 +60,21 @@ describe("Dates", () => {
     date = new Date(Date.parse("2024/01/21"));
     i = getDay(date);
     expect(i).toBe(6);    
+  });
+
+  test("get week days", () => {
+    const week: IWeek = {
+      id: EWeek.THIS_WEEK,
+      text: ""
+    }
+    const weekDays: IDayStats[] = getWeekDays(week);
+    expect(weekDays.length).toBe(7)
+    expect(weekDays[0].short).toBe('Пн')
+    expect(weekDays[1].short).toBe('Вт')
+    expect(weekDays[2].short).toBe('Ср')
+    expect(weekDays[3].short).toBe('Чт')
+    expect(weekDays[4].short).toBe('Пт')
+    expect(weekDays[5].short).toBe('Сб')
+    expect(weekDays[6].short).toBe('Вс')
   });
 });

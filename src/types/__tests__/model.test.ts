@@ -15,6 +15,30 @@ describe("Dates", () => {
     expect(weekStats[6].date).toEqual(new Date(Date.parse("2024/01/21")));
   });
 
+  test("should fill out a week with dates 2", () => {
+    const dateMonday = getMonday(new Date(Date.parse("2024/01/29")));
+    const weekStats: IDayStats[] = newWeekStats(dateMonday);
+    expect(weekStats[0].date).toEqual(new Date(Date.parse("2024/01/29")));
+    expect(weekStats[1].date).toEqual(new Date(Date.parse("2024/01/30")));
+    expect(weekStats[2].date).toEqual(new Date(Date.parse("2024/01/31")));
+    expect(weekStats[3].date).toEqual(new Date(Date.parse("2024/02/1")));
+    expect(weekStats[4].date).toEqual(new Date(Date.parse("2024/02/2")));
+    expect(weekStats[5].date).toEqual(new Date(Date.parse("2024/02/3")));
+    expect(weekStats[6].date).toEqual(new Date(Date.parse("2024/02/4")));
+  });
+
+  test("should fill out a week with dates 3", () => {
+    const dateMonday = getMonday(new Date(Date.parse("2024/02/29")));
+    const weekStats: IDayStats[] = newWeekStats(dateMonday);
+    expect(weekStats[0].date).toEqual(new Date(Date.parse("2024/02/26")));
+    expect(weekStats[1].date).toEqual(new Date(Date.parse("2024/02/27")));
+    expect(weekStats[2].date).toEqual(new Date(Date.parse("2024/02/28")));
+    expect(weekStats[3].date).toEqual(new Date(Date.parse("2024/02/29")));
+    expect(weekStats[4].date).toEqual(new Date(Date.parse("2024/03/1")));
+    expect(weekStats[5].date).toEqual(new Date(Date.parse("2024/03/2")));
+    expect(weekStats[6].date).toEqual(new Date(Date.parse("2024/03/3")));
+  });
+
   test("should create stats for a date", () => {
     const stats: IDayStats[] = [];
     const currentStats: IDayStats = createCurrentDayStats(stats);

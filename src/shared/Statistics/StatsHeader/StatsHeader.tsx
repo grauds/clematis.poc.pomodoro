@@ -3,10 +3,10 @@ import { WeekSelector } from './WeekSelector';
 
 import styles from './statsheader.css';
 
-export function StatsHeader() {
+export function StatsHeader(): React.JSX.Element {
   return (
     <div className={styles.statsheader}>
-      <h2>Ваша активность</h2>
+      <h1>Ваша активность</h1>
       <div className={styles.period}>
         <WeekSelector />
       </div>      

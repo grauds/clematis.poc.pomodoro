@@ -3,7 +3,7 @@
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
-    width: 296px;
+    width: 100%;
     height: 179px;
     background-color: var(--backgroundSecondary);
     text-align: center;
