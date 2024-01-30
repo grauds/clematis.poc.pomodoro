@@ -2,6 +2,11 @@ pipeline {
 
   agent none
 
+  environment {
+     REPORT_FILES = "index.html"
+     REPORT_TITLES = "Shard 1"
+  }
+
   stages {
     stage("Verify tooling") {
       agent any
@@ -94,6 +99,16 @@ pipeline {
           npx playwright test --list
           npx playwright test
         '''
+
+        publishHTML([
+            allowMissing: false,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: 'playwright-report',
+            reportFiles: REPORT_FILES,
+            reportName: "aggregated",
+            reportTitles: REPORT_TITLES
+        ])
       }
       post {
         success {
