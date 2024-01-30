@@ -87,8 +87,19 @@ pipeline {
     stage('e2e-tests') {
       agent { docker { image 'mcr.microsoft.com/playwright:v1.41.1-jammy' } }
       steps {
-          sh 'npm ci'
-          sh 'npx playwright test'
+        sh '''
+          npm i -D @playwright/test
+          npx playwright install
+          npx playwright test --help
+          npx playwright test --list
+          npx playwright test
+        '''
+      }
+      post {
+        success {
+          archiveArtifacts(artifacts: 'test-results/homepage-*.png', followSymlinks: false)
+          sh 'rm -rf *.png'
+        }
       }
     }
   }

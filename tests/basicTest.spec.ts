@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('test', async ({ page }) => {
+test('test', async ({ page, browserName }) => {
   await page.goto('http://192.168.1.2:18084/');
   await page.getByRole('button', { name: 'Спрятать помощь' }).click();
   await page.getByPlaceholder('Название задачи').click();
@@ -26,4 +26,5 @@ test('test', async ({ page }) => {
   await page.getByRole('button', { name: 'Сделано' }).click();
   await expect(page.getByText('Помидор:')).toBeVisible();
   await expect(page.getByText('Test ✅ 🍅 🍅 🍅')).toBeVisible();
+  await page.screenshot({ path: 'test-results/homepage-'+browserName+'.png', fullPage: true });
 });
