@@ -32,8 +32,8 @@ FROM mcr.microsoft.com/playwright:v1.41.1-jammy AS test-e2e
 
 WORKDIR /opt/software
 
-COPY --from=build-image /opt/software/tests .
-COPY --from=build-image /opt/software/playwright.config.ts .
+COPY tests tests
+COPY playwright.config.ts .
 
 RUN npm i -D @playwright/test
 RUN npx playwright install
@@ -41,7 +41,14 @@ RUN npx playwright test --help
 RUN npx playwright test --list
 RUN npx playwright test
 
-COPY /opt/software/playwright-report .
+# ------------------------------------------------------------------------------
+# COPY PLAYWRIGHT STAGE (after e2e tests)
+# ------------------------------------------------------------------------------
+
+FROM scratch AS test-e2e-out
+
+COPY --from=test-e2e /opt/software/playwright-report ./playwright-report
+COPY --from=test-e2e /opt/software/test-results ./test-results
 
 # ------------------------------------------------------------------------------
 # RUNTIME STAGE (deployment)
@@ -57,7 +64,7 @@ ENV APP_ROOT=${WORK_DIR}/${APP_NAME}
 WORKDIR ${APP_ROOT}
 RUN mkdir -p "$APP_ROOT"
 
-# Path to copy application from
+# Path to copy application from the build image
 ARG DIST_PATH=$WORK_DIR/dist
 ARG NODE_PATH=$WORK_DIR/node_modules
 

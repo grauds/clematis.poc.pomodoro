@@ -94,7 +94,8 @@ pipeline {
       steps {
         sh '''
            export DOCKER_BUILDKIT=1
-           docker build --output "type=local,dest=${WORKSPACE}/playwright-report" --target test-e2e .
+           docker build --target test-e2e .
+           docker build --output "type=local,dest=${WORKSPACE}/playwright-report" --target test-e2e-out .
            ls -l ./playwright-report
         '''
 
