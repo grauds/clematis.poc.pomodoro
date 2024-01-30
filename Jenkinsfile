@@ -93,11 +93,9 @@ pipeline {
       agent { docker { image 'mcr.microsoft.com/playwright:v1.41.1-jammy' } }
       steps {
         sh '''
-          npm i -D @playwright/test
-          npx playwright install
-          npx playwright test --help
-          npx playwright test --list
-          npx playwright test
+           export DOCKER_BUILDKIT=1
+           docker build --output "type=local,dest=${WORKSPACE}/playwright-report" --target test-e2e .
+           ls -l ./playwright-report
         '''
 
         publishHTML([

@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# BUILD STAGE
+# BUILD AND TEST STAGE
 # ------------------------------------------------------------------------------
 
 FROM node:18-alpine AS build-image
@@ -23,6 +23,25 @@ RUN npm test
 
 FROM scratch AS test-out
 COPY --from=build-image  /opt/software/coverage .
+
+# ------------------------------------------------------------------------------
+# E2E TEST STAGE (after deployment)
+# ------------------------------------------------------------------------------
+
+FROM mcr.microsoft.com/playwright:v1.41.1-jammy AS test-e2e
+
+WORKDIR /opt/software
+
+COPY --from=build-image /opt/software/tests .
+COPY --from=build-image /opt/software/playwright.config.ts .
+
+RUN npm i -D @playwright/test
+RUN npx playwright install
+RUN npx playwright test --help
+RUN npx playwright test --list
+RUN npx playwright test
+
+COPY /opt/software/playwright-report .
 
 # ------------------------------------------------------------------------------
 # RUNTIME STAGE (deployment)
