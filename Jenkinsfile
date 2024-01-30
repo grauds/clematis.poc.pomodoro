@@ -95,7 +95,7 @@ pipeline {
         sh '''
            export DOCKER_BUILDKIT=1
            docker build --target test-e2e .
-           docker build --output "type=local,dest=${WORKSPACE}/playwright-report" --target test-e2e-out .
+           docker build --output "type=local,dest=${WORKSPACE}" --target test-e2e-out .
            ls -l ./playwright-report
         '''
 
@@ -111,7 +111,7 @@ pipeline {
       }
       post {
         success {
-          archiveArtifacts(artifacts: 'test-results/homepage-*.png', followSymlinks: false)
+          archiveArtifacts(artifacts: '${WORKSPACE}/test-results/homepage-*.png', followSymlinks: false)
           sh 'rm -rf *.png'
         }
       }
