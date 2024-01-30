@@ -1,10 +1,10 @@
 pipeline {
 
-  agent any
+  agent none
 
   stages {
-
     stage("Verify tooling") {
+      agent any
       steps {
         sh '''
               docker version
@@ -18,6 +18,7 @@ pipeline {
     }
 
     stage('Get code') {
+      agent any
       steps {
         // Get the code from a GitHub repository
         git 'https://github.com/grauds/clematis.poc.pomodoro.git'
@@ -25,6 +26,7 @@ pipeline {
     }
 
     stage('Dockerized build') {
+      agent any
       steps {
         sh '''
            docker build . -t clematis.poc.pomodoro -f Dockerfile
@@ -33,6 +35,7 @@ pipeline {
     }
 
     stage('Publish tests') {
+      agent any
       steps {
         sh '''
            export DOCKER_BUILDKIT=1
@@ -54,21 +57,23 @@ pipeline {
     }
 
     stage ('Dependency-Check') {
-        steps {
-            catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-              dependencyCheck additionalArguments: '''
-                  -o "./"
-                  -s "./"
-                  -f "ALL"
-                  -P "depcheck.properties"
-                  --prettyPrint''', odcInstallation: 'Dependency Checker'
+      agent any
+      steps {
+          catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+            dependencyCheck additionalArguments: '''
+                -o "./"
+                -s "./"
+                -f "ALL"
+                -P "depcheck.properties"
+                --prettyPrint''', odcInstallation: 'Dependency Checker'
 
-              dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-            }
-        }
+            dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+          }
+      }
     }
 
     stage("Build and start docker compose services") {
+      agent any
       steps {
         sh '''
            docker compose stop
@@ -76,6 +81,14 @@ pipeline {
            docker compose build
            docker compose up -d
         '''
+      }
+    }
+
+    stage('e2e-tests') {
+      agent { docker { image 'mcr.microsoft.com/playwright:v1.41.1-jammy' } }
+      steps {
+          sh 'npm ci'
+          sh 'npx playwright test'
       }
     }
   }
