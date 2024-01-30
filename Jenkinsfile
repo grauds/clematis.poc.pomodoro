@@ -90,7 +90,7 @@ pipeline {
     }
 
     stage('e2e-tests') {
-      agent { docker { image 'mcr.microsoft.com/playwright:v1.41.1-jammy' } }
+      agent any
       steps {
         sh '''
            export DOCKER_BUILDKIT=1
