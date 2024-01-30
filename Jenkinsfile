@@ -97,6 +97,7 @@ pipeline {
            docker build --target test-e2e .
            docker build --output "type=local,dest=${WORKSPACE}" --target test-e2e-out .
            ls -l ./playwright-report
+           ls -l ./test-results
         '''
 
         publishHTML([
@@ -105,13 +106,13 @@ pipeline {
             keepAll: true,
             reportDir: 'playwright-report',
             reportFiles: REPORT_FILES,
-            reportName: "aggregated",
+            reportName: "Playwright",
             reportTitles: REPORT_TITLES
         ])
       }
       post {
         success {
-          archiveArtifacts(artifacts: '${WORKSPACE}/test-results/homepage-*.png', followSymlinks: false)
+          archiveArtifacts(artifacts: 'test-results/homepage-*.png', followSymlinks: false)
           sh 'rm -rf *.png'
         }
       }
