@@ -1,6 +1,8 @@
 
 # Pomodoro Box
 
+[![Docker Image CI](https://github.com/grauds/clematis.poc.pomodoro/actions/workflows/docker-image.yml/badge.svg)](https://github.com/grauds/clematis.poc.pomodoro/actions/workflows/docker-image.yml)
+
 ![image](./images/app_screeenshot.png)
 
 **This project is in beta, internationalization support is under development **
