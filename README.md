@@ -49,3 +49,22 @@ The application will be available at: http://localhost:3000
 ## 🍅 Jenkins Deployment
 
 Please consult Jenkins documentation on how to configure a Pipeline from Jenkinsfile from the root of the repository. Once configured, it can build and deploy a docker container with the app on the same server this Jenkins is installed on.
+
+## 🍅 How To
+
+### Make a task
+
+New task is always added to the end of the tasks list, the number of the new task is the length of the list. User can add more pomodori to it or remove extra pomodori added, this is the process of task estimation. The system ensures that at least one pomodoro is left for the task. Each task can also be renamed or removed.
+
+<img src="./images/add_new_task.png" alt="drawing" width="50%"/>
+
+### Start a task 
+
+A task must be dragged to the top of the list with the mouse or gesture on a touchscreen before it can be started:
+
+<img src="./images/drag_task.png" alt="drawing" width="50%"/>
+
+The next step is to click 'Start' button on the counter
+
+<img src="./images/start_counter.png" alt="drawing" width="50%"/>
+
