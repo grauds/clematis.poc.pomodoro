@@ -5,7 +5,7 @@
 
 ![image](./images/app_screeenshot.png)
 
-**This project is in beta, internationalization support is under development **
+**This project is in beta, internationalization support is under development**
 
 The Pomodoro Box application implements the Pomodoro time management technique developed by Francesco Cirillo in the late 1980s. It uses the kitchen timer metaphor to track the time needed to make a step in the task you're currently doing, expecially if a deadline is close. 
 
