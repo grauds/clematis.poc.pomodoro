@@ -1,5 +1,4 @@
 import React from "react";
-import ArrowIcon from "./ArrowIcon";
 
 export function EditIcon(): React.JSX.Element {
   return (

@@ -20,4 +20,5 @@ module.exports = {
     'index.ts',
     '/node_modules/'
   ],
+  modulePathIgnorePatterns: ["/tests", "/tests_examples"]
 };
