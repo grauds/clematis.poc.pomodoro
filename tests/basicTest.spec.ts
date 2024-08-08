@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('test', async ({ page, browserName }) => {
-  await page.goto('http://192.168.1.2:18084/');
+  await page.goto('http://192.168.1.118:18084/');
   await page.getByRole('button', { name: 'Спрятать помощь' }).click();
   await page.getByPlaceholder('Название задачи').click();
   await page.getByPlaceholder('Название задачи').fill('Test');
