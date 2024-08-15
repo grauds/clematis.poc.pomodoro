@@ -6,7 +6,7 @@ interface IFocusTotals {
   percent?: number;
 }
 
-export function FocusTotals({percent}: Readonly<IFocusTotals>) {
+export function FocusTotals({percent}: Readonly<IFocusTotals>): React.JSX.Element {
 
   const active = (percent ?? 0) > 0
   const activeClass = active ? styles.active : ''
