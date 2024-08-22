@@ -6,7 +6,7 @@ FROM node:18-alpine AS build-image
 
 WORKDIR /opt/software
 
-COPY .eslintrc.json jest.config.js jest.setup.ts package.json tsconfig.json webpack.config.js ./
+COPY .eslintrc.json jest.config.js jest.setup.ts package.json package-lock.json tsconfig.json webpack.config.js ./
 
 COPY bin bin
 COPY cfg cfg
