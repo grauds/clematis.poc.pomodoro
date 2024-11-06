@@ -7,7 +7,7 @@
 
 **This project is in beta, internationalization support is under development**
 
-The Pomodoro Box application implements the Pomodoro time management technique developed by Francesco Cirillo in the late 1980s. It uses the kitchen timer metaphor to track the time needed to make a step in the task you're currently doing, expecially if a deadline is close. 
+The Pomodoro Box application implements the Pomodoro time management technique developed by Francesco Cirillo in the late 1980s. It uses the kitchen timer metaphor to track the time needed to make a step in the task you're currently doing, especially if a deadline is close. 
 
 ## 🍅 Features
 
@@ -112,7 +112,7 @@ User can add a minute once in a while to a running pomodoro or a break with the 
 
 ### See the statistics
 
-Statistics is available by clicking the link in the header. Another page will be opened. Week selector allows to jump to one of three weeks available, clicking on day abbraviation in the chart selects a day of the week, allowing to see stats for the selected day, including:
+Statistics is available by clicking the link in the header. Another page will be opened. Week selector allows jumping to one of three weeks available, clicking on day abbreviation in the chart selects a day of the week, allowing to see stats for the selected day, including:
 
 * statistics for the time spent on tasks 
 * focus ratio = time spent on tasks / time spent on tasks + time on pauses
