@@ -94,6 +94,7 @@ pipeline {
       steps {
         sh '''
            export DOCKER_BUILDKIT=1
+           export CI=true
            docker build --target test-e2e .
            docker build --output "type=local,dest=${WORKSPACE}" --target test-e2e-out .
            ls -l ./playwright-report
