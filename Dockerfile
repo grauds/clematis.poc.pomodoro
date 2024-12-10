@@ -28,7 +28,7 @@ COPY --from=build-image  /opt/software/coverage .
 # E2E TEST STAGE (after deployment)
 # ------------------------------------------------------------------------------
 
-FROM mcr.microsoft.com/playwright:v1.41.1-jammy AS test-e2e
+FROM mcr.microsoft.com/playwright:v1.49.1-jammy AS test-e2e
 
 WORKDIR /opt/software
 
