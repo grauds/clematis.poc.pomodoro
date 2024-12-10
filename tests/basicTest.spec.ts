@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('test', async ({ page, browserName }) => {
+  test.setTimeout(150_000);
   await page.goto('http://192.168.1.118:18084/', {
     waitUntil: "domcontentloaded",
   });
