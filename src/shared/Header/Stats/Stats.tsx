@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { ISettings } from "../../../types/model";
-import { RootState } from "../../../store/reducer";
-import { SettingsIcon, StatsIcon } from "../../icons";
-import { SettingsDialog } from "../../SettingsDialog";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { ISettings } from '@/types/model';
+import { RootState } from '@/store/reducer';
+import { SettingsIcon, StatsIcon } from '../../icons';
+import { SettingsDialog } from '../../SettingsDialog';
 
-import styles from "./stats.css";
+import styles from './stats.css';
 
 export function Stats(): React.JSX.Element {
   const settings = useSelector<RootState, ISettings>((state) => state.settings);

@@ -1,12 +1,12 @@
-import React from "react";
-import { createPortal } from "react-dom";
-import { Shadow } from "../Shadow";
-import { CloseIcon } from "../../icons";
-import { noop } from "../../../utils/noop";
+import React from 'react';
+import { createPortal } from 'react-dom';
+import { Shadow } from '../Shadow';
+import { CloseIcon } from '../../icons';
+import { noop } from '../../../utils/noop';
 
-import styles from "./dialog.css";
+import styles from './dialog.css';
 
-interface IDiallogProps {
+interface IDialogProps {
   title?: string;
   isOpen?: boolean;
   children?: React.ReactNode;
@@ -18,14 +18,13 @@ export function Dialog({
   isOpen,
   children,
   onClose = noop,
-}: Readonly<IDiallogProps>): React.JSX.Element | null {
-
-  const node = document.querySelector("#modal_root");
+}: Readonly<IDialogProps>): React.JSX.Element | null {
+  const node = document.querySelector('#modal_root');
   if (!node) return null;
 
   return (
     <>
-      {" "}
+      {' '}
       {isOpen &&
         createPortal(
           <>
@@ -40,12 +39,10 @@ export function Dialog({
                   <CloseIcon />
                 </button>
               </div>
-              <div className={styles.body}>
-                {children}
-              </div>
+              <div className={styles.body}>{children}</div>
             </div>
           </>,
-          node
+          node,
         )}
     </>
   );

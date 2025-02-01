@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import useSound from "use-sound";
-import alarmSound from "./../../sound/alarm-kitchen.mp3";
-import tickingSound from "./../../sound/check.mp3";
-import notificationSound from "./../../sound/notification.mp3";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import useSound from 'use-sound';
+import alarmSound from './../../sound/alarm-kitchen.mp3';
+import tickingSound from './../../sound/check.mp3';
+import notificationSound from './../../sound/notification.mp3';
 
 import {
   RootState,
   updateDayStats,
   updateTask,
   updateTaskPomodoro,
-} from "../../../store/reducer";
+} from '@/store/reducer';
 import {
   EPomodoroStatus,
   ETaskStatus,
@@ -20,38 +20,42 @@ import {
   ITask,
   freshPomodoro,
   getDayStats,
-} from "../../../types/model";
+} from '@/types/model';
 
-import { Counter, ICounterProps } from "../Counter";
-import { noop } from "../../../utils/noop";
+import { Counter, ICounterProps } from '../Counter';
+import { noop } from '@/utils/noop';
 
 export function CounterContainer(): React.JSX.Element {
-
   // current task reference
   const currentTask = useSelector<RootState, ITask | undefined>((state) =>
-    state.tasks.length > 0 ? state.tasks[0] : undefined
+    state.tasks.length > 0 ? state.tasks[0] : undefined,
   );
 
   // get next pomodoro
   let currentPomodoro: IPomodoro | undefined = currentTask?.pomodori.find(
     (pomodoro: IPomodoro) => {
       return pomodoro.status !== EPomodoroStatus.DONE;
-    }
+    },
   );
 
-  // current day stats reference 
-  const stats: IDayStats[] = useSelector<RootState, IDayStats[]>((state) => state.stats)
-  const dayStats: IDayStats = getDayStats(stats, new Date())
+  // current day stats reference
+  const stats: IDayStats[] = useSelector<RootState, IDayStats[]>(
+    (state) => state.stats,
+  );
+  const dayStats: IDayStats = getDayStats(stats, new Date());
 
   // current settings reference
-  const settings: ISettings = useSelector<RootState, ISettings>((state) => state.settings)
+  const settings: ISettings = useSelector<RootState, ISettings>(
+    (state) => state.settings,
+  );
 
   const seconds = currentPomodoro ? currentPomodoro.seconds : 0;
   const breakSeconds = currentPomodoro ? currentPomodoro.breakSeconds : 0;
 
   const isTaskRunning = currentPomodoro?.status === EPomodoroStatus.RUNNING;
   const isPause = currentPomodoro?.status === EPomodoroStatus.PAUSED;
-  const isBreakRunning = currentPomodoro?.status === EPomodoroStatus.BREAK_RUNNING;
+  const isBreakRunning =
+    currentPomodoro?.status === EPomodoroStatus.BREAK_RUNNING;
 
   const dispatch = useDispatch();
   const [alarm] = useSound(alarmSound);
@@ -66,7 +70,7 @@ export function CounterContainer(): React.JSX.Element {
           (isBreakRunning && breakSeconds > 0)
         ) {
           if (isTaskRunning) {
-       //     if (settings.soundOn) ticking();
+            //     if (settings.soundOn) ticking();
             currentPomodoro.seconds -= 1;
             currentPomodoro.time += 1;
             dayStats.time += 1;
@@ -84,7 +88,7 @@ export function CounterContainer(): React.JSX.Element {
           dispatch(updateTaskPomodoro(currentPomodoro));
         }
         if (isBreakRunning && breakSeconds === 0) {
-          finishPomodoroOrTask() 
+          finishPomodoroOrTask();
         }
         if (isPause) {
           currentPomodoro.pause += 1;
@@ -136,7 +140,7 @@ export function CounterContainer(): React.JSX.Element {
       dispatch(updateDayStats(dayStats));
     }
   }
-  
+
   function startBreakTimer() {
     if (currentTask && currentPomodoro) {
       currentPomodoro.status = EPomodoroStatus.BREAK_RUNNING;
@@ -160,19 +164,18 @@ export function CounterContainer(): React.JSX.Element {
     }
   }
 
-
   const empty: ICounterProps = {
     active: false,
-    name: "Задача не выбрана",
-    status: "Ожидание",
+    name: 'Задача не выбрана',
+    status: 'Ожидание',
     pomodoroNo: 0,
-    titleCss: "",
+    titleCss: '',
     seconds: 0,
-    secondsCss: "",
-    bodyCss: "",
-    leftButtonTitle: "",
+    secondsCss: '',
+    bodyCss: '',
+    leftButtonTitle: '',
     leftButtonAction: noop,
-    rightButtonTitle: "",
+    rightButtonTitle: '',
     rightBuittonAction: noop,
     rightButtonDisabled: false,
     handleTimeAdd: noop,
@@ -180,16 +183,16 @@ export function CounterContainer(): React.JSX.Element {
 
   const notStarted: ICounterProps = {
     active: true,
-    name: (currentTask ? currentTask.name : "без имени"),
-    status: "Не начато",
+    name: currentTask ? currentTask.name : 'без имени',
+    status: 'Не начато',
     pomodoroNo: currentPomodoro ? currentPomodoro.id : 0,
     seconds: currentPomodoro ? currentPomodoro.seconds : 0,
-    titleCss: "",
-    secondsCss: "",
-    bodyCss: "",
-    leftButtonTitle: "Старт",
+    titleCss: '',
+    secondsCss: '',
+    bodyCss: '',
+    leftButtonTitle: 'Старт',
     leftButtonAction: startTimer,
-    rightButtonTitle: "Стоп",
+    rightButtonTitle: 'Стоп',
     rightBuittonAction: noop,
     rightButtonDisabled: true,
     handleTimeAdd: () => {
@@ -202,36 +205,36 @@ export function CounterContainer(): React.JSX.Element {
 
   const pauseWork: ICounterProps = {
     ...notStarted,
-    status: "Выполняется",
-    titleCss: "running",
-    secondsCss: "running",
-    bodyCss: "running",
-    leftButtonTitle: "Пауза",
+    status: 'Выполняется',
+    titleCss: 'running',
+    secondsCss: 'running',
+    bodyCss: 'running',
+    leftButtonTitle: 'Пауза',
     leftButtonAction: pauseTimer,
-    rightButtonTitle: "Стоп",
+    rightButtonTitle: 'Стоп',
     rightBuittonAction: stopTimer,
     rightButtonDisabled: false,
   };
 
   const afterPause: ICounterProps = {
     ...pauseWork,
-    status: "На паузе",
-    leftButtonTitle: "Продолжить",
+    status: 'На паузе',
+    leftButtonTitle: 'Продолжить',
     leftButtonAction: startTimer,
-    rightButtonTitle: "Сделано",
+    rightButtonTitle: 'Сделано',
     rightBuittonAction: finishPomodoroOrTask,
   };
 
   const pauseBreak: ICounterProps = {
     ...notStarted,
-    status: "Отдых",
+    status: 'Отдых',
     seconds: currentPomodoro ? currentPomodoro.breakSeconds : 0,
-    titleCss: "breakRunning",
-    secondsCss: "breakRunning",
-    bodyCss: "breakRunning",
-    leftButtonTitle: "Пауза",
+    titleCss: 'breakRunning',
+    secondsCss: 'breakRunning',
+    bodyCss: 'breakRunning',
+    leftButtonTitle: 'Пауза',
     leftButtonAction: pauseBreakTimer,
-    rightButtonTitle: "Пропустить",
+    rightButtonTitle: 'Пропустить',
     rightBuittonAction: finishPomodoroOrTask,
     rightButtonDisabled: false,
     handleTimeAdd: () => {
@@ -244,35 +247,33 @@ export function CounterContainer(): React.JSX.Element {
 
   const afterBreakPause: ICounterProps = {
     ...pauseBreak,
-    status: "Отдых на паузе",
-    leftButtonTitle: "Продолжить",
+    status: 'Отдых на паузе',
+    leftButtonTitle: 'Продолжить',
     leftButtonAction: startBreakTimer,
   };
 
-  let counterProps: ICounterProps = empty
+  let counterProps: ICounterProps = empty;
 
   switch (currentPomodoro?.status) {
     case EPomodoroStatus.NOT_STARTED:
-      counterProps = notStarted
+      counterProps = notStarted;
       break;
     case EPomodoroStatus.RUNNING:
-      counterProps = pauseWork
+      counterProps = pauseWork;
       break;
     case EPomodoroStatus.PAUSED:
-      counterProps = afterPause
+      counterProps = afterPause;
       break;
     case EPomodoroStatus.BREAK_RUNNING:
-      counterProps = pauseBreak
+      counterProps = pauseBreak;
       break;
     case EPomodoroStatus.BREAK_PAUSED:
-      counterProps = afterBreakPause
+      counterProps = afterBreakPause;
       break;
     case EPomodoroStatus.DONE:
-      counterProps = empty
-      break;   
+      counterProps = empty;
+      break;
   }
 
-  return (
-     <Counter {...counterProps} />
-  );
+  return <Counter {...counterProps} />;
 }

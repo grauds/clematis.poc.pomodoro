@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface IClockIcon {
   active?: boolean;
@@ -54,4 +54,4 @@ export function ClockIcon({ active }: IClockIcon): React.JSX.Element {
   );
 }
 
-export default ClockIcon
+export default ClockIcon;

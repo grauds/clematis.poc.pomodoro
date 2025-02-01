@@ -1,29 +1,31 @@
 import React from 'react';
 import { noop } from '../../../utils/noop';
 
-import styles from './genericList.css'
+import styles from './genericList.css';
 
 export interface IItem {
-    id: string;
-    text: string;
-    icon?: React.ReactNode; 
-    onClick: (id:string, e: any) => void;
-    className?: string;
-    As?: 'a' | 'li' | 'button' | 'div' | 'span';
-    href?: string;
-    disabled?: boolean;
+  id: string;
+  text: string;
+  icon?: React.ReactNode;
+  onClick: (id: string, e: any) => void;
+  className?: string;
+  As?: 'a' | 'li' | 'button' | 'div' | 'span';
+  href?: string;
+  disabled?: boolean;
 }
 
 interface IGenericListProps {
-    list: IItem[];
+  list: IItem[];
 }
 
-export function GenericList({ list }: Readonly<IGenericListProps>): React.JSX.Element {
+export function GenericList({
+  list,
+}: Readonly<IGenericListProps>): React.JSX.Element {
   return (
     <>
       {list.map(
         ({
-          As = "div",
+          As = 'div',
           text,
           icon,
           onClick = noop,
@@ -41,7 +43,7 @@ export function GenericList({ list }: Readonly<IGenericListProps>): React.JSX.El
           >
             {icon} <span>{text}</span>
           </As>
-        )
+        ),
       )}
     </>
   );

@@ -8,10 +8,9 @@ interface IPauseTotals {
   time?: number;
 }
 
-export function PauseTotals({time}: Readonly<IPauseTotals>) {
-
-  const active = (time ?? 0) > 0
-  const activeClass = active ? styles.active : ''
+export function PauseTotals({ time }: Readonly<IPauseTotals>) {
+  const active = (time ?? 0) > 0;
+  const activeClass = active ? styles.active : '';
 
   return (
     <div className={`${styles.pausetotals} ${activeClass}`}>

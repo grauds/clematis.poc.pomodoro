@@ -4,9 +4,11 @@
  * @returns a formatted string, for example 09:45
  */
 export const formatTime = (secondsTime: number): string => {
-    const minutes = Math.floor(secondsTime / 60).toString().padStart(2, '0');
-    const seconds = (secondsTime % 60).toString().padStart(2, '0');
-    return `${minutes}:${seconds}`;
+  const minutes = Math.floor(secondsTime / 60)
+    .toString()
+    .padStart(2, '0');
+  const seconds = (secondsTime % 60).toString().padStart(2, '0');
+  return `${minutes}:${seconds}`;
 };
 
 export const formatMinsShort = (secondsTime: number): string => {
@@ -14,79 +16,79 @@ export const formatMinsShort = (secondsTime: number): string => {
 
   const minutes = min.toString();
   return `${minutes} мин`;
-}
+};
 
 export const formatMinsLong = (secondsTime: number): string => {
   const min = Math.floor(secondsTime / 60);
 
   const minutes = min.toString();
 
-  let minLabel;  
+  let minLabel;
 
-  switch (min%10) {
+  switch (min % 10) {
     case 1:
-      minLabel = 'минуту'
+      minLabel = 'минуту';
       break;
     case 2:
     case 3:
     case 4:
-      minLabel = 'минуты'
+      minLabel = 'минуты';
       break;
     default:
-      minLabel = 'минут'       
+      minLabel = 'минут';
   }
 
   return `${minutes} ${minLabel}`;
-}
+};
 
 export const formatTimeShort = (secondsTime: number): string => {
   const min = Math.floor(secondsTime / 60);
-  const sec = (secondsTime % 60);
+  const sec = secondsTime % 60;
 
-  const minutes = min > 0 ? (min.toString() + ' мин') : '';
+  const minutes = min > 0 ? min.toString() + ' мин' : '';
   const seconds = sec.toString() + ' сек';
 
   return `${minutes} ${seconds}`;
-}
+};
 
 export const formatTimeLong = (secondsTime: number): string => {
   const min = Math.floor(secondsTime / 60);
-  const sec = (secondsTime % 60);
+  const sec = secondsTime % 60;
 
   const minutes = min.toString();
   const seconds = sec.toString();
 
-  let minLabel;  
-  let secLabel; 
+  let minLabel;
+  let secLabel;
 
-  switch (min%10) {
+  switch (min % 10) {
     case 1:
-      minLabel = 'минуту'
+      minLabel = 'минуту';
       break;
     case 2:
     case 3:
     case 4:
-      minLabel = 'минуты'
+      minLabel = 'минуты';
       break;
     default:
-      minLabel = 'минут'       
+      minLabel = 'минут';
   }
 
-  switch (sec%10) {
+  switch (sec % 10) {
     case 1:
-      secLabel = 'секунду'
+      secLabel = 'секунду';
       break;
     case 2:
     case 3:
     case 4:
-      secLabel = 'секунды'
+      secLabel = 'секунды';
       break;
     default:
-      secLabel = 'секунд'       
+      secLabel = 'секунд';
   }
 
   return `${minutes} ${minLabel} ${seconds} ${secLabel}`;
-}
+};
 
 /**
  * Returns zero based index of the date's day in the week
@@ -109,13 +111,13 @@ export function getDiff(date: Date): number {
 
 //https://stackoverflow.com/questions/4156434/javascript-get-the-first-day-of-the-week-from-current-date
 export function getMonday(d: Date): Date {
-  const diff = getDiff(new Date(d)); 
+  const diff = getDiff(new Date(d));
   return new Date(d.setDate(diff));
 }
 
 export function getPreviousMonday(d: Date): Date {
   const thisMonday = getMonday(d);
-  return new Date(thisMonday.setDate(thisMonday.getDate() - 7))
+  return new Date(thisMonday.setDate(thisMonday.getDate() - 7));
 }
 
 export function getMondayTwoWeeksAgo(d: Date): Date {

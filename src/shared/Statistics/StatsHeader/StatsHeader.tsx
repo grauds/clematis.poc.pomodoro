@@ -9,7 +9,7 @@ export function StatsHeader(): React.JSX.Element {
       <h1>Ваша активность</h1>
       <div className={styles.period}>
         <WeekSelector />
-      </div>      
+      </div>
     </div>
   );
 }

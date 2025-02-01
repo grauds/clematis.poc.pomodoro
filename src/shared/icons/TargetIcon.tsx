@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface ITargetIcon {
   active?: boolean;
@@ -68,4 +68,4 @@ export function TargetIcon({ active }: ITargetIcon): React.JSX.Element {
   );
 }
 
-export default TargetIcon
+export default TargetIcon;

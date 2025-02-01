@@ -22,5 +22,5 @@
   pointer-events: none;
   -webkit-filter: grayscale(1);
   filter: grayscale(1);
-  opacity: .5;
+  opacity: 0.5;
 }

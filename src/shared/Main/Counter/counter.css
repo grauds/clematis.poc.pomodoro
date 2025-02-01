@@ -50,7 +50,7 @@
 
 .placeholder {
   min-height: 50px;
-  min-width: 50px;  
+  min-width: 50px;
   height: 50px;
 }
 
@@ -79,7 +79,7 @@
 }
 
 .start:hover {
-   background: var(--green);  
+  background: var(--green);
 }
 
 .stop {
@@ -108,14 +108,14 @@
   pointer-events: none;
   -webkit-filter: grayscale(1);
   filter: grayscale(1);
-  opacity: .5;
+  opacity: 0.5;
 }
 
 @media (min-width: 1024px) {
-    .counter {
-      min-height: 503px;
-    }
+  .counter {
+    min-height: 503px;
   }
+}
 
 @media (min-width: 1024px) and (max-width: 1280px) {
   .counter {

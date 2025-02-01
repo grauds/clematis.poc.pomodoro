@@ -6,9 +6,5 @@ interface IContentProps {
 }
 
 export function Content({ children }: Readonly<IContentProps>) {
-  return (
-     <main className={styles.content}>
-        { children }
-     </main>
-  );
+  return <main className={styles.content}>{children}</main>;
 }

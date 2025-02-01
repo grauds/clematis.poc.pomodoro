@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export function EllipseIcon(): React.JSX.Element {
   return (
@@ -14,4 +14,4 @@ export function EllipseIcon(): React.JSX.Element {
   );
 }
 
-export default EllipseIcon
+export default EllipseIcon;

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export function PomodoroIcon(): React.JSX.Element {
   return (
@@ -83,4 +83,4 @@ export function PomodoroIcon(): React.JSX.Element {
   );
 }
 
-export default PomodoroIcon
+export default PomodoroIcon;

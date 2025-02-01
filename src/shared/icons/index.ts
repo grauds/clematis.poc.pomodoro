@@ -1,20 +1,20 @@
-export * from './EllipseIcon'
-export * from './HomeIcon'
-export * from './MenuIcon'
-export * from './StatsIcon'
-export * from './SettingsIcon'
+export * from './EllipseIcon';
+export * from './HomeIcon';
+export * from './MenuIcon';
+export * from './StatsIcon';
+export * from './SettingsIcon';
 
-export * from './EditIcon'
-export * from './MinusIcon'
-export * from './PlusIcon'
-export * from './PlusBigIcon'
-export * from './DeleteIcon'
+export * from './EditIcon';
+export * from './MinusIcon';
+export * from './PlusIcon';
+export * from './PlusBigIcon';
+export * from './DeleteIcon';
 
-export * from './ClockIcon'
-export * from './PomodoroIcon'
-export * from './PomodoroSmallIcon'
-export * from './StopIcon'
-export * from './TargetIcon'
+export * from './ClockIcon';
+export * from './PomodoroIcon';
+export * from './PomodoroSmallIcon';
+export * from './StopIcon';
+export * from './TargetIcon';
 
-export * from './ArrowIcon'
-export * from './CloseIcon'
+export * from './ArrowIcon';
+export * from './CloseIcon';

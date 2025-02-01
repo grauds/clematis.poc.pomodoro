@@ -1,10 +1,10 @@
 .statsheader {
-    display: flex;
-    flex-flow: row nowrap;
-    width: 100%;
-    align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  align-items: center;
 }
 
 .period {
-    margin-left: auto;
+  margin-left: auto;
 }

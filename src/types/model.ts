@@ -1,15 +1,31 @@
-import { getDay, getMonday, getMondayTwoWeeksAgo, getPreviousMonday, sameDay } from "../utils/time";
+import {
+  getDay,
+  getMonday,
+  getMondayTwoWeeksAgo,
+  getPreviousMonday,
+  sameDay,
+} from '../utils/time';
 
 export enum ETaskStatus {
-  NOT_STARTED, RUNNING, PAUSED, DONE
+  NOT_STARTED,
+  RUNNING,
+  PAUSED,
+  DONE,
 }
 
 export enum EPomodoroStatus {
-  NOT_STARTED, RUNNING, PAUSED, BREAK_RUNNING, BREAK_PAUSED, DONE
+  NOT_STARTED,
+  RUNNING,
+  PAUSED,
+  BREAK_RUNNING,
+  BREAK_PAUSED,
+  DONE,
 }
 
 export enum ETheme {
-  SYSTEM, LIGHT, DARK
+  SYSTEM,
+  LIGHT,
+  DARK,
 }
 
 export interface ITask {
@@ -35,7 +51,7 @@ export interface ISettings {
   soundOn: boolean;
   pomodoro: number; // time of one pomodoro, seconds
   break: number; // time of a break, seconds
-  longBreak: number // time of a long break, seconds
+  longBreak: number; // time of a long break, seconds
   longBreakAfterPomodoro: number; // the number of pomodoro followed by a long break
 }
 
@@ -44,8 +60,8 @@ export const defaultSettings: ISettings = {
   break: 10 * 60,
   longBreak: 30 * 60,
   longBreakAfterPomodoro: 4,
-  soundOn: true
-}
+  soundOn: true,
+};
 
 export function freshPomodoro(id: number, settings: ISettings): IPomodoro {
   return {
@@ -55,24 +71,32 @@ export function freshPomodoro(id: number, settings: ISettings): IPomodoro {
     time: 0,
     pause: 0,
     break: 0,
-    status: EPomodoroStatus.NOT_STARTED
-  }
+    status: EPomodoroStatus.NOT_STARTED,
+  };
 }
 
-export function longBreakFreshPomodoro(id: number, settings: ISettings): IPomodoro {
+export function longBreakFreshPomodoro(
+  id: number,
+  settings: ISettings,
+): IPomodoro {
   return {
     ...freshPomodoro(id, settings),
     breakSeconds: settings.longBreak,
-  }
+  };
 }
 
-export function getDayPomodoriDone(tasks: ITask[], dayStats: IDayStats): number {
+export function getDayPomodoriDone(
+  tasks: ITask[],
+  dayStats: IDayStats,
+): number {
   let pomodoriDone = 0;
   tasks.forEach((task) => {
     task.pomodori.forEach((pomodoro) => {
-      if (pomodoro.status === EPomodoroStatus.DONE 
-        && pomodoro.date 
-        && sameDay(pomodoro.date, dayStats.date)) {
+      if (
+        pomodoro.status === EPomodoroStatus.DONE &&
+        pomodoro.date &&
+        sameDay(pomodoro.date, dayStats.date)
+      ) {
         pomodoriDone++;
       }
     });
@@ -85,33 +109,35 @@ export function getWeekDays(week: IWeek): IDayStats[] {
 
   switch (week.id) {
     case EWeek.THIS_WEEK:
-      monday = getMonday(new Date())
+      monday = getMonday(new Date());
       break;
     case EWeek.PREVIOUS_WEEK:
-      monday = getPreviousMonday(new Date())
+      monday = getPreviousMonday(new Date());
       break;
     case EWeek.TWO_WEEKS_AGO:
-      monday = getMondayTwoWeeksAgo(new Date())
-      break; 
+      monday = getMondayTwoWeeksAgo(new Date());
+      break;
     default:
-      monday = getMonday(new Date());     
+      monday = getMonday(new Date());
   }
 
   return newWeekStats(monday);
 }
 
-export function getWeekMaxTime(weekstats: IDayStats[], week: IWeek): { weekDays: IDayStats[]; maxTime: number; } {
- 
+export function getWeekMaxTime(
+  weekstats: IDayStats[],
+  week: IWeek,
+): { weekDays: IDayStats[]; maxTime: number } {
   const weekDays = getWeekDays(week);
 
   let maxTime = 0;
-  
-  weekDays.forEach((weekDay: IDayStats) => {
-    const dayStats: IDayStats = getDayStats(weekstats, weekDay.date)
-    maxTime = maxTime > dayStats.time ? maxTime : dayStats.time 
-  })  
 
-  return {weekDays, maxTime}
+  weekDays.forEach((weekDay: IDayStats) => {
+    const dayStats: IDayStats = getDayStats(weekstats, weekDay.date);
+    maxTime = maxTime > dayStats.time ? maxTime : dayStats.time;
+  });
+
+  return { weekDays, maxTime };
 }
 
 export interface IDay {
@@ -122,33 +148,33 @@ export interface IDay {
 export const Days: IDay[] = [
   {
     short: 'Пн',
-    name: 'Понедельник'
+    name: 'Понедельник',
   },
   {
     short: 'Вт',
-    name: 'Вторник'
+    name: 'Вторник',
   },
   {
     short: 'Ср',
-    name: 'Среда'
+    name: 'Среда',
   },
   {
     short: 'Чт',
-    name: 'Четверг'
+    name: 'Четверг',
   },
   {
     short: 'Пт',
-    name: 'Пятница'
+    name: 'Пятница',
   },
   {
     short: 'Сб',
-    name: 'Суббота'
+    name: 'Суббота',
   },
   {
     short: 'Вс',
-    name: 'Воскресенье'
-  }
-]
+    name: 'Воскресенье',
+  },
+];
 
 export interface IWeek {
   id: string;
@@ -156,21 +182,23 @@ export interface IWeek {
 }
 
 export enum EWeek {
-  THIS_WEEK = '0', PREVIOUS_WEEK = '1', TWO_WEEKS_AGO = '2'
+  THIS_WEEK = '0',
+  PREVIOUS_WEEK = '1',
+  TWO_WEEKS_AGO = '2',
 }
 
 export const Weeks: IWeek[] = [
   {
     id: EWeek.THIS_WEEK,
-    text: "Эта неделя",
+    text: 'Эта неделя',
   },
   {
     id: EWeek.PREVIOUS_WEEK,
-    text: "Прошедшая неделя",
+    text: 'Прошедшая неделя',
   },
   {
     id: EWeek.TWO_WEEKS_AGO,
-    text: "2 недели назад",
+    text: '2 недели назад',
   },
 ];
 
@@ -183,12 +211,12 @@ export interface IDayStats extends IDay {
 }
 
 export class DayStats implements IDayStats {
-  date: Date;  
-  time: number = 0;  
-  pause: number = 0;  
-  break: number = 0;  
-  stops: number = 0;  
-  short: string = '';  
+  date: Date;
+  time: number = 0;
+  pause: number = 0;
+  break: number = 0;
+  stops: number = 0;
+  short: string = '';
   name: string = '';
 
   constructor(date?: Date) {
@@ -197,29 +225,32 @@ export class DayStats implements IDayStats {
 }
 
 export function emptyStats(date: Date): IDayStats {
-    return {
-      ...new DayStats(date),
-      ...Days[getDay(date)]
-    };
+  return {
+    ...new DayStats(date),
+    ...Days[getDay(date)],
+  };
 }
 
-export function findDayStats(stats: IDayStats[], date: Date): IDayStats | undefined {
+export function findDayStats(
+  stats: IDayStats[],
+  date: Date,
+): IDayStats | undefined {
   const days: IDayStats[] = stats.filter((day) => {
     return sameDay(day.date, date);
   });
   if (days.length > 0) {
     return days[0];
   } else {
-    return undefined
+    return undefined;
   }
 }
 
 export function getDayStats(stats: IDayStats[], date: Date): IDayStats {
-  const day: IDayStats | undefined = findDayStats(stats, date)
+  const day: IDayStats | undefined = findDayStats(stats, date);
   if (day) {
     return day;
   } else {
-    return emptyStats(date)
+    return emptyStats(date);
   }
 }
 
@@ -238,9 +269,9 @@ export function createCurrentDayStats(stats: IDayStats[]): IDayStats {
 }
 
 export function newWeekStats(dateMonday: Date): IDayStats[] {
-  return Days.map((day: IDay, i: number) => {  
+  return Days.map((day: IDay, i: number) => {
     const date = new Date(dateMonday.toDateString());
     date.setDate(dateMonday.getDate() + i);
-    return emptyStats(date)
+    return emptyStats(date);
   });
-} 
+}

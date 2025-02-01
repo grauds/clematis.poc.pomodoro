@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export function MenuIcon(): React.JSX.Element {
   return (
@@ -16,4 +16,4 @@ export function MenuIcon(): React.JSX.Element {
   );
 }
 
-export default MenuIcon
+export default MenuIcon;

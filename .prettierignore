@@ -1,0 +1,9 @@
+# Ignore artifacts:
+.angular
+/.nx/cache
+/.nx/workspace-data
+/.vscode/
+
+coverage
+node_modules
+dist

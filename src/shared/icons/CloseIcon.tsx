@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export function CloseIcon(): React.JSX.Element {
   return (
@@ -17,4 +17,4 @@ export function CloseIcon(): React.JSX.Element {
   );
 }
 
-export default CloseIcon
+export default CloseIcon;

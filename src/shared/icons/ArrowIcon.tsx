@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export function ArrowIcon(): React.JSX.Element {
   return (
@@ -14,4 +14,4 @@ export function ArrowIcon(): React.JSX.Element {
   );
 }
 
-export default ArrowIcon
+export default ArrowIcon;

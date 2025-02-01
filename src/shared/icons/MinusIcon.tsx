@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export function MinusIcon(): React.JSX.Element {
   return (
@@ -28,4 +28,4 @@ export function MinusIcon(): React.JSX.Element {
   );
 }
 
-export default MinusIcon
+export default MinusIcon;

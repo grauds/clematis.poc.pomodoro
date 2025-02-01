@@ -1,11 +1,10 @@
 version: '3.9'
 services:
-
   clematis-poc-pomodoro:
     container_name: clematis-poc-pomodoro
     image: clematis.poc.pomodoro:latest
     ports:
-      - "18084:3000"
+      - '18084:3000'
     networks:
       - clematis
     restart: unless-stopped

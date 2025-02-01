@@ -7,16 +7,28 @@ interface IPomodoroTotals {
   pomodoro?: number;
 }
 
-export function PomodoroTotals({pomodoro}: Readonly<IPomodoroTotals>) {
+export function PomodoroTotals({ pomodoro }: Readonly<IPomodoroTotals>) {
+  const icon =
+    (pomodoro ?? 0) > 0 ? (
+      <div className={styles.icon}>
+        <PomodoroSmallIcon />
+        <span> x {pomodoro}</span>
+      </div>
+    ) : (
+      <PomodoroIcon />
+    );
 
-  const icon = (pomodoro ?? 0) > 0 ? <div className={styles.icon}><PomodoroSmallIcon /><span> x {pomodoro}</span></div> : <PomodoroIcon />
-  
-  const footer = (pomodoro ?? 0) > 0 ? <div className={styles.footer}>{pomodoro} помидор</div> : ''
-  
+  const footer =
+    (pomodoro ?? 0) > 0 ? (
+      <div className={styles.footer}>{pomodoro} помидор</div>
+    ) : (
+      ''
+    );
+
   return (
-     <div className={styles.pomodorototals}>
+    <div className={styles.pomodorototals}>
       {icon}
       {footer}
-     </div>
+    </div>
   );
 }

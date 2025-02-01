@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test('test', async ({ page, browserName }) => {
   test.setTimeout(150_000);
   await page.goto('http://192.168.1.118:18084/', {
-    waitUntil: "domcontentloaded",
+    waitUntil: 'domcontentloaded',
   });
   await page.getByRole('button', { name: 'Спрятать помощь' }).click();
   await page.getByPlaceholder('Название задачи').click();
@@ -11,7 +11,7 @@ test('test', async ({ page, browserName }) => {
   await page.getByRole('button', { name: 'Добавить' }).click();
   await page.locator('.menubutton__menuButton--36QzX').click();
   await page.getByText('Увеличить 🍅').click({
-    clickCount: 3
+    clickCount: 3,
   });
   await page.getByRole('button', { name: 'Старт' }).click();
   await expect(page.getByText('Test 🍅 🍅 🍅 🍅')).toBeVisible();
@@ -30,7 +30,7 @@ test('test', async ({ page, browserName }) => {
   await expect(page.getByText('Помидор:')).toBeVisible();
   await expect(page.getByText('Test ✅ 🍅 🍅 🍅')).toBeVisible();
   await page.screenshot({
-    path: 'test-results/homepage-'+browserName+'.png',
-    fullPage: true
+    path: 'test-results/homepage-' + browserName + '.png',
+    fullPage: true,
   });
 });

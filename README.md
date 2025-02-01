@@ -1,37 +1,40 @@
-
 # Pomodoro Box
 
 [![Docker Image CI](https://github.com/grauds/clematis.poc.pomodoro/actions/workflows/docker-image.yml/badge.svg)](https://github.com/grauds/clematis.poc.pomodoro/actions/workflows/docker-image.yml)
 
 ![image](./images/app_screeenshot.png)
 
-**This project is in beta, internationalization support is under development**
-
-The Pomodoro Box application implements the Pomodoro time management technique developed by Francesco Cirillo in the late 1980s. It uses the kitchen timer metaphor to track the time needed to make a step in the task you're currently doing, especially if a deadline is close. 
+The Pomodoro Box application implements the Pomodoro time management technique developed by Francesco Cirillo in the late 1980s. It uses the kitchen timer metaphor to track the time needed to make a step in the task you're currently doing, especially if a deadline is close.
 
 ## 🍅 Features
 
-* Configure time spent in one step, the span of the following break and also sound notification after each completed step, aka 'pomodoro'
-* Configure the number of pomodoro needed for each task, the more complex the task is, the more pomodori is needed
-* Collect and save three week statistics for the time spent on tasks, focus ratio and the number of interruptions, the number of accomplished pomodori
-* Choose between light, dark and system themes
+- Configure time spent in one step, the span of the following break and also sound notification after each completed step, aka 'pomodoro'
+- Configure the number of pomodoro needed for each task, the more complex the task is, the more pomodori is needed
+- Collect and save three-week statistics for the time spent on tasks, focus ratio and the number of interruptions, the number of accomplished pomodori
+- Choose between light, dark and system themes
 
 ## 🍅 Quick start
 
 Checkout the code and run the docker build, assuming that your computer has Docker environment installed:
+
 ```
 git 'https://github.com/grauds/clematis.poc.pomodoro.git'
 ```
+
 ```
 docker build . -t clematis.poc.pomodoro -f Dockerfile
 ```
+
 Run the image with Docker compose:
+
 ```
 docker compose build
 ```
+
 ```
 docker compose up -d
 ```
+
 The application will be available at: http://localhost:18084
 
 ## 🍅 Development
@@ -62,7 +65,7 @@ New task is always added to the end of the tasks list, the number of the new tas
 
 <img src="./images/add_new_task.png" alt="drawing" width="50%"/>
 
-### Start a task 
+### Start a task
 
 A task must be dragged to the top of the list with the mouse or gesture on a touchscreen before it can be started:
 
@@ -79,8 +82,6 @@ Counter shows the current task name in the header and the number of pomodoro cur
 **Note:** clicking on 'Stop' button will stop the timer and reset the pomodoro to initial amount of time. Time spent before stopping will not be lost and will be recorded in statistics.
 
 <img src="./images/running_counter.png" alt="drawing" width="50%"/>
-
-
 
 ### Resume or complete a paused task
 
@@ -109,16 +110,13 @@ User can add a minute once in a while to a running pomodoro or a break with the 
 
 <img src="./images/add_another_minute.png" alt="drawing" width="50%"/>
 
-
 ### See the statistics
 
 Statistics is available by clicking the link in the header. Another page will be opened. Week selector allows jumping to one of three weeks available, clicking on day abbreviation in the chart selects a day of the week, allowing to see stats for the selected day, including:
 
-* statistics for the time spent on tasks 
-* focus ratio = time spent on tasks / time spent on tasks + time on pauses
-* time spent on pause 
-* the number of accomplished pomodori
+- statistics for the time spent on tasks
+- focus ratio = time spent on tasks / time spent on tasks + time on pauses
+- time spent on pause
+- the number of accomplished pomodori
 
 <img src="./images/statistics.png" alt="drawing" />
-
-

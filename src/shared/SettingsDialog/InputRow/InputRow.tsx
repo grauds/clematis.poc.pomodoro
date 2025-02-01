@@ -1,12 +1,12 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
-import { noop } from "../../../utils/noop";
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { noop } from '@/utils/noop';
 
-import styles from "./inputrow.css";
+import styles from './inputrow.css';
 
 export enum EInputRowType {
   MINUTES,
   NUMBERS,
-  CHECKBOX
+  CHECKBOX,
 }
 
 interface IInputRow {
@@ -28,16 +28,18 @@ export function InputRow({
 }: Readonly<IInputRow>): React.JSX.Element {
   let body;
 
-  const [valueCopy, setValueCopy] = useState<number | boolean>(propsToState(value));
+  const [valueCopy, setValueCopy] = useState<number | boolean>(
+    propsToState(value),
+  );
 
   // if property changes the state is not updated automatically!
   useEffect(() => {
-    setValueCopy(propsToState(value)); 
-  }, [value])
+    setValueCopy(propsToState(value));
+  }, [value]);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     // refresh state with raw value
-    setValueCopy(eventToState(event));    
+    setValueCopy(eventToState(event));
     // give away a scaled value for numbers
     onChange(eventToCallback(event));
   }
@@ -54,7 +56,7 @@ export function InputRow({
   }
 
   function eventToState(
-    event: ChangeEvent<HTMLInputElement>
+    event: ChangeEvent<HTMLInputElement>,
   ): number | boolean {
     switch (type) {
       case EInputRowType.CHECKBOX:
@@ -67,7 +69,7 @@ export function InputRow({
   }
 
   function eventToCallback(
-    event: ChangeEvent<HTMLInputElement>
+    event: ChangeEvent<HTMLInputElement>,
   ): number | boolean {
     switch (type) {
       case EInputRowType.CHECKBOX:

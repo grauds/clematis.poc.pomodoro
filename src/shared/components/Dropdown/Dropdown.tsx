@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from "react";
-import { noop } from "../../../utils/noop";
+import React, { useEffect, useRef } from 'react';
+import { noop } from '../../../utils/noop';
 
-import styles from "./dropdown.css";
+import styles from './dropdown.css';
 
 interface IDropdownProps {
   button: React.ReactNode;
@@ -21,10 +21,7 @@ export function Dropdown({
   const ref = useRef<HTMLDivElement>(null);
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(isOpen);
   useEffect(() => setIsDropdownOpen(isOpen ?? false), [isOpen]);
-  useEffect(
-    () => (isDropdownOpen ? onOpen() : onClose()),
-    [isDropdownOpen]
-  );
+  useEffect(() => (isDropdownOpen ? onOpen() : onClose()), [isDropdownOpen]);
 
   useEffect(() => {
     function handleClick(event: MouseEvent) {
@@ -36,10 +33,10 @@ export function Dropdown({
         setIsDropdownOpen(false);
       }
     }
-    document.addEventListener("click", handleClick);
+    document.addEventListener('click', handleClick);
 
     return () => {
-      document.removeEventListener("click", handleClick);
+      document.removeEventListener('click', handleClick);
     };
   }, []);
 

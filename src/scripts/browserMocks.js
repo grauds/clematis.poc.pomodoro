@@ -12,7 +12,7 @@ const localStorageMock = (function localStorageMock() {
       store = {};
     },
   };
-}());
+})();
 
 Object.defineProperty(window, 'localStorage', {
   value: localStorageMock,

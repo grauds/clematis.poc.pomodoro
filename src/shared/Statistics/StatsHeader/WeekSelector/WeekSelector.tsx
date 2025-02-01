@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { Dropdown } from "../../../components/Dropdown";
-import { GenericList } from "../../../components/GenericList";
-import { merge } from "../../../../utils/merge";
-import { ArrowIcon } from "../../../icons";
-import { IWeek, Weeks } from "../../../../types/model";
-import { RootState, setCurrentWeek } from "../../../../store/reducer";
+import { Dropdown } from '../../../components/Dropdown';
+import { GenericList } from '../../../components/GenericList';
+import { merge } from '../../../../utils/merge';
+import { ArrowIcon } from '../../../icons';
+import { IWeek, Weeks } from '../../../../types/model';
+import { RootState, setCurrentWeek } from '../../../../store/reducer';
 
-import styles from "./weekselector.css";
+import styles from './weekselector.css';
 
 interface IWeekSelectorProps {
   isOpen?: boolean;
@@ -34,8 +34,8 @@ export function WeekSelector({
       setCurrentWeek(
         Weeks.find((item: { id: string; text: string }) => {
           return item.id === id;
-        }) ?? Weeks[0]
-      )
+        }) ?? Weeks[0],
+      ),
     );
   }
 
@@ -62,7 +62,7 @@ export function WeekSelector({
               merge({
                 onClick: handleItemClick,
                 className: styles.item,
-              })
+              }),
             )}
           />
         </div>

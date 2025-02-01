@@ -47,16 +47,16 @@
 }
 
 .cancel {
-    border-radius: 0px 0px 3px 0px;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    text-decoration: underline;
-    line-height: 16px;
-    text-align: center;
-    padding: 15px, 50px, 15px, 50px;
-    margin-top: 20px;
-  }
+  border-radius: 0px 0px 3px 0px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: underline;
+  line-height: 16px;
+  text-align: center;
+  padding: 15px, 50px, 15px, 50px;
+  margin-top: 20px;
+}
 
 .button:disabled {
   opacity: 0.5;

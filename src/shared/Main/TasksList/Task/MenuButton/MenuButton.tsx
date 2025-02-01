@@ -1,11 +1,11 @@
-import React from "react";
-import { MenuIcon } from "../../../../icons";
-import { noop } from "../../../../../utils/noop";
-import { Dropdown } from "../../../../components/Dropdown";
-import { GenericList, IItem } from "../../../../components/GenericList";
-import { MenuItemsList } from "../../../../components/MenuItemsList";
+import React from 'react';
+import { MenuIcon } from '../../../../icons';
+import { noop } from '../../../../../utils/noop';
+import { Dropdown } from '../../../../components/Dropdown';
+import { GenericList, IItem } from '../../../../components/GenericList';
+import { MenuItemsList } from '../../../../components/MenuItemsList';
 
-import styles from "./menubutton.css";
+import styles from './menubutton.css';
 
 interface IMenuButtonProps {
   isOpen?: boolean;

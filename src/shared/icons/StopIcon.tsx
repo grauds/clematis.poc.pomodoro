@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface IStopIcon {
   active?: boolean;
@@ -53,4 +53,4 @@ export function StopIcon({ active }: IStopIcon): React.JSX.Element {
   );
 }
 
-export default StopIcon
+export default StopIcon;

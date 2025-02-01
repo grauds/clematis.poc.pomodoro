@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export function DeleteIcon(): React.JSX.Element {
   return (
@@ -24,4 +24,4 @@ export function DeleteIcon(): React.JSX.Element {
   );
 }
 
-export default DeleteIcon
+export default DeleteIcon;

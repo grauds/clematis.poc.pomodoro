@@ -6,10 +6,9 @@ interface IStopsTotals {
   stops?: number;
 }
 
-export function StopsTotals({stops}: IStopsTotals) {
-
-  const active = (stops ?? 0) > 0
-  const activeClass = active ? styles.active : ''
+export function StopsTotals({ stops }: IStopsTotals) {
+  const active = (stops ?? 0) > 0;
+  const activeClass = active ? styles.active : '';
 
   return (
     <div className={`${styles.stoptotals} ${activeClass}`}>

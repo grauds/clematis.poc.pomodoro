@@ -4,11 +4,11 @@ import React, {
   useEffect,
   useRef,
   useState,
-} from "react";
-import { Dialog } from "../Dialog";
-import { noop } from "../../../utils/noop";
+} from 'react';
+import { Dialog } from '../Dialog';
+import { noop } from '../../../utils/noop';
 
-import styles from "./inputdialog.css";
+import styles from './inputdialog.css';
 
 interface IInputDialogProps {
   title?: string;
@@ -28,12 +28,12 @@ export function InputDialog({
   onSubmit,
   onValidate,
   onClose = noop,
-}: Readonly<IInputDialogProps>) {
+}: Readonly<IInputDialogProps>): React.JSX.Element {
   const ref = useRef<HTMLInputElement>(null);
 
   const [input, setInput] = useState(text);
   const [touched, setTouched] = useState(false);
-  const [valueError, setValueError] = useState("");
+  const [valueError, setValueError] = useState('');
 
   useEffect(() => {
     ref.current?.focus();
@@ -76,10 +76,10 @@ export function InputDialog({
           <div className={styles.error}>{valueError}</div>
         )}
         <button type="submit" className={styles.button}>
-          {"Сохранить"}
+          {'Сохранить'}
         </button>
         <button className={styles.cancel} onClick={() => onClose()}>
-          {"Отмена"}
+          {'Отмена'}
         </button>
       </form>
     </Dialog>

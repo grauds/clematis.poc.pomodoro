@@ -1,18 +1,18 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Day } from "./Day";
-import { DaysBar } from "./DaysBar";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Day } from './Day';
+import { DaysBar } from './DaysBar';
 import {
   IDayStats,
   IWeek,
   getDayStats,
   getWeekMaxTime,
-} from "../../../types/model";
-import { HLine } from "./HLine";
-import { formatTimeShort, sameDay } from "../../../utils/time";
-import { RootState, setCurrentDay } from "../../../store/reducer";
+} from '../../../types/model';
+import { HLine } from './HLine';
+import { formatTimeShort, sameDay } from '../../../utils/time';
+import { RootState, setCurrentDay } from '../../../store/reducer';
 
-import styles from "./weekchart.css";
+import styles from './weekchart.css';
 
 export function WeekChart(): React.JSX.Element {
   const dispatch = useDispatch();

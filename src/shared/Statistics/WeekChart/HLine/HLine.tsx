@@ -8,7 +8,8 @@ interface IHLineProps {
 export function HLine({ time }: Readonly<IHLineProps>) {
   return (
     <div className={styles.hline}>
-      <span className={styles.line}></span><span className={styles.text}>{time}</span>
+      <span className={styles.line}></span>
+      <span className={styles.text}>{time}</span>
     </div>
   );
 }

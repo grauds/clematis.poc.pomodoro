@@ -1,149 +1,148 @@
-  .s28 {
+.s28 {
+  font-size: 28px;
+  line-height: 33px;
+}
+.s20 {
+  font-size: 20px;
+  line-height: 23px;
+}
+.s16 {
+  font-size: 16px;
+  line-height: 19px;
+}
+.s14 {
+  font-size: 14px;
+  line-height: 16px;
+}
+.s12 {
+  font-size: 12px;
+  line-height: 14px;
+}
+.s10 {
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.black {
+  color: var(--black);
+}
+.orange {
+  color: var(--orange);
+}
+.green {
+  color: var(--green);
+}
+.white {
+  color: var(--white);
+}
+.grayF4 {
+  color: var(--grayF4);
+}
+.greyF3 {
+  color: var(--greyF3);
+}
+.greyD9 {
+  color: var(--greyD9);
+}
+.greyC4 {
+  color: var(--greyC4);
+}
+.grey99 {
+  color: var(--grey99);
+}
+.grey66 {
+  color: var(--grey66);
+}
+
+.upperCase {
+  text-transform: uppercase;
+}
+
+@media all and (min-width: 320px) and (max-width: 1023px) {
+  .m28 {
     font-size: 28px;
     line-height: 33px;
   }
-  .s20 {
+  .m20 {
     font-size: 20px;
     line-height: 23px;
   }
-  .s16 {
+  .m16 {
     font-size: 16px;
     line-height: 19px;
   }
-  .s14 {
+  .m14 {
     font-size: 14px;
     line-height: 16px;
   }
-  .s12 {
+  .m12 {
     font-size: 12px;
     line-height: 14px;
   }
-  .s10 {
+  .m10 {
     font-size: 10px;
     line-height: 12px;
   }
+}
 
-  .bold {
-    font-weight: bold;
+.bold {
+  font-weight: 500;
+}
+
+@media all and (min-width: 1024px) and (max-width: 1539px) {
+  .t28 {
+    font-size: 28px;
+    line-height: 33px;
   }
-  
-  .black {
-    color: var(--black);
+  .t20 {
+    font-size: 20px;
+    line-height: 23px;
   }
-  .orange {
-    color: var(--orange);
+  .t16 {
+    font-size: 16px;
+    line-height: 19px;
   }
-  .green {
-    color: var(--green);
+  .t14 {
+    font-size: 14px;
+    line-height: 16px;
   }
-  .white {
-    color: var(--white);
+  .t12 {
+    font-size: 12px;
+    line-height: 14px;
   }
-  .grayF4 {
-    color: var(--grayF4);
+  .t10 {
+    font-size: 10px;
+    line-height: 12px;
   }
-  .greyF3 {
-    color: var(--greyF3);
+}
+
+@media all and (min-width: 1540px) {
+  .d28 {
+    font-size: 28px;
+    line-height: 33px;
   }
-  .greyD9 {
-    color: var(--greyD9);
+  .d20 {
+    font-size: 20px;
+    line-height: 23px;
   }
-  .greyC4 {
-    color: var(--greyC4);
+  .d16 {
+    font-size: 16px;
+    line-height: 19px;
   }
-  .grey99 {
-    color: var(--grey99);
+  .d14 {
+    font-size: 14px;
+    line-height: 16px;
   }
-  .grey66 {
-    color: var(--grey66);
+  .d12 {
+    font-size: 12px;
+    line-height: 14px;
   }
-  
-  .upperCase {
-    text-transform: uppercase;
+  .d10 {
+    font-size: 10px;
+    line-height: 12px;
   }
-  
-  @media all and (min-width: 320px) and (max-width: 1023px) {
-    .m28 {
-      font-size: 28px;
-      line-height: 33px;
-    }
-    .m20 {
-      font-size: 20px;
-      line-height: 23px;
-    }
-    .m16 {
-      font-size: 16px;
-      line-height: 19px;
-    }
-    .m14 {
-      font-size: 14px;
-      line-height: 16px;
-    }
-    .m12 {
-      font-size: 12px;
-      line-height: 14px;
-    }
-    .m10 {
-      font-size: 10px;
-      line-height: 12px;
-    }
-  }
-  
-  .bold {
-    font-weight: 500;
-  }
-  
-  @media all and (min-width: 1024px) and (max-width: 1539px) {
-    .t28 {
-      font-size: 28px;
-      line-height: 33px;
-    }
-    .t20 {
-      font-size: 20px;
-      line-height: 23px;
-    }
-    .t16 {
-      font-size: 16px;
-      line-height: 19px;
-    }
-    .t14 {
-      font-size: 14px;
-      line-height: 16px;
-    }
-    .t12 {
-      font-size: 12px;
-      line-height: 14px;
-    }
-    .t10 {
-      font-size: 10px;
-      line-height: 12px;
-    }
-  }
-  
-  @media all and (min-width: 1540px) {
-    .d28 {
-      font-size: 28px;
-      line-height: 33px;
-    }
-    .d20 {
-      font-size: 20px;
-      line-height: 23px;
-    }
-    .d16 {
-      font-size: 16px;
-      line-height: 19px;
-    }
-    .d14 {
-      font-size: 14px;
-      line-height: 16px;
-    }
-    .d12 {
-      font-size: 12px;
-      line-height: 14px;
-    }
-    .d10 {
-      font-size: 10px;
-      line-height: 12px;
-    }
-  }
-  
+}

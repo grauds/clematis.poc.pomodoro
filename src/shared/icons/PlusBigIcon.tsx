@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export function PlusBigIcon(): React.JSX.Element {
   return (
@@ -18,4 +18,4 @@ export function PlusBigIcon(): React.JSX.Element {
   );
 }
 
-export default PlusBigIcon
+export default PlusBigIcon;

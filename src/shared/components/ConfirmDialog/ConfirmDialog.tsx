@@ -1,8 +1,8 @@
-import React from "react";
-import { Dialog } from "../Dialog";
-import { noop } from "../../../utils/noop";
+import React from 'react';
+import { Dialog } from '../Dialog';
+import { noop } from '../../../utils/noop';
 
-import styles from "./confirmdialog.css";
+import styles from './confirmdialog.css';
 
 interface IConfirmDialogProps {
   title?: string;
@@ -27,10 +27,10 @@ export function ConfirmDialog({
         {question}
         <div className={styles.buttons}>
           <button type="submit" className={styles.button}>
-            {buttonTitle ?? "Сохранить"}
+            {buttonTitle ?? 'Сохранить'}
           </button>
           <button className={styles.cancel} onClick={() => onClose()}>
-            {"Отмена"}
+            {'Отмена'}
           </button>
         </div>
       </form>

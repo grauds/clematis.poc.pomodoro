@@ -1,29 +1,24 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/reducer";
-import {
-  IDayStats,
-  getDayPomodoriDone,
-  getDayStats,
-} from "../../types/model";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/reducer';
+import { IDayStats, getDayPomodoriDone, getDayStats } from '../../types/model';
 
-import { DayTotals } from "./DayTotals";
-import { PomodoroTotals } from "./PomodoroTotals";
-import { FocusTotals } from "./FocusTotals";
-import { WeekChart } from "./WeekChart";
-import { PauseTotals } from "./PauseTotals";
-import { StopsTotals } from "./StopsTotals";
-import { StatsHeader } from "./StatsHeader";
-import { formatTimeLong } from "../../utils/time";
+import { DayTotals } from './DayTotals';
+import { PomodoroTotals } from './PomodoroTotals';
+import { FocusTotals } from './FocusTotals';
+import { WeekChart } from './WeekChart';
+import { PauseTotals } from './PauseTotals';
+import { StopsTotals } from './StopsTotals';
+import { StatsHeader } from './StatsHeader';
+import { formatTimeLong } from '../../utils/time';
 
-import styles from "./statistics.css";
+import styles from './statistics.css';
 
 export function Statistics(): React.JSX.Element {
-
   const selectedDay: IDayStats = useSelector<RootState, IDayStats>(
-    (state) => state.day
+    (state) => state.day,
   );
-  
+
   const totalPomodoroDone = useSelector<RootState, number>((state) => {
     return getDayPomodoriDone(state.tasks, selectedDay);
   });
@@ -31,11 +26,14 @@ export function Statistics(): React.JSX.Element {
   const statsForSelectedDay: IDayStats = useSelector<RootState, IDayStats>(
     (state) => {
       return getDayStats(state.stats, selectedDay.date);
-    }
+    },
   );
 
   function getFocusTime(): number {
-    return statsForSelectedDay.time * 100 / (statsForSelectedDay.time + statsForSelectedDay.pause)
+    return (
+      (statsForSelectedDay.time * 100) /
+      (statsForSelectedDay.time + statsForSelectedDay.pause)
+    );
   }
 
   return (
@@ -52,9 +50,7 @@ export function Statistics(): React.JSX.Element {
         <WeekChart />
       </div>
       <div className={styles.footer}>
-        <FocusTotals
-          percent={getFocusTime()}
-        />
+        <FocusTotals percent={getFocusTime()} />
         <PauseTotals time={statsForSelectedDay.pause} />
         <StopsTotals stops={statsForSelectedDay.stops} />
       </div>

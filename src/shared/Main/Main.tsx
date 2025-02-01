@@ -1,17 +1,17 @@
 import React from 'react';
-import { AddTaskForm } from './AddTaskForm';
-import { TasksList } from './TasksList';
-
-import { RootState, addTask, toggleInfo } from '../../store/reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { ETaskStatus } from "../../types/model";
-import { CounterContainer } from "./CounterContainer";
 
-import styles from "./main.css";
+import { AddTaskForm } from './AddTaskForm';
+import { TasksList } from './TasksList';
+import { CounterContainer } from './CounterContainer';
+
+import { RootState, addTask, toggleInfo } from '@/store/reducer';
+import { ETaskStatus } from '@/types/model';
+
+import styles from './main.css';
 
 export function Main(): React.JSX.Element {
-
   const dispatch = useDispatch();
 
   const info = useSelector<RootState, boolean>((state) => state.info);
@@ -49,7 +49,7 @@ export function Main(): React.JSX.Element {
               </li>
             </ul>
           ) : (
-            ""
+            ''
           )}
         </div>
         <AddTaskForm
@@ -60,7 +60,7 @@ export function Main(): React.JSX.Element {
                 name: taskName,
                 status: ETaskStatus.NOT_STARTED,
                 pomodori: [],
-              })
+              }),
             );
           }}
         />

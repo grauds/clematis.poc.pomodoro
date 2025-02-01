@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
-import { CounterHeader } from "./CounterHeader";
-import { PlusBigIcon } from "../../icons";
-import { formatTime } from "../../../utils/time";
+import { CounterHeader } from './CounterHeader';
+import { PlusBigIcon } from '../../icons';
+import { formatTime } from '../../../utils/time';
 
-import styles from "./counter.css";
+import styles from './counter.css';
 
 export interface ICounterProps {
   active: boolean;
-  name: string;  
+  name: string;
   status: string;
   pomodoroNo: number;
   seconds: number;
@@ -20,7 +20,7 @@ export interface ICounterProps {
   rightButtonTitle: string;
   rightBuittonAction: () => void;
   rightButtonDisabled: boolean;
-  handleTimeAdd: () => void
+  handleTimeAdd: () => void;
 }
 
 export function Counter(props: Readonly<ICounterProps>): React.JSX.Element {

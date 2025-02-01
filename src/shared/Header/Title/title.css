@@ -8,10 +8,10 @@
 }
 
 .brand {
-   padding-left: 20px;  
-   font-size: 24px;
-   font-weight: 300;
-   color: var(--accent);
+  padding-left: 20px;
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--accent);
 }
 
 @media all and (min-width: 1024px) {
@@ -26,9 +26,9 @@
   }
 
   .brand {
-    padding-left: 20px;  
+    padding-left: 20px;
     font-weight: normal;
     font-size: 24px;
     color: var(--accent);
- }
+  }
 }

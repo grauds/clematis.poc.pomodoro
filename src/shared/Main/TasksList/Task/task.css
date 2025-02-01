@@ -1,46 +1,46 @@
 .task {
-    display: flex;
-    flex-flow: row nowrap;
-    vertical-align: middle;
-    gap: 7px;
-    border-bottom: 1px var(--greyEC) solid;
-    padding: 7px;
-    align-items: center;
-    cursor: grab;
+  display: flex;
+  flex-flow: row nowrap;
+  vertical-align: middle;
+  gap: 7px;
+  border-bottom: 1px var(--greyEC) solid;
+  padding: 7px;
+  align-items: center;
+  cursor: grab;
 }
 
 .activeTask {
-    color: var(--accent);
+  color: var(--accent);
 }
 
 .doneTask {
-    text-decoration: line-through;
-    color: var(--greyC4);
+  text-decoration: line-through;
+  color: var(--greyC4);
 }
 
 .number {
-    border-radius: 50%;
-    width: 27px;
-    min-width: 27px;
-    height: 27px;
-    padding: 6px;
-    font-size: 26px;
-    line-height: 26px;
+  border-radius: 50%;
+  width: 27px;
+  min-width: 27px;
+  height: 27px;
+  padding: 6px;
+  font-size: 26px;
+  line-height: 26px;
 
-    border: 1px solid var(--greyC4);    
-    text-align: center;
-    box-sizing: content-box;
+  border: 1px solid var(--greyC4);
+  text-align: center;
+  box-sizing: content-box;
 }
 
 .task:active {
-    cursor: grabbing;
+  cursor: grabbing;
 }
 
 .dragging {
-    cursor: grabbing;
-    color: var(--greyC4);
+  cursor: grabbing;
+  color: var(--greyC4);
 }
 
 .draggedOver {
-    border-top: 1px var(--accent) solid;
+  border-top: 1px var(--accent) solid;
 }

@@ -1,7 +1,7 @@
 .tasksList {
-    border-top: 1px var(--greyEC) solid;
-    margin: 50px 0 0 0;
-    padding: 0 0 20px 0;
-    max-height: 400px;
-    color: var(--foreground);
+  border-top: 1px var(--greyEC) solid;
+  margin: 50px 0 0 0;
+  padding: 0 0 20px 0;
+  max-height: 400px;
+  color: var(--foreground);
 }

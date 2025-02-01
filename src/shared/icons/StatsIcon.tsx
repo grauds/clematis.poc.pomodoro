@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export function StatsIcon(): React.JSX.Element {
   return (
@@ -24,4 +24,4 @@ export function StatsIcon(): React.JSX.Element {
   );
 }
 
-export default StatsIcon
+export default StatsIcon;
