@@ -6,10 +6,10 @@ import {
   removeTask,
   removeTaskPomodoro,
   updateTask,
-} from '../../../../store/reducer';
+} from '@/store/reducer';
 
-import { EPomodoroStatus, ETaskStatus, ITask } from '../../../../types/model';
-import { noop } from '../../../../utils/noop';
+import { EPomodoroStatus, ETaskStatus, ITask } from '@/types/model';
+import { noop } from '@/utils/noop';
 import { IItem } from '../../../components/GenericList';
 
 import { DeleteIcon, EditIcon, MinusIcon, PlusIcon } from '../../../icons';

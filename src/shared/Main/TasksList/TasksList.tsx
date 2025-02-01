@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ITask } from '../../../types/model';
-import { RootState, moveTaskBefore } from '../../../store/reducer';
+import { ITask } from '@/types/model';
+import { RootState, moveTaskBefore } from '@/store/reducer';
 import { Task } from './Task';
 
 import styles from './taskslist.css';

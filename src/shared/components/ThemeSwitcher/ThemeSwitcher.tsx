@@ -19,11 +19,6 @@ enum EAnimation {
   'rightToLeft' = 'rightToLeft',
 }
 
-interface ILabel {
-  title: string;
-  value: ESwitchPosition;
-}
-
 export interface IThemeSwitcherProps {
   leftTitle: string;
   centerTitle: string;
