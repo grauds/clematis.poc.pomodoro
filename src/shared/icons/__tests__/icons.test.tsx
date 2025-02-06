@@ -1,6 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import fs from 'fs';
+
+import { render } from '@testing-library/react';
 
 const importIcon = async (path: string): Promise<React.JSX.Element> => {
   const module = await import(path);
@@ -25,7 +26,7 @@ describe('icons', () => {
     '%s',
     (_name: string, Icon: Promise<React.JSX.Element>) => {
       Icon.then((Result) => {
-        expect(shallow(Result)).toMatchSnapshot();
+        expect(render(Result)).toMatchSnapshot();
       });
     },
   );

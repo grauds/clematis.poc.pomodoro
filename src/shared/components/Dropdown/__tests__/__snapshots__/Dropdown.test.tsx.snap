@@ -1,12 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dropdown should render (snapshot) 1`] = `
+exports[`Dropdown should render 1`] = `
 <div
-  className="container"
+  class="container"
 >
-  <div
-    onClick={[Function]}
-  >
+  <div>
     <button />
   </div>
 </div>

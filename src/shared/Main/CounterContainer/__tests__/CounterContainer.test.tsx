@@ -1,24 +1,25 @@
 import React from 'react';
-import { mount } from 'enzyme';
 import { CounterContainer } from '../CounterContainer';
 import { createStore } from 'redux';
 import { MemoryRouter } from 'react-router';
 import { Provider } from 'react-redux';
 
-import { initialState, rootReducer } from '../../../../store/reducer';
+import { initialState, rootReducer } from '@/store/reducer';
+
+import { render } from '@testing-library/react';
 
 describe('Counter container', () => {
   test('should render', () => {
     const store = createStore(rootReducer, initialState);
 
-    const wrapper = mount(
+    const { container } = render(
       <Provider store={store}>
         <MemoryRouter>
           <CounterContainer />
         </MemoryRouter>
       </Provider>,
     );
-    expect(wrapper).toBeDefined();
-    expect(wrapper).toMatchSnapshot();
+    expect(container).toBeDefined();
+    expect(container).toMatchSnapshot();
   });
 });

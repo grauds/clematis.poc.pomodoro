@@ -1,25 +1,19 @@
 import React from 'react';
 import { Dropdown } from '../Dropdown';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import { screen } from '@testing-library/dom'
 
 describe('Dropdown', () => {
   test('should render', () => {
-    const wrapper = shallow(
+    const {container} = render(
       <Dropdown button={<button />}>
         <div />
       </Dropdown>,
     );
-    expect(wrapper).toBeDefined();
-    console.log(wrapper.find('div.container').debug());
-    expect(wrapper.find('div.container').isEmptyRender()).toBeFalsy();
+    expect(screen).toBeDefined();
+    console.log(container.querySelector('div.container'));
+    expect(container.querySelector('div.container')).toBeTruthy();
+    expect(container.querySelector('div.container')).toMatchSnapshot();
   });
 
-  test('should render (snapshot)', () => {
-    const wrapper = shallow(
-      <Dropdown button={<button />}>
-        <div />
-      </Dropdown>,
-    );
-    expect(wrapper).toMatchSnapshot();
-  });
 });
