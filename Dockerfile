@@ -6,7 +6,7 @@ FROM node:18-alpine AS build-image
 
 WORKDIR /opt/software
 
-COPY eslint.config.mjs jest.config.js jest.setup.ts package.json package-lock.json tsconfig.json webpack.config.js ./
+COPY eslint.config.mjs jest.config.js package.json package-lock.json tsconfig.json webpack.config.js ./
 
 COPY bin bin
 COPY cfg cfg
@@ -33,7 +33,7 @@ FROM mcr.microsoft.com/playwright:v1.50.1-jammy AS test-e2e
 WORKDIR /opt/software
 
 COPY tests tests
-COPY playwright.config.ts .
+COPY cucumber.js playwright.config.ts ./
 
 RUN npm i -D @playwright/test
 RUN npx playwright install

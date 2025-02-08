@@ -1,0 +1,1 @@
+export const testUrl: string = 'http://192.168.1.118:18084/';
