@@ -70,7 +70,7 @@ pipeline {
                 -s "./"
                 -f "ALL"
                 -P "depcheck.properties"
-                --prettyPrint''', odcInstallation: 'Dependency Checker'
+                --prettyPrint''', nvdCredentialsId: 'NVD_API_Key', odcInstallation: 'Dependency Checker'
 
             dependencyCheckPublisher pattern: 'dependency-check-report.xml'
           }
