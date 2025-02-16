@@ -41,7 +41,7 @@ export function Counter(props: Readonly<ICounterProps>): React.JSX.Element {
               </span>
             </span>
             <span className={styles.buttonPlaceholder}>
-              <button onClick={props.handleTimeAdd}>
+              <button aria-label='timeAdd' onClick={props.handleTimeAdd}>
                 <PlusBigIcon />
               </button>
             </span>

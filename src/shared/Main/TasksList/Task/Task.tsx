@@ -10,22 +10,23 @@ import {
 
 import { EPomodoroStatus, ETaskStatus, ITask } from '@/types/model';
 import { noop } from '@/utils/noop';
-import { IItem } from '../../../components/GenericList';
 
+import { IItem } from '../../../components/GenericList';
 import { DeleteIcon, EditIcon, MinusIcon, PlusIcon } from '../../../icons';
-import { MenuButton } from './MenuButton';
 import { InputDialog } from '../../../components/InputDialog';
 import { ConfirmDialog } from '../../../components/ConfirmDialog';
+
+import { MenuButton } from './MenuButton';
 
 import styles from './task.css';
 
 interface ITaskProps {
   task: ITask;
   draggedOver: boolean;
-  dragEnter?: (e: React.DragEvent<HTMLDivElement>) => void;
-  dragLeave?: (e: React.DragEvent<HTMLDivElement>) => void;
-  dragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
-  dragEnd?: (e: React.DragEvent<HTMLDivElement>) => void;
+  dragEnter?: (e: React.DragEvent<HTMLButtonElement>) => void;
+  dragLeave?: (e: React.DragEvent<HTMLButtonElement>) => void;
+  dragStart?: (e: React.DragEvent<HTMLButtonElement>) => void;
+  dragEnd?: (e: React.DragEvent<HTMLButtonElement>) => void;
 }
 
 export function Task({
@@ -93,13 +94,13 @@ export function Task({
     },
   ];
 
-  function internalDragStart(e: React.DragEvent<HTMLDivElement>) {
+  function internalDragStart(e: React.DragEvent<HTMLButtonElement>) {
     e.dataTransfer.setData('task', task.id);
     setIsDragged(true);
     dragStart(e);
   }
 
-  function internalDragEnd(e: React.DragEvent<HTMLDivElement>) {
+  function internalDragEnd(e: React.DragEvent<HTMLButtonElement>) {
     e.dataTransfer.setData('task', task.id);
     setIsDragged(false);
     dragEnd(e);
@@ -110,7 +111,7 @@ export function Task({
   }, [currentTask]);
 
   return (
-    <div
+    <button
       id={task.id}
       className={`${styles.task} ${draggingClass} ${draggedOverClass}`}
       draggable
@@ -156,6 +157,6 @@ export function Task({
         }}
         onClose={() => setIsConfirmationOpen(false)}
       />
-    </div>
+    </button>
   );
 }

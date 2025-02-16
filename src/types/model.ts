@@ -11,6 +11,7 @@ export enum ETaskStatus {
   RUNNING,
   PAUSED,
   DONE,
+  IN_PROGRESS,
 }
 
 export enum EPomodoroStatus {
@@ -20,6 +21,7 @@ export enum EPomodoroStatus {
   BREAK_RUNNING,
   BREAK_PAUSED,
   DONE,
+  IN_PROGRESS,
 }
 
 export enum ETheme {

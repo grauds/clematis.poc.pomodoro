@@ -48,12 +48,12 @@ export function Dropdown({
 
   return (
     <div className={styles.container} ref={ref}>
-      <div onClick={handleOpen}>{button}</div>
+      <button aria-label='menuButton' onClick={handleOpen}>{button}</button>
       {isDropdownOpen && (
         <div className={styles.listContainer}>
-          <div className={styles.list} onClick={() => setIsDropdownOpen(false)}>
+          <button className={styles.list} onClick={() => setIsDropdownOpen(false)}>
             {children}
-          </div>
+          </button>
         </div>
       )}
     </div>

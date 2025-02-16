@@ -21,7 +21,7 @@ export function MenuButton({
   onClose = noop,
 }: Readonly<IMenuButtonProps>): React.JSX.Element {
   return (
-    <div className={styles.menu}>
+    <button className={styles.menu}>
       <Dropdown
         isOpen={isOpen}
         onOpen={onOpen}
@@ -36,6 +36,6 @@ export function MenuButton({
           <GenericList list={menuItems} />
         </MenuItemsList>
       </Dropdown>
-    </div>
+    </button>
   );
 }

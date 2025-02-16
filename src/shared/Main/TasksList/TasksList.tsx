@@ -2,8 +2,8 @@ import React, { ReactNode, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ITask } from '@/types/model';
 import { RootState, moveTaskBefore } from '@/store/reducer';
-import { Task } from './Task';
 
+import { Task } from './Task';
 import styles from './taskslist.css';
 
 export function TasksList() {
@@ -14,23 +14,23 @@ export function TasksList() {
 
   const dispatch = useDispatch();
 
-  const dragStart = (e: React.DragEvent<HTMLDivElement>) => {
+  const dragStart = (e: React.DragEvent<HTMLButtonElement>) => {
     setDragging(true);
     setDraggedTaskId(e.dataTransfer.getData('task'));
   };
 
-  const dragEnter = (e: React.DragEvent<HTMLDivElement>) => {
+  const dragEnter = (e: React.DragEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     setDraggedOverTaskId(e.currentTarget.id);
   };
 
-  const dragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+  const dragLeave = (e: React.DragEvent<HTMLButtonElement>) => {
     e.preventDefault();
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const drop = (e: React.DragEvent<HTMLDivElement>) => {
+  const drop = (e: React.DragEvent<HTMLButtonElement>) => {
     dispatch(moveTaskBefore(draggedTaskId, draggedOverTaskId));
 
     setDraggedOverTaskId('');

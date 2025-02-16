@@ -11,8 +11,8 @@ export default [
   { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
   { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
+  ...tseslint.configs.recommended,
   ...compat.extends('plugin:jest/recommended'),
   {
     rules: {
@@ -21,6 +21,7 @@ export default [
       '@typescript-eslint/no-unused-vars': 'warn',
       'no-undef': 'warn',
       'react/display-name': 'warn',
+      'no-require-imports': 'warn',
     },
   },
   ...compat.extends('plugin:prettier/recommended'),
