@@ -23,10 +23,10 @@ import styles from './task.css';
 interface ITaskProps {
   task: ITask;
   draggedOver: boolean;
-  dragEnter?: (e: React.DragEvent<HTMLButtonElement>) => void;
-  dragLeave?: (e: React.DragEvent<HTMLButtonElement>) => void;
-  dragStart?: (e: React.DragEvent<HTMLButtonElement>) => void;
-  dragEnd?: (e: React.DragEvent<HTMLButtonElement>) => void;
+  dragEnter?: (e: React.DragEvent<HTMLDivElement>) => void;
+  dragLeave?: (e: React.DragEvent<HTMLDivElement>) => void;
+  dragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
+  dragEnd?: (e: React.DragEvent<HTMLDivElement>) => void;
 }
 
 export function Task({
@@ -94,13 +94,13 @@ export function Task({
     },
   ];
 
-  function internalDragStart(e: React.DragEvent<HTMLButtonElement>) {
+  function internalDragStart(e: React.DragEvent<HTMLDivElement>) {
     e.dataTransfer.setData('task', task.id);
     setIsDragged(true);
     dragStart(e);
   }
 
-  function internalDragEnd(e: React.DragEvent<HTMLButtonElement>) {
+  function internalDragEnd(e: React.DragEvent<HTMLDivElement>) {
     e.dataTransfer.setData('task', task.id);
     setIsDragged(false);
     dragEnd(e);
@@ -111,7 +111,7 @@ export function Task({
   }, [currentTask]);
 
   return (
-    <button
+    <div
       id={task.id}
       className={`${styles.task} ${draggingClass} ${draggedOverClass}`}
       draggable
@@ -157,6 +157,6 @@ export function Task({
         }}
         onClose={() => setIsConfirmationOpen(false)}
       />
-    </button>
+    </div>
   );
 }

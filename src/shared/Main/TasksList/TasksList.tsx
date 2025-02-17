@@ -14,23 +14,23 @@ export function TasksList() {
 
   const dispatch = useDispatch();
 
-  const dragStart = (e: React.DragEvent<HTMLButtonElement>) => {
+  const dragStart = (e: React.DragEvent<HTMLDivElement>) => {
     setDragging(true);
     setDraggedTaskId(e.dataTransfer.getData('task'));
   };
 
-  const dragEnter = (e: React.DragEvent<HTMLButtonElement>) => {
+  const dragEnter = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
 
     setDraggedOverTaskId(e.currentTarget.id);
   };
 
-  const dragLeave = (e: React.DragEvent<HTMLButtonElement>) => {
+  const dragLeave = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const drop = (e: React.DragEvent<HTMLButtonElement>) => {
+  const drop = (e: React.DragEvent<HTMLDivElement>) => {
     dispatch(moveTaskBefore(draggedTaskId, draggedOverTaskId));
 
     setDraggedOverTaskId('');
