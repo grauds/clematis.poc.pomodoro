@@ -130,7 +130,7 @@ export function getWeekMaxTime(
   weekstats: IDayStats[],
   week: IWeek,
 ): { weekDays: IDayStats[]; maxTime: number } {
-  const weekDays = getWeekDays(week);
+  const weekDays: IDayStats[] = getWeekDays(week);
 
   let maxTime = 0;
 

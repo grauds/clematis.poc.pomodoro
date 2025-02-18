@@ -31,13 +31,14 @@ export function WeekChart(): React.JSX.Element {
   return (
     <div className={styles.weekchart}>
       {weekDays.map((day: IDayStats) => {
+        const dayStats = getDayStats(weekstats, day.date)
         return (
           <Day
             day={day}
             selected={sameDay(selectedDay.date, day.date)}
-            handleClick={() => dispatch(setCurrentDay(day))}
+            handleClick={() => dispatch(setCurrentDay(dayStats))}
             key={day.short}
-            hpx={getDayStats(weekstats, day.date)?.time / scale}
+            hpx={dayStats?.time / scale}
           />
         );
       })}

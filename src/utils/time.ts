@@ -105,14 +105,24 @@ export function getDay(date: Date): number {
  * @returns distance to Monday from the current date
  */
 export function getDiff(date: Date): number {
-  const day = date.getDay();
+  const day: number = date.getDay();  
   return date.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
 }
 
 //https://stackoverflow.com/questions/4156434/javascript-get-the-first-day-of-the-week-from-current-date
 export function getMonday(d: Date): Date {
   const diff = getDiff(new Date(d));
-  return new Date(d.setDate(diff));
+  const monday: Date = new Date(d.setDate(diff));
+  monday.setMinutes(0)
+  monday.setSeconds(0)
+  monday.setMilliseconds(0)
+  monday.setHours(0)
+  return monday;
+}
+
+export function getAnotherDay(d: Date, delta: number): Date {
+  const date = new Date(d)
+  return new Date(date.setDate(date.getDate() + delta));
 }
 
 export function getPreviousMonday(d: Date): Date {

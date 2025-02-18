@@ -4,10 +4,10 @@ exports[`Dropdown should render 1`] = `
 <div
   class="container"
 >
-  <button
+  <div
     aria-label="menuButton"
   >
     <button />
-  </button>
+  </div>
 </div>
 `;

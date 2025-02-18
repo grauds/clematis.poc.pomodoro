@@ -1,9 +1,11 @@
 .main {
   display: flex;
   flex-flow: row nowrap;
-  gap: 50px;
+  gap: 20px;
   align-items: top;
-  padding: 50px;
+  padding: 40px;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 .infoToggle {
@@ -15,6 +17,6 @@
     display: flex;
     flex-flow: column nowrap;
     align-items: top;
-    padding: 50px;
+    padding: 40px;
   }
 }
