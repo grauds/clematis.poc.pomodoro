@@ -56,6 +56,7 @@ pipeline {
       steps {
         sh '''
           docker build \
+            --no-cache \
             --build-arg HTTP_PROXY=http://192.168.1.174:7890 \
             --build-arg HTTPS_PROXY=http://192.168.1.174:7890 \
             --build-arg CACHE_BUST=${BUILD_NUMBER} \
