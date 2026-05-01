@@ -34,22 +34,29 @@ app.get('*', (req, res) => {
  * Checks if SSL certificates exist (Production/Docker environment)
  * Falls back to HTTP if they are missing (Local Development)
  */
-if (fs.existsSync(certPath) && fs.existsSync(keyPath)) {
-  try {
-    const options = {
-      key: fs.readFileSync(keyPath),
-      cert: fs.readFileSync(certPath),
-    };
+console.log("--- SSL DIAGNOSTICS ---");
+console.log("Attempting to find cert at:", certPath);
+console.log("Attempting to find key at:", keyPath);
 
-    https.createServer(options, app).listen(PORT, () => {
-      console.log(`🚀 Production SECURE server running at https://localhost:${PORT}`);
-    });
-  } catch (error) {
-    console.error('Failed to start HTTPS server:', error);
-    process.exit(1);
-  }
-} else {
+try {
+  const certCheck = fs.statSync(certPath);
+  console.log("Cert file found! Permissions:", certCheck.mode);
+
+  const keyCheck = fs.statSync(keyPath);
+  console.log("Key file found! Permissions:", keyCheck.mode);
+
+  // If we get here, both exist
+  const options = {
+    key: fs.readFileSync(keyPath),
+    cert: fs.readFileSync(certPath),
+  };
+  https.createServer(options, app).listen(PORT, () => {
+    console.log(`🚀 SECURE server on https://localhost:${PORT}`);
+  });
+} catch (err) {
+  console.error("❌ SSL Check Failed:", err.message);
+  console.log("Falling back to HTTP...");
   app.listen(PORT, () => {
-    console.log(`🏠 Development server running at http://localhost:${PORT}`);
+    console.log(`🏠 HTTP server on http://localhost:${PORT}`);
   });
 }
