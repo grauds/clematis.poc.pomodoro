@@ -64,6 +64,7 @@ ARG WORK_DIR=/opt/software
 ARG APP_NAME=clematis-poc-pomodoro
 
 ARG CACHE_BUST=1
+RUN rm -rf dist .webpack-cache
 
 # Path to application in docker
 ENV APP_ROOT=${WORK_DIR}/${APP_NAME}
