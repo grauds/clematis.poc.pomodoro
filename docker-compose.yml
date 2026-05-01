@@ -5,9 +5,16 @@ services:
     image: clematis.poc.pomodoro:latest
     ports:
       - '18084:3000'
+    volumes:
+      - ssl_certs:/opt/software/certs:ro
     networks:
       - clematis
     restart: unless-stopped
+
+volumes:
+  ssl_certs:
+    name: jenkins_ssl_certs
+    external: true
 
 networks:
   clematis:

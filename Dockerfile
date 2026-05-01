@@ -2,7 +2,7 @@
 # BUILD AND TEST STAGE
 # ------------------------------------------------------------------------------
 
-FROM node:18-alpine AS build-image
+FROM node:22-alpine AS build-image
 
 WORKDIR /opt/software
 
@@ -54,7 +54,7 @@ COPY --from=test-e2e /opt/software/test-results ./test-results
 # RUNTIME STAGE (deployment)
 # ------------------------------------------------------------------------------
 
-FROM node:16 
+FROM node:22-slim
 
 ARG WORK_DIR=/opt/software
 ARG APP_NAME=clematis-poc-pomodoro
@@ -63,6 +63,9 @@ ARG APP_NAME=clematis-poc-pomodoro
 ENV APP_ROOT=${WORK_DIR}/${APP_NAME}
 WORKDIR ${APP_ROOT}
 RUN mkdir -p "$APP_ROOT"
+
+# Create the certs directory (keep it empty)
+RUN mkdir -p certs
 
 # Path to copy application from the build image
 ARG DIST_PATH=$WORK_DIR/dist
