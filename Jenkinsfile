@@ -58,6 +58,7 @@ pipeline {
           docker build \
             --build-arg HTTP_PROXY=http://192.168.1.174:7890 \
             --build-arg HTTPS_PROXY=http://192.168.1.174:7890 \
+            --build-arg CACHE_BUST=${BUILD_NUMBER} \
             . -t clematis.pomodoro -f Dockerfile
         '''
       }
@@ -70,6 +71,7 @@ pipeline {
            docker build \
               --build-arg HTTP_PROXY=http://192.168.1.174:7890 \
               --build-arg HTTPS_PROXY=http://192.168.1.174:7890 \
+              --build-arg CACHE_BUST=${BUILD_NUMBER} \
               --output "type=local,dest=${WORKSPACE}/coverage" --target test-out .
            ls -l ./coverage
         '''

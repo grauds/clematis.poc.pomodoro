@@ -14,6 +14,10 @@ COPY src src
 
 RUN npm install
 
+# --- CACHE BREAKER ---
+# Any step after this ARG will be invalidated if the build-arg value changes.
+ARG CACHE_BUST=1
+
 RUN npm run build:prod
 RUN npm test
 
