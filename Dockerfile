@@ -6,6 +6,10 @@ FROM node:22-alpine AS build-image
 
 WORKDIR /opt/software
 
+# --- CACHE BREAKER ---
+# Any step after this ARG will be invalidated if the build-arg value changes.
+ARG CACHE_BUST=1
+
 COPY eslint.config.mjs jest.config.js package.json package-lock.json tsconfig.json webpack.config.js ./
 
 COPY bin bin
@@ -13,10 +17,6 @@ COPY cfg cfg
 COPY src src
 
 RUN npm install
-
-# --- CACHE BREAKER ---
-# Any step after this ARG will be invalidated if the build-arg value changes.
-ARG CACHE_BUST=1
 
 RUN npm run build:prod
 RUN npm test
