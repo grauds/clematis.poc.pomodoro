@@ -1,5 +1,6 @@
 # Pomodoro Box
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/license/mit-0)
 [![Docker Image CI](https://github.com/grauds/clematis.poc.pomodoro/actions/workflows/docker-image.yml/badge.svg)](https://github.com/grauds/clematis.poc.pomodoro/actions/workflows/docker-image.yml)
 
 ![image](./images/app_screeenshot.png)
